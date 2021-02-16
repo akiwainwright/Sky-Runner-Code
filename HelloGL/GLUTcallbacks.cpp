@@ -26,4 +26,10 @@ namespace GLUTcallbacks
 		}
 	}
 
+	void Timer(int preferredRefresh)
+	{
+		helloGL->Update();
+		glutTimerFunc(preferredRefresh, GLUTcallbacks::Timer, preferredRefresh);
+	}
+
 }

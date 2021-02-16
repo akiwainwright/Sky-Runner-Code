@@ -4,9 +4,13 @@
 #include <gl/GLU.h>
 #include "GL\freeglut.h"
 #include "GLUTcallbacks.h"
+#define REFRESHRATE 16
 
 class HelloGL
 {
+private:
+
+	float m_rotation;
 
 public:
 
@@ -14,5 +18,9 @@ public:
 	~HelloGL(void);
 
 	void Display();
+
+	void Update();
+
+	void DrawPolygons();
 };
 
