@@ -45,7 +45,7 @@ private:
 
 	static Vertex indexedVertices[];
 	static Colors indexedColors[];
-	static GLushort indices[];
+	static GLushort indices[36];
 
 
 public:
@@ -65,6 +65,10 @@ public:
 
 	void DrawCubeArray();
 
+	void DrawCubeArrayAlt();
+
 	void DrawIndexedCube();
+
+	void DrawIndexedCubeAlt();
 };
 

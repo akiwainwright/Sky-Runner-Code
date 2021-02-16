@@ -108,7 +108,9 @@ void HelloGL::Display()
 	//DrawPolygons();
 	//DrawCube();
 	//DrawCubeArray();
+	//DrawCubeArrayAlt();
 	DrawIndexedCube();
+	//DrawIndexedCubeAlt();
 
 	glFlush(); //flushes the scene drawn to the graphics card
 
@@ -344,6 +346,23 @@ void HelloGL::DrawCubeArray()
 
 }
 
+void HelloGL::DrawCubeArrayAlt()
+{
+	glEnableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	glVertexPointer(3, GL_FLOAT, 0, vertices);
+	glColorPointer(3, GL_FLOAT, 0, colors);
+
+	glPushMatrix();
+	glRotatef(m_rotation, 0.0f, 0.0f, -1.0f);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+	glPopMatrix();
+
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
+}
+
 void HelloGL::DrawIndexedCube()
 {
 	glPushMatrix();
@@ -359,4 +378,22 @@ void HelloGL::DrawIndexedCube()
 
 	glPopMatrix();
 	
+}
+
+void HelloGL::DrawIndexedCubeAlt()
+{
+	glEnableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	glColorPointer(3, GL_FLOAT, 0, indexedColors);
+	glVertexPointer(3, GL_FLOAT, 0, indexedVertices);
+
+	glPushMatrix();
+	glRotatef(m_rotation, 0.0f, 0.0f, -1.0f);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, indices);
+	glPopMatrix();
+
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
+
 }
