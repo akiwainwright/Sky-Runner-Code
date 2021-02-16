@@ -6,12 +6,17 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 	GLUTcallbacks::Init(this);
 	glutInit(&argc, argv);
-	glutInitWindowSize(800, 800);
+	glutInitDisplayMode(GL_DOUBLE); //setting display to use a double buffer to reduce flicker
 
-	//name of the window
-	glutCreateWindow("Drawing Polygons");
-	glutDisplayFunc(GLUTcallbacks::Display);
-	glutTimerFunc(REFRESHRATE, GLUTcallbacks::Timer, REFRESHRATE);
+	//setting up the window
+	glutInitWindowSize(800, 800);
+	glutInitWindowPosition(100, 100);
+	glutCreateWindow("Adding keyboard Input");
+
+	//Triggers to run callback functions
+	glutDisplayFunc(GLUTcallbacks::Display); 
+	glutTimerFunc(REFRESHRATE, GLUTcallbacks::Timer, REFRESHRATE); 
+	glutKeyboardFunc(GLUTcallbacks::Keyboard);
 	glutMainLoop();
 }
 
@@ -22,11 +27,13 @@ HelloGL::~HelloGL(void)
 void HelloGL::Display()
 {
 	DrawPolygons();
+	glutSwapBuffers();
 
 }
 
 void HelloGL::Update()
 {
+
 	glutPostRedisplay();
 
 	//making the shapes rotate
@@ -94,4 +101,16 @@ void HelloGL::DrawPolygons()
 	glPopMatrix();
 
 	glFlush(); //flushes the scene drawn to the graphics card
+}
+
+void HelloGL::Keyboard(unsigned char key, int x, int y)
+{
+	if (key == 'd')
+	{
+		m_rotation += 0.5f;
+	}
+	if (key == 'a')
+	{
+		m_rotation -= 0.4f;
+	}
 }

@@ -22,5 +22,7 @@ public:
 	void Update();
 
 	void DrawPolygons();
+
+	void Keyboard(unsigned char key, int x, int y);
 };
 
