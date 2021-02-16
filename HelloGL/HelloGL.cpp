@@ -36,6 +36,26 @@ Colors HelloGL::colors[] = { 1, 1, 1,   1, 1, 0,   1, 0, 0,      // v0-v1-v2 (fr
 				0, 0, 1,   0, 0, 0,   0, 1, 0,      // v4-v7-v6 (back)
 				0, 1, 0,   0, 1, 1,   0, 0, 1 };    // v6-v5-v4
 
+//All the vertices on the cube
+Vertex HelloGL::indexedVertices[] = { 1, 1, 1,  -1, 1, 1,  // v0,v1,
+									-1,-1, 1,   1,-1, 1,   // v2,v3
+									1,-1,-1,   1, 1,-1,    // v4,v5
+									-1, 1,-1,   -1,-1,-1 }; // v6,v7
+
+//All the colors of the vertices
+Colors HelloGL::indexedColors[] = { 1, 1, 1,   1, 1, 0,   // v0,v1,
+									1, 0, 0,   1, 0, 1,   // v2,v3
+									0, 0, 1,   0, 1, 1,   // v4,v5
+									0, 1, 0,   0, 0, 0 }; //v6,v7
+
+//Order to draw the vertices
+GLushort HelloGL::indices[] = { 0, 1, 2,  2, 3, 0,      // front
+								0, 3, 4,  4, 5, 0,      // right
+								0, 5, 6,  6, 1, 0,      // top
+								1, 6, 7,  7, 2, 1,      // left
+								7, 4, 3,  3, 2, 7,      // bottom
+								4, 7, 6,  6, 5, 4 };    // back
+
 
 HelloGL::HelloGL(int argc, char* argv[])
 {
@@ -83,9 +103,15 @@ HelloGL::~HelloGL(void)
 
 void HelloGL::Display()
 {
+	glClear(GL_COLOR_BUFFER_BIT); //Clears the scene
+
 	//DrawPolygons();
-	DrawCube();
+	//DrawCube();
 	//DrawCubeArray();
+	DrawIndexedCube();
+
+	glFlush(); //flushes the scene drawn to the graphics card
+
 	glutSwapBuffers();
 
 }
@@ -111,7 +137,6 @@ void HelloGL::Update()
 
 void HelloGL::DrawPolygons()
 {
-	glClear(GL_COLOR_BUFFER_BIT); //Clears the scene
 
 	glPushMatrix();
 	glRotatef(m_rotation, 0.0f, 0.0f, -0.1f);
@@ -168,7 +193,6 @@ void HelloGL::DrawPolygons()
 		glutWireTeapot(0.05f);
 	glEnd();
 
-	glFlush(); //flushes the scene drawn to the graphics card
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
@@ -177,23 +201,23 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	{
 		camera->center.x += 0.1f;
 	}
-	if (key == 'a')
+	else if (key == 'a')
 	{
 		camera->center.x -= 0.1f;
 	}
-	if (key == 'w')
+	else if (key == 'w')
 	{
 		camera->eye.z -= 0.1f;
 	}
-	if (key == 's')
+	else if (key == 's')
 	{
 		camera->eye.z += 0.1f;
 	}
-	if (key == 'q')
+	else if (key == 'q')
 	{
 		camera->center.y += 0.1f;
 	}
-	if (key == 'c')
+	else if (key == 'c')
 	{
 		camera->center.y -= 0.1f;
 	}
@@ -298,9 +322,7 @@ void HelloGL::DrawCube()
 
 		glEnd();
 
-		glPopMatrix();
-
-	glFlush();
+	glPopMatrix();
 
 
 }
@@ -320,4 +342,21 @@ void HelloGL::DrawCubeArray()
 
 	glPopMatrix();
 
+}
+
+void HelloGL::DrawIndexedCube()
+{
+	glPushMatrix();
+	glRotatef(m_rotation, 0.0f, 0.0f, -1.0f);
+
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < 36; ++i)
+	{
+		glColor3f(indexedColors[indices[i]].r, indexedColors[indices[i]].g, indexedColors[indices[i]].b);
+		glVertex3f(indexedVertices[indices[i]].x, indexedVertices[indices[i]].y, indexedVertices[indices[i]].z);
+	}
+	glEnd();
+
+	glPopMatrix();
+	
 }

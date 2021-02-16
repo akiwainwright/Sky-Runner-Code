@@ -40,8 +40,13 @@ private:
 
 	float m_rotation;
 
-	static Vertex vertices[36];
-	static Colors colors[36];
+	static Vertex vertices[];
+	static Colors colors[];
+
+	static Vertex indexedVertices[];
+	static Colors indexedColors[];
+	static GLushort indices[];
+
 
 public:
 
@@ -59,5 +64,7 @@ public:
 	void DrawCube();
 
 	void DrawCubeArray();
+
+	void DrawIndexedCube();
 };
 
