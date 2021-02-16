@@ -22,6 +22,16 @@ struct Camera
 
 };
 
+struct Colors
+{
+	GLfloat r, g, b;
+};
+
+struct Vertex
+{
+	GLfloat x, y, z;
+};
+
 class HelloGL
 {
 private:
@@ -29,6 +39,9 @@ private:
 	Camera* camera;
 
 	float m_rotation;
+
+	static Vertex vertices[36];
+	static Colors colors[36];
 
 public:
 
@@ -42,5 +55,9 @@ public:
 	void DrawPolygons();
 
 	void Keyboard(unsigned char key, int x, int y);
+
+	void DrawCube();
+
+	void DrawCubeArray();
 };
 
