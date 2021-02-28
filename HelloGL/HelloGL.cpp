@@ -71,7 +71,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 	GLUTcallbacks::Init(this);
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GL_DOUBLE); //setting display to use a double buffer to reduce flicker
+	glutInitDisplayMode(GLUT_DOUBLE); //setting display to use a double buffer to reduce flicker
 
 	//setting up the window
 	glutInitWindowSize(800, 800);
@@ -109,8 +109,8 @@ void HelloGL::Display()
 	//DrawCube();
 	//DrawCubeArray();
 	//DrawCubeArrayAlt();
-	DrawIndexedCube();
-	//DrawIndexedCubeAlt();
+	//DrawIndexedCube();
+	DrawIndexedCubeAlt();
 
 	glFlush(); //flushes the scene drawn to the graphics card
 
@@ -121,6 +121,7 @@ void HelloGL::Display()
 void HelloGL::Update()
 {
 	glLoadIdentity();
+
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, 
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
