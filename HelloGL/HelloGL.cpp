@@ -76,7 +76,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	//setting up the window
 	glutInitWindowSize(800, 800);
 	//glutInitWindowPosition(100, 100);
-	glutCreateWindow("Adding a camera");
+	glutCreateWindow("Tidying up my code");
 
 	//Triggers to run callback functions
 	glutDisplayFunc(GLUTcallbacks::Display); 
@@ -105,12 +105,7 @@ void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT); //Clears the scene
 
-	//DrawPolygons();
-	//DrawCube();
-	//DrawCubeArray();
-	//DrawCubeArrayAlt();
-	//DrawIndexedCube();
-	DrawIndexedCubeAlt();
+	Draw();
 
 	glFlush(); //flushes the scene drawn to the graphics card
 
@@ -136,66 +131,6 @@ void HelloGL::Update()
 	{
 		m_rotation = 0.0f;
 	}
-}
-
-void HelloGL::DrawPolygons()
-{
-
-	glPushMatrix();
-	glRotatef(m_rotation, 0.0f, 0.0f, -0.1f);
-
-	glBegin(GL_POLYGON);// starts the draw process
-		glColor3f(1.0f, 0.5f, 0.25f);
-		glVertex2f(-0.1, 0.5);
-		glVertex2f(0.4, 0.5);
-		glVertex2f(0.4, 0.4);
-		glVertex2f(-0.1, 0.4);
-	glEnd(); // defines the end of the draw process
-	glPopMatrix();
-
-	glPushMatrix();
-	glRotatef(m_rotation, 0.1f, 0.0f, 0.0f);
-
-	glBegin(GL_POLYGON);
-		glColor3f(0.25f, 1.0f, 0.5f);
-		glVertex2f(-0.5, -0.5);
-		glVertex2f(-0.45, -0.4);
-		glVertex2f(-0.4, -0.5);
-	glEnd();
-	glPopMatrix();
-
-	glPushMatrix();
-	glRotatef(m_rotation, 0.0f, 0.1f, 0.0f);
-
-	glBegin(GL_POLYGON);
-		glColor3f(0.5f, 0.25f, 1.0f);
-		glVertex2f(0.16, -0.35);
-		glVertex2f(0.1, -0.2);
-		glVertex2f(0.25, -0.1);
-		glVertex2f(0.4, -0.2);
-		glVertex2f(0.34, -0.35);
-	glEnd();
-	glPopMatrix();
-
-	glPushMatrix();
-	glRotatef(m_rotation, -0.1f, -0.1f, -0.1f);
-
-	glBegin(GL_POLYGON);
-		glColor3f(0.75f, 0.15f, 0.3f);
-		glVertex2f(-0.8, 0.6);
-		glVertex2f(-0.7, 0.8);
-		glVertex2f(-0.5, 0.8);
-		glVertex2f(-0.4, 0.6);
-		glVertex2f(-0.5, 0.4);
-		glVertex2f(-0.7, 0.4);
-	glEnd();
-	glPopMatrix();
-
-	glPushMatrix();
-	glRotatef(m_rotation, 1.0f, 0.0f, 0.0f);
-		glutWireTeapot(0.05f);
-	glEnd();
-
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
@@ -227,161 +162,8 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	
 }
 
-void HelloGL::DrawCube()
-{
-	glPushMatrix();
-	//glRotatef(m_rotation, 1.0f, 1.0f, -0.1f);
 
-	glBegin(GL_TRIANGLES);
-		// face v0-v1-v2
-		glColor3f(1, 1, 1);
-		glVertex3f(1, 1, 1);
-		glColor3f(1, 1, 0);
-		glVertex3f(-1, 1, 1);
-		glColor3f(1, 0, 0);
-		glVertex3f(-1, -1, 1);
-		// face v2-v3-v0
-		glColor3f(1, 0, 0);
-		glVertex3f(-1, -1, 1);
-		glColor3f(1, 0, 1);
-		glVertex3f(1, -1, 1);
-		glColor3f(1, 1, 1);
-		glVertex3f(1, 1, 1);
-
-		// face v0-v3-v4
-		glColor3f(1, 1, 1);
-		glVertex3f(1, 1, 1);
-		glColor3f(1, 0, 1);
-		glVertex3f(1, -1, 1);
-		glColor3f(0, 0, 1);
-		glVertex3f(1, -1, -1);
-		// face v4-v5-v0
-		glColor3f(0, 0, 1);
-		glVertex3f(1, -1, -1);
-		glColor3f(0, 1, 1);
-		glVertex3f(1, 1, -1);
-		glColor3f(1, 1, 1);
-		glVertex3f(1, 1, 1);
-
-		// face v0-v5-v6
-		glColor3f(1, 1, 1);
-		glVertex3f(1, 1, 1);
-		glColor3f(0, 1, 1);
-		glVertex3f(1, 1, -1);
-		glColor3f(0, 1, 0);
-		glVertex3f(-1, 1, -1);
-		// face v6-v1-v0
-		glColor3f(0, 1, 0);
-		glVertex3f(-1, 1, -1);
-		glColor3f(1, 1, 0);
-		glVertex3f(-1, 1, 1);
-		glColor3f(1, 1, 1);
-		glVertex3f(1, 1, 1);
-
-		// face  v1-v6-v7
-		glColor3f(1, 1, 0);
-		glVertex3f(-1, 1, 1);
-		glColor3f(0, 1, 0);
-		glVertex3f(-1, 1, -1);
-		glColor3f(0, 0, 0);
-		glVertex3f(-1, -1, -1);
-		// face v7-v2-v1
-		glColor3f(0, 0, 0);
-		glVertex3f(-1, -1, -1);
-		glColor3f(1, 0, 0);
-		glVertex3f(-1, -1, 1);
-		glColor3f(1, 1, 0);
-		glVertex3f(-1, 1, 1);
-
-		// face v7-v4-v3
-		glColor3f(0, 0, 0);
-		glVertex3f(-1, -1, -1);
-		glColor3f(0, 0, 1);
-		glVertex3f(1, -1, -1);
-		glColor3f(1, 0, 1);
-		glVertex3f(1, -1, 1);
-		// face v3-v2-v7
-		glColor3f(1, 0, 1);
-		glVertex3f(1, -1, 1);
-		glColor3f(1, 0, 0);
-		glVertex3f(-1, -1, 1);
-		glColor3f(0, 0, 0);
-		glVertex3f(-1, -1, -1);
-
-		// face v4-v7-v6
-		glColor3f(0, 0, 1);
-		glVertex3f(1, -1, -1);
-		glColor3f(0, 0, 0);
-		glVertex3f(-1, -1, -1);
-		glColor3f(0, 1, 0);
-		glVertex3f(-1, 1, -1);
-		// face v6-v5-v4
-		glColor3f(0, 1, 0);
-		glVertex3f(-1, 1, -1);
-		glColor3f(0, 1, 1);
-		glVertex3f(1, 1, -1);
-		glColor3f(0, 0, 1);
-		glVertex3f(1, -1, -1);
-
-		glEnd();
-
-	glPopMatrix();
-
-
-}
-
-void HelloGL::DrawCubeArray()
-{
-
-	glPushMatrix();
-
-	glBegin(GL_TRIANGLES);
-	for (int i = 0; i < 36; i++)
-	{
-		glColor3fv(&colors[i].r);
-		glColor3fv(&vertices[i].x);
-	}
-	glEnd();
-
-	glPopMatrix();
-
-}
-
-void HelloGL::DrawCubeArrayAlt()
-{
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_VERTEX_ARRAY);
-
-	glVertexPointer(3, GL_FLOAT, 0, vertices);
-	glColorPointer(3, GL_FLOAT, 0, colors);
-
-	glPushMatrix();
-	glRotatef(m_rotation, 0.0f, 0.0f, -1.0f);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
-	glPopMatrix();
-
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-}
-
-void HelloGL::DrawIndexedCube()
-{
-	glPushMatrix();
-	glRotatef(m_rotation, 0.0f, 0.0f, -1.0f);
-
-	glBegin(GL_TRIANGLES);
-	for (int i = 0; i < 36; ++i)
-	{
-		glColor3f(indexedColors[indices[i]].r, indexedColors[indices[i]].g, indexedColors[indices[i]].b);
-		glVertex3f(indexedVertices[indices[i]].x, indexedVertices[indices[i]].y, indexedVertices[indices[i]].z);
-	}
-	glEnd();
-
-	glPopMatrix();
-	
-}
-
-void HelloGL::DrawIndexedCubeAlt()
+void HelloGL::Draw()
 {
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_VERTEX_ARRAY);

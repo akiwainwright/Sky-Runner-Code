@@ -20,7 +20,7 @@ private:
 
 	static Vertex indexedVertices[];
 	static Colors indexedColors[];
-	static GLushort indices[36];
+	static GLushort indices[];
 
 
 public:
@@ -32,18 +32,8 @@ public:
 
 	void Update();
 
-	void DrawPolygons();
-
 	void Keyboard(unsigned char key, int x, int y);
 
-	void DrawCube();
-
-	void DrawCubeArray();
-
-	void DrawCubeArrayAlt();
-
-	void DrawIndexedCube();
-
-	void DrawIndexedCubeAlt();
+	void Draw();
 };
 
