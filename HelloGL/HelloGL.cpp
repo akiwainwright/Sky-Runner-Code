@@ -9,6 +9,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 	//setting default camera values
 	//camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 1.0f;
+
 	camera->eye.x = 5.0f, camera->eye.y = 5.0f, camera->eye.z = -5.0f;
 	camera->center.x = 0.0f, camera->center.y = 0.0f, camera->center.z = 0.0f;
 	camera->up.x = 0.0f, camera->up.y = 1.0f, camera->up.z = 0.0f;
@@ -73,29 +74,11 @@ void HelloGL::Update()
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
-	if (key == 'd')
+	if (camera->eye.z >= 0.1)
 	{
-		camera->center.x += 0.1f;
+		if (key == 'w')
+		{
+			camera->eye.z -= 0.1f;
+		}
 	}
-	else if (key == 'a')
-	{
-		camera->center.x -= 0.1f;
-	}
-	else if (key == 'w')
-	{
-		camera->eye.z -= 0.1f;
-	}
-	else if (key == 's')
-	{
-		camera->eye.z += 0.1f;
-	}
-	else if (key == 'q')
-	{
-		camera->center.y += 0.1f;
-	}
-	else if (key == 'c')
-	{
-		camera->center.y -= 0.1f;
-	}
-	
 }

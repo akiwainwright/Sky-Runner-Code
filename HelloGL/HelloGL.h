@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "GL\freeglut.h"
+#include "GL/glut.h"
 #include "GLUTcallbacks.h"
 #include "Structures.h"
 #include "Cube.h"
