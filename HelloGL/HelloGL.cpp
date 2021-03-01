@@ -74,11 +74,11 @@ void HelloGL::Update()
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
-	if (camera->eye.z >= 0.1)
+	if (camera->center.z >= 0.1)
 	{
 		if (key == 'w')
 		{
-			camera->eye.z -= 0.1f;
+			camera->center.z -= 0.1f;
 		}
 	}
 }
