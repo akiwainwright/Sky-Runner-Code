@@ -5,12 +5,15 @@ HelloGL::HelloGL(int argc, char* argv[])
 {
 
 	camera = new Camera();
-	cube = new Cube();
-	
+
+	for(int i = 0; i < 200; ++i)
+	{
+		cube[i] = new Cube(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand()%1000)/10.0f);
+	}
 
 	//setting default camera values
-	//camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 1.0f;
-	camera->eye.x = 5.0f, camera->eye.y = 5.0f, camera->eye.z = -5.0f;
+	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 1.0f;
+	//camera->eye.x = 5.0f, camera->eye.y = 5.0f, camera->eye.z = -5.0f;
 	camera->center.x = 0.0f, camera->center.y = 0.0f, camera->center.z = 0.0f;
 	camera->up.x = 0.0f, camera->up.y = 1.0f, camera->up.z = 0.0f;
 
@@ -47,15 +50,22 @@ HelloGL::~HelloGL(void)
 	delete camera;
 	camera = nullptr;
 
-	delete cube;
-	cube = nullptr;
+	for (int i = 0; i < 200; ++i)
+	{
+		delete cube[i];
+		cube[i] = nullptr;
+	}
 }
 
 void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT); //Clears the scene
 
-	cube->Draw();
+
+	for (int i = 0; i < 200; ++i)
+	{
+		cube[i]->Draw();
+	}
 
 	glFlush(); //flushes the scene drawn to the graphics card
 
@@ -71,7 +81,10 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 
-	cube->Update();
+	for (int i = 0; i < 200; ++i)
+	{
+		cube[i]->Update();
+	}
 
 	glutPostRedisplay();
 }

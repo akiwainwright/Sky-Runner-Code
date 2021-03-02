@@ -16,8 +16,10 @@ private:
 	static Colors indexedColors[];
 	static GLushort indices[];
 
+	Vector3 m_position;
+
 public:
-	Cube();
+	Cube(float x, float y, float z);
 	~Cube();
 
 	void Draw();
