@@ -25,7 +25,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	//setting up the window
 	glutInitWindowSize(800, 800);
 	//glutInitWindowPosition(100, 100);
-	glutCreateWindow("I think it works :)");
+	glutCreateWindow("I think it works :");
 
 	//Triggers to run callback functions
 	glutDisplayFunc(GLUTcallbacks::Display); 
@@ -109,10 +109,22 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		camera->center.z -= 0.8f;
 		
 	}
-	else if (key == 's')
+	if (key == 's')
 	{
 		camera->eye.z += 0.4f;
 		camera->center.z += 0.4f;
 		
 	}*/
+	if (key == 'a')
+	{
+		camera->eye.x -= 0.8f;
+		camera->center.x -= 0.8f;
+
+	}
+	if (key == 'd')
+	{
+		camera->eye.x += 0.8f;
+		camera->center.x += 0.8f;
+
+	}
 }
