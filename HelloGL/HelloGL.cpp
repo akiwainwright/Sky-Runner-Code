@@ -99,6 +99,8 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 HelloGL::~HelloGL(void)
 {
+	delete camera;
+	camera = nullptr;
 }
 
 void HelloGL::Display()
@@ -123,9 +125,6 @@ void HelloGL::Update()
 
 	glutPostRedisplay();
 
-	//making the shapes rotate
-	m_rotation += 0.5f;
-
 	//making sure that once image is rotated 360 degrees it goes back to 1
 	if (m_rotation >= 360.0f)
 	{
@@ -137,11 +136,11 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
 	if (key == 'd')
 	{
-		m_rotation += 0.5f;
+		m_rotation += 2.5f;
 	}
 	else if (key == 'a')
 	{
-		m_rotation -= 1.5f;
+		m_rotation -= 2.5f;
 	}
 	
 }
