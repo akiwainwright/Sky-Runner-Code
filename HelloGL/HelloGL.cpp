@@ -121,7 +121,7 @@ void HelloGL::DrawPolygons()
 
 	glPushMatrix();
 	glRotatef(m_rotation, 1.0f, 0.0f, 0.0f);
-		glutWireTeapot(0.05f);
+		glutWireTeapot(0.2f);
 	glEnd();
 
 	glFlush(); //flushes the scene drawn to the graphics card
@@ -131,27 +131,12 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
 	if (key == 'd')
 	{
-		camera->center.x += 0.1f;
+		m_rotation += 2.5f;
 	}
 	if (key == 'a')
 	{
-		camera->center.x -= 0.1f;
-	}
-	if (key == 'w')
-	{
-		camera->eye.z -= 0.1f;
-	}
-	if (key == 's')
-	{
-		camera->eye.z += 0.1f;
-	}
-	if (key == 'q')
-	{
-		camera->center.y += 0.1f;
-	}
-	if (key == 'c')
-	{
-		camera->center.y -= 0.1f;
+		m_rotation -= 2.5f;
 	}
 	
 }
+	
