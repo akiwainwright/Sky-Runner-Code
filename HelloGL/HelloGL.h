@@ -21,7 +21,7 @@ private:
 public:
 
 	HelloGL(int argc, char* argv[]);
-	~HelloGL(void);
+	~HelloGL();
 
 	void Display();
 

@@ -29,10 +29,6 @@ Cube::Cube(float x, float y, float z)
 	m_rotation = 0.0f;
 }
 
-Cube::~Cube()
-{
-}
-
 void Cube::Draw()
 {
 	glEnableClientState(GL_COLOR_ARRAY);
@@ -42,7 +38,8 @@ void Cube::Draw()
 	glVertexPointer(3, GL_FLOAT, 0, indexedVertices);
 
 	glPushMatrix();
-	glRotatef(m_rotation, 0.0f, 0.0f, -1.0f);
+	glTranslatef(m_position.x, m_position.y, m_position.z);
+	glRotatef(m_rotation, 1.0f, 1.0f, -1.0f);
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, indices);
 	glPopMatrix();
 
@@ -52,10 +49,11 @@ void Cube::Draw()
 
 void Cube::Update()
 {
-	m_rotation += 0.5f;
+	m_rotation += 6.0f;
 
 	if(m_rotation >= 360)
 	{
 		m_rotation = 0.0f;
 	}
+	
 }

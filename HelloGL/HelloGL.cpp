@@ -8,7 +8,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 	for(int i = 0; i < 200; ++i)
 	{
-		cube[i] = new Cube(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand()%1000)/10.0f);
+		cube[i] = new Cube(rand() % 400 / 10.0f - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand()%1000)/10.0f);
 	}
 
 	//setting default camera values
@@ -19,12 +19,13 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 	GLUTcallbacks::Init(this);
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE); //setting display to use a double buffer to reduce flicker
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); //setting display to use a double buffer to reduce flicker
+	glEnable(GL_DEPTH_TEST);
 
 	//setting up the window
 	glutInitWindowSize(800, 800);
 	//glutInitWindowPosition(100, 100);
-	glutCreateWindow("Tidying up my code");
+	glutCreateWindow("Will this ever work :(");
 
 	//Triggers to run callback functions
 	glutDisplayFunc(GLUTcallbacks::Display); 
@@ -45,7 +46,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	glutMainLoop();
 }
 
-HelloGL::~HelloGL(void)
+HelloGL::~HelloGL()
 {
 	delete camera;
 	camera = nullptr;
@@ -59,7 +60,7 @@ HelloGL::~HelloGL(void)
 
 void HelloGL::Display()
 {
-	glClear(GL_COLOR_BUFFER_BIT); //Clears the scene
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
 
 
 	for (int i = 0; i < 200; ++i)
@@ -81,28 +82,37 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 
+	camera->eye.z -= 0.8f;
+	camera->center.z -= 0.8f;
+
 	for (int i = 0; i < 200; ++i)
 	{
 		cube[i]->Update();
 	}
 
+	for(int i = 0; i < 200; ++i)
+	{
+		if(cube[i]->m_position.z > camera->center.z)
+		{
+			cube[i]->m_position.z -= 100.0f;
+		}
+	}
+	
 	glutPostRedisplay();
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
-	if (key == 's')
+	/*if (key == 'w')
 	{
-		camera->eye.z -= 0.1f;
-		camera->center.z -= 0.1f;
-		camera->eye.x += 0.1f;
-		camera->center.x += 0.1f;
+		camera->eye.z -= 0.8f;
+		camera->center.z -= 0.8f;
+		
 	}
-	else if (key == 'w')
+	else if (key == 's')
 	{
-		camera->eye.z += 0.1f;
-		camera->center.z += 0.1f;
-		camera->eye.x -= 0.1f;
-		camera->center.x -= 0.1f;
-	}
+		camera->eye.z += 0.4f;
+		camera->center.z += 0.4f;
+		
+	}*/
 }
