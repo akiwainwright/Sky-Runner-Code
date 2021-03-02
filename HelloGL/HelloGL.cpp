@@ -201,27 +201,11 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
 	if (key == 'd')
 	{
-		camera->center.x += 0.1f;
+		m_rotation += 2.5f;
 	}
 	else if (key == 'a')
 	{
-		camera->center.x -= 0.1f;
-	}
-	else if (key == 'w')
-	{
-		camera->eye.z -= 0.1f;
-	}
-	else if (key == 's')
-	{
-		camera->eye.z += 0.1f;
-	}
-	else if (key == 'q')
-	{
-		camera->center.y += 0.1f;
-	}
-	else if (key == 'c')
-	{
-		camera->center.y -= 0.1f;
+		m_rotation -= 2.5f;
 	}
 	
 }
