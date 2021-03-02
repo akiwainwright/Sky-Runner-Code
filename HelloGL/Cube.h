@@ -5,7 +5,7 @@ class Cube
 {
 private:
 
-	float m_rotation = 0.0f;
+	float m_rotation;
 	
 	static Vertex indexedVertices[];
 	static Colors indexedColors[];
