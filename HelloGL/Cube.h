@@ -11,6 +11,7 @@ class Cube
 private:
 
 	GLfloat m_rotation;
+	GLfloat m_rotate_speed;
 	
 	static Vertex indexedVertices[];
 	static Colors indexedColors[];

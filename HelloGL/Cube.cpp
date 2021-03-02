@@ -27,6 +27,7 @@ Cube::Cube(float x, float y, float z)
 	m_position.z = z;
 	
 	m_rotation = 0.0f;
+	m_rotate_speed = (GLfloat)(rand() % 12) + 1;
 }
 
 void Cube::Draw()
@@ -49,7 +50,7 @@ void Cube::Draw()
 
 void Cube::Update()
 {
-	m_rotation += 6.0f;
+	m_rotation += m_rotate_speed;
 
 	if(m_rotation >= 360)
 	{
