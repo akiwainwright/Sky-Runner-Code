@@ -13,10 +13,11 @@ private:
 	GLfloat m_rotation;
 	GLfloat m_rotate_speed;
 	
-	static Vertex indexedVertices[];
-	static Colors indexedColors[];
-	static GLushort indices[];
+	static Vertex* indexedVertices;
+	static Colors* indexedColors;
+	static GLushort* indices;
 
+	static int numVertices, numColors, numIndices;
 
 public:
 	Vector3 m_position;
