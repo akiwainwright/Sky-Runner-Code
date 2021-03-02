@@ -8,7 +8,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 	for(int i = 0; i < 200; ++i)
 	{
-		cube[i] = new Cube(rand() % 400 / 10.0f - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand()%1000)/10.0f);
+		cube[i] = new Cube(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand()%1000)/10.0f);
 	}
 
 	//setting default camera values
@@ -82,6 +82,7 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 
+	//constantly moving camera forward creating zoom effect
 	camera->eye.z -= 0.8f;
 	camera->center.z -= 0.8f;
 
@@ -90,11 +91,14 @@ void HelloGL::Update()
 		cube[i]->Update();
 	}
 
+	//resetting cube position once they go behind the camera
 	for(int i = 0; i < 200; ++i)
 	{
 		if(cube[i]->m_position.z > camera->center.z)
 		{
 			cube[i]->m_position.z -= 100.0f;
+			cube[i]->m_position.y = ((rand() % 200) / 10.0f) - 10.0f;
+			cube[i]->m_position.x = ((rand() % 400) / 10.0f) - 20.0f;			
 		}
 	}
 	
@@ -115,6 +119,8 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		camera->center.z += 0.4f;
 		
 	}*/
+
+	//Allowing left and right movement
 	if (key == 'a')
 	{
 		camera->eye.x -= 0.8f;
