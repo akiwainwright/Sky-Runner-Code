@@ -5,24 +5,19 @@
 #include "GL\freeglut.h"
 #include "GLUTcallbacks.h"
 #include "Structures.h"
+#include "Cube.h"
 #define REFRESHRATE 16
+
+class Cube;
+struct Camera;
 
 class HelloGL
 {
 private:
 
 	Camera* camera;
-
-	float m_rotation;
-
-	static Vertex vertices[];
-	static Colors colors[];
-
-	static Vertex indexedVertices[];
-	static Colors indexedColors[];
-	static GLushort indices[];
-
-
+	Cube* cube;
+	
 public:
 
 	HelloGL(int argc, char* argv[]);
@@ -33,7 +28,5 @@ public:
 	void Update();
 
 	void Keyboard(unsigned char key, int x, int y);
-
-	void Draw();
 };
 
