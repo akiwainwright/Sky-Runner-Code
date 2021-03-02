@@ -71,7 +71,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 
 	GLUTcallbacks::Init(this);
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GL_DOUBLE); //setting display to use a double buffer to reduce flicker
+	glutInitDisplayMode(GLUT_DOUBLE); //setting display to use a double buffer to reduce flicker
 
 	//setting up the window
 	glutInitWindowSize(800, 800);
