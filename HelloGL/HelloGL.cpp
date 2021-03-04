@@ -4,6 +4,7 @@
 HelloGL::HelloGL(int argc, char* argv[])
 {
 
+	Cube::Load((char*)"cube.txt");
 	camera = new Camera();
 
 	for(int i = 0; i < 200; ++i)
