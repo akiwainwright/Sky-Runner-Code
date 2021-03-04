@@ -6,6 +6,8 @@
 #include "GLUTcallbacks.h"
 #include "Structures.h"
 
+class Mesh;
+
 class Cube
 {
 private:
@@ -13,21 +15,15 @@ private:
 	GLfloat m_rotation;
 	GLfloat m_rotate_speed;
 	
-	static Vertex* indexedVertices;
-	static Colors* indexedColors;
-	static GLushort* indices;
-
-	static int numVertices, numColors, numIndices;
+	Mesh* _mesh;
 
 public:
-	Vector3 m_position;
+	Vector3 position;
 	
-	Cube(float x, float y, float z);
+	Cube(Mesh* mesh, float x, float y, float z);
 	~Cube() = default;
 
 	void Draw();
 	void Update();
-
-	static bool Load(char* path);
 };
 

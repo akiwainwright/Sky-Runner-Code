@@ -6,6 +6,7 @@
 #include "GLUTcallbacks.h"
 #include "Structures.h"
 #include "Cube.h"
+#include "MeshLoader.h"
 #define REFRESHRATE 16
 
 class Cube;
@@ -28,5 +29,10 @@ public:
 	void Update();
 
 	void Keyboard(unsigned char key, int x, int y);
+
+	void InitObject();
+
+	void InitGL(int argc, char* argv[]);
+	
 };
 
