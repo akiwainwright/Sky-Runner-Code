@@ -1,9 +1,11 @@
 #pragma once
-#include "HelloGL.h"
-#include "MeshLoader.h"
+#include <Windows.h>
+#include <gl/GL.h>
+#include <gl/GLU.h>
+#include "GL\freeglut.h"
+#include "Structures.h"
 
 struct Mesh;
-struct Vector3;
 
 class Cube
 {

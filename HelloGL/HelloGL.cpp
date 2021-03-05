@@ -1,5 +1,6 @@
 #include "HelloGL.h"
 #include  "time.h"
+#include "MeshLoader.h"
 
 
 HelloGL::HelloGL(int argc, char* argv[])

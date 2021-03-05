@@ -1,5 +1,5 @@
 #pragma once
-#include "HelloGL.h"
+#include "GL/freeglut.h"
 
 
 struct Vector3
