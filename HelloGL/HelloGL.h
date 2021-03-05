@@ -5,6 +5,7 @@
 #include "GL\freeglut.h"
 #include "GLUTcallbacks.h"
 #include "Cube.h"
+#include "Structures.h"
 
 #define REFRESHRATE 16
 
