@@ -1,6 +1,9 @@
 #pragma once
-#include "HelloGL.h"
-#include "MeshLoader.h"
+#include <Windows.h>
+#include <gl/GL.h>
+#include <gl/GLU.h>
+#include "GL\freeglut.h"
+#include "Structures.h"
 
 struct Mesh;
 struct Vector3;
@@ -16,7 +19,7 @@ private:
 
 public:
 	
-	Vector3 *position;
+	Vector3 position;
 	
 	Cube(Mesh* mesh, float x, float y, float z);
 	~Cube();

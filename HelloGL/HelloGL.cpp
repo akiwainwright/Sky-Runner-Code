@@ -1,5 +1,6 @@
 #include "HelloGL.h"
 #include  "time.h"
+#include "MeshLoader.h"
 
 
 HelloGL::HelloGL(int argc, char* argv[])
@@ -62,11 +63,11 @@ void HelloGL::Update()
 	//resetting cube position once they go behind the camera
 	for(int i = 0; i < 200; ++i)
 	{
-		if(cube[i]->position->z > camera->center.z)
+		if(cube[i]->position.z > camera->center.z)
 		{
-			cube[i]->position->z -= 100.0f;
-			cube[i]->position->y = ((rand() % 200) / 10.0f) - 10.0f;
-			cube[i]->position->x = ((rand() % 400) / 10.0f) - 20.0f;			
+			cube[i]->position.z -= 100.0f;
+			cube[i]->position.y = ((rand() % 200) / 10.0f) - 10.0f;
+			cube[i]->position.x = ((rand() % 400) / 10.0f) - 20.0f;			
 		}
 	}
 	
