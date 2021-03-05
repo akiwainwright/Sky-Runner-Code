@@ -4,8 +4,8 @@
 #include <gl/GLU.h>
 #include "GL\freeglut.h"
 #include "GLUTcallbacks.h"
-#include "Structures.h"
 #include "Cube.h"
+
 #define REFRESHRATE 16
 
 class Cube;

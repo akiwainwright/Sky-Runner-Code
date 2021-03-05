@@ -1,5 +1,5 @@
-#include "Cube.h"
 #include <iostream>
+#include "Cube.h"
 
 Cube::Cube(Mesh* mesh, float x, float y, float z)
 {

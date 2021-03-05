@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Structures.h"
 
 struct Mesh;
