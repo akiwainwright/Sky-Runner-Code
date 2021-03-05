@@ -3,14 +3,22 @@
 
 Cube::Cube(Mesh* mesh, float x, float y, float z)
 {
-	position.x = x;
-	position.y = y;
-	position.z = z;
+	position = new Vector3();
+	
+	position->x = x;
+	position->y = y;
+	position->z = z;
 	
 	m_rotation = 0.0f;
 	m_rotate_speed = (GLfloat)(rand() % 24) + 1;
 
 	_mesh = mesh;
+}
+
+Cube::~Cube()
+{
+	delete position;
+	position = nullptr;
 }
 
 void Cube::Draw()
@@ -24,7 +32,7 @@ void Cube::Draw()
 		glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
 
 		glPushMatrix();
-		glTranslatef(position.x, position.y, position.z);
+		glTranslatef(position->x, position->y, position->z);
 		glRotatef(m_rotation, 1.0f, 1.0f, -1.0f);
 			glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, _mesh->Indices);
 		glPopMatrix();
