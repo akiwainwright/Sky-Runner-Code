@@ -1,19 +1,5 @@
 #include "Cube.h"
-#include <fstream>
 #include <iostream>
-
-////All the vertices on the cube
-//Vertex* Cube::indexedVertices = nullptr;
-//
-////All the colors of the vertices
-//Colors* Cube::indexedColors = nullptr;
-//
-////Order to draw the vertices
-//GLushort* Cube::indices = nullptr;
-//
-//int Cube::numVertices = 0;
-//int Cube::numColors = 0;
-//int Cube::numIndices = 0;
 
 Cube::Cube(Mesh* mesh, float x, float y, float z)
 {
