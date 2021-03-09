@@ -2,6 +2,12 @@
 #include "GL/freeglut.h"
 
 
+struct TexCoord
+{
+	GLfloat u;
+	GLfloat v;
+};
+
 struct Vector3
 {
 	float x;
@@ -30,9 +36,11 @@ struct Vertex
 
 struct Mesh
 {
+	TexCoord* TexCoords;
+	
 	Vertex* Vertices;
 	Colors* Color;
 	GLushort* Indices;
 
-	int VertexCount, ColorCount, IndexCount;
+	int VertexCount, ColorCount, IndexCount, CoordCount;
 };

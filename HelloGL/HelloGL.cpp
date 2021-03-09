@@ -108,21 +108,24 @@ void HelloGL::InitObject()
 {
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
 	Mesh* pyramidMesh = MeshLoader::Load((char*)"pyramid.txt");
+	Texture2D* texture = new Texture2D();
+	texture->Load((char*)"stars.raw", 512, 512);
 	
 	camera = new Camera();
 
 	for (int i = 0; i < 500; ++i)
 	{
-		objects[i] = new Cube(cubeMesh,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 
-	for (int i = 500; i < 1000; ++i)
+	/*for (int i = 500; i < 1000; ++i)
 	{
 		objects[i] = new Pyramid(pyramidMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	}
+	}*/
+
 
 	//setting default camera values
-	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 1.0f;
+	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 40.0f;
 	//camera->eye.x = 5.0f, camera->eye.y = 5.0f, camera->eye.z = -5.0f;
 	camera->center.x = 0.0f, camera->center.y = 0.0f, camera->center.z = 0.0f;
 	camera->up.x = 0.0f, camera->up.y = 1.0f, camera->up.z = 0.0f;
@@ -133,7 +136,6 @@ void HelloGL::InitGL(int argc, char* argv[])
 	GLUTcallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); //setting display to use a double buffer to reduce flicker
-	glEnable(GL_DEPTH_TEST);
 
 	//setting up the window
 	glutInitWindowSize(800, 800);
@@ -152,7 +154,9 @@ void HelloGL::InitGL(int argc, char* argv[])
 	gluPerspective(45, 1, 0, 1000);
 	glMatrixMode(GL_MODELVIEW);
 
-	//enabling back face culling 
+	//enabling back face culling
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 }
