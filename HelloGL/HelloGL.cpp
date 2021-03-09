@@ -136,6 +136,7 @@ void HelloGL::InitGL(int argc, char* argv[])
 	GLUTcallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); //setting display to use a double buffer to reduce flicker
+	glEnable(GL_DEPTH_TEST);
 
 	//setting up the window
 	glutInitWindowSize(800, 800);
@@ -156,7 +157,6 @@ void HelloGL::InitGL(int argc, char* argv[])
 
 	//enabling back face culling
 	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 }
