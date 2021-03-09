@@ -5,11 +5,13 @@
 #include "GL\freeglut.h"
 #include "GLUTcallbacks.h"
 #include "Cube.h"
+#include "Pyramid.h"
 #include "Structures.h"
+#include "SceneObject.h"
 
 #define REFRESHRATE 16
 
-class Cube;
+class SceneObject;
 struct Camera;
 
 class HelloGL
@@ -17,7 +19,7 @@ class HelloGL
 private:
 
 	Camera* camera;
-	Cube* cube[200];
+	SceneObject* objects[1000];
 	
 public:
 

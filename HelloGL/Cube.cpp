@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Cube.h"
 
-Cube::Cube(Mesh* mesh, float x, float y, float z)
+Cube::Cube(Mesh* mesh, float x, float y, float z) : SceneObject(mesh)
 {
 	position = new Vector3();
 	
@@ -11,8 +11,6 @@ Cube::Cube(Mesh* mesh, float x, float y, float z)
 	
 	m_rotation = 0.0f;
 	m_rotate_speed = (GLfloat)(rand() % 24) + 1;
-
-	_mesh = mesh;
 }
 
 Cube::~Cube()

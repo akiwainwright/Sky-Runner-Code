@@ -20,10 +20,10 @@ HelloGL::~HelloGL()
 	delete camera;
 	camera = nullptr;
 
-	for (int i = 0; i < 200; ++i)
+	for (int i = 0; i < 1000; ++i)
 	{
-		delete cube[i];
-		cube[i] = nullptr;
+		delete objects[i];
+		objects[i] = nullptr;
 	}
 }
 
@@ -32,9 +32,9 @@ void HelloGL::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
 
 
-	for (int i = 0; i < 200; ++i)
+	for (int i = 0; i < 1000; ++i)
 	{
-		cube[i]->Draw();
+		objects[i]->Draw();
 	}
 
 	glFlush(); //flushes the scene drawn to the graphics card
@@ -52,25 +52,25 @@ void HelloGL::Update()
 		      camera->up.x, camera->up.y, camera->up.z);
 
 	//constantly moving camera forward creating zoom effect
-	camera->eye.z -= 0.8f;
-	camera->center.z -= 0.8f;
+	/*camera->eye.z -= 0.8f;
+	camera->center.z -= 0.8f;*/
 
-	for (int i = 0; i < 200; ++i)
+	for (int i = 0; i < 1000; ++i)
 	{
-		cube[i]->Update();
+		objects[i]->Update();
 	}
 
 	//resetting cube position once they go behind the camera
-	for(int i = 0; i < 200; ++i)
+	/*for(int i = 0; i < 200; ++i)
 	{
-		if(cube[i]->position->z > camera->center.z)
+		if(objects[i]->position->z > camera->center.z)
 		{
-			cube[i]->position->z -= 100.0f;
-			cube[i]->position->y = ((rand() % 200) / 10.0f) - 10.0f;
-			cube[i]->position->x = ((rand() % 400) / 10.0f) - 20.0f;			
+			objects[i]->position->z -= 100.0f;
+			objects[i]->position->y = ((rand() % 200) / 10.0f) - 10.0f;
+			objects[i]->position->x = ((rand() % 400) / 10.0f) - 20.0f;			
 		}
 	}
-	
+	*/
 	glutPostRedisplay();
 }
 
@@ -107,11 +107,18 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 void HelloGL::InitObject()
 {
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
+	Mesh* pyramidMesh = MeshLoader::Load((char*)"pyramid.txt");
+	
 	camera = new Camera();
 
-	for (int i = 0; i < 200; ++i)
+	for (int i = 0; i < 500; ++i)
 	{
-		cube[i] = new Cube(cubeMesh,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		objects[i] = new Cube(cubeMesh,((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	}
+
+	for (int i = 500; i < 1000; ++i)
+	{
+		objects[i] = new Pyramid(pyramidMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 
 	//setting default camera values

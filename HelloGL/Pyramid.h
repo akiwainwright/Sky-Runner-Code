@@ -6,25 +6,18 @@
 #include "Structures.h"
 #include "SceneObject.h"
 
-struct Mesh;
-
-class Cube : public SceneObject
+class Pyramid : public SceneObject
 {
 private:
 
-	GLfloat m_rotation;
-	GLfloat m_rotate_speed;
-
+	Vector3 *position;
 
 public:
-	
-	Vector3 *position;
-	
-	Cube(Mesh* mesh, float x, float y, float z);
-	~Cube();
+
+	Pyramid(Mesh* mesh, float x, float y, float z);
+	~Pyramid();
 
 	void Draw() override;
 	void Update() override;
-
 };
 
