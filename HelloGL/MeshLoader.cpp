@@ -94,9 +94,10 @@ namespace MeshLoader
 
 		LoadColours(inFile, *mesh);
 
+		LoadTexCoords(inFile, *mesh);
+		
 		LoadIndices(inFile, *mesh);
 
-		LoadTexCoords(inFile, *mesh);
 		
 
 		return mesh;

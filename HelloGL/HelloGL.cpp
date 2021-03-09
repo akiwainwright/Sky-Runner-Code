@@ -32,7 +32,7 @@ void HelloGL::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
 
 
-	for (int i = 0; i < 1000; ++i)
+	for (int i = 0; i < 500; ++i)
 	{
 		objects[i]->Draw();
 	}
@@ -55,7 +55,7 @@ void HelloGL::Update()
 	/*camera->eye.z -= 0.8f;
 	camera->center.z -= 0.8f;*/
 
-	for (int i = 0; i < 1000; ++i)
+	for (int i = 0; i < 500; ++i)
 	{
 		objects[i]->Update();
 	}
