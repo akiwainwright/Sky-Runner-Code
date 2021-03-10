@@ -91,14 +91,14 @@ namespace MeshLoader
 		}
 
 		LoadVertices(inFile, *mesh);
-
+		
 		LoadColours(inFile, *mesh);
-
+		
 		LoadTexCoords(inFile, *mesh);
 		
 		LoadIndices(inFile, *mesh);
 
-		
+		inFile.close();
 
 		return mesh;
 	}

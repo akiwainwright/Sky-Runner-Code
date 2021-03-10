@@ -27,7 +27,7 @@ void Pyramid::Draw()
 
 		glPushMatrix();
 		glTranslatef(position->x, position->y, position->z);
-			glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_SHORT, m_mesh->Indices);
+			glDrawElements(GL_TRIANGLES, m_mesh->IndexCount, GL_UNSIGNED_SHORT, m_mesh->Indices);
 		glPopMatrix();
 
 		glDisableClientState(GL_COLOR_ARRAY);

@@ -19,7 +19,7 @@ class HelloGL
 private:
 
 	Camera* camera;
-	SceneObject* objects[500];
+	SceneObject* objects[200];
 	
 public:
 
