@@ -10,7 +10,9 @@ protected:
 	Mesh* m_mesh;
 	Texture2D* m_texture;
 
+
 public:
+	Vector3* position;
 
 	SceneObject(Mesh* mesh, Texture2D* texture);
 	~SceneObject();

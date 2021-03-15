@@ -53,8 +53,8 @@ void HelloGL::Update()
 		      camera->up.x, camera->up.y, camera->up.z);
 
 	//constantly moving camera forward creating zoom effect
-	/*camera->eye.z -= 0.8f;
-	camera->center.z -= 0.8f;*/
+	camera->eye.z -= 0.8f;
+	camera->center.z -= 0.8f;
 
 	for (int i = 0; i < 200; ++i)
 	{
@@ -62,7 +62,7 @@ void HelloGL::Update()
 	}
 
 	//resetting cube position once they go behind the camera
-	/*for(int i = 0; i < 200; ++i)
+	for(int i = 0; i < 100; ++i)
 	{
 		if(objects[i]->position->z > camera->center.z)
 		{
@@ -71,7 +71,7 @@ void HelloGL::Update()
 			objects[i]->position->x = ((rand() % 400) / 10.0f) - 20.0f;			
 		}
 	}
-	*/
+	
 	glutPostRedisplay();
 }
 
