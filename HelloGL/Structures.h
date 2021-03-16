@@ -10,14 +10,14 @@ struct Vector4
 	
 };
 
-struct LightingStructure
+struct Lighting
 {
 	Vector4 Ambient;
 	Vector4 Diffuse;
 	Vector4 Specular;
 };
 
-struct MaterialStructure
+struct Material
 {
 	Vector4 Ambient;
 	Vector4 Diffuse;

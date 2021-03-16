@@ -9,7 +9,8 @@ HelloGL::HelloGL(int argc, char* argv[])
 	srand((time(NULL)));
 	
 	InitGL(argc, argv);
-	
+
+	InitLighting();
 	InitObject();
 
 
@@ -53,8 +54,12 @@ void HelloGL::Update()
 		      camera->up.x, camera->up.y, camera->up.z);
 
 	//constantly moving camera forward creating zoom effect
-	camera->eye.z -= 0.8f;
-	camera->center.z -= 0.8f;
+	/*camera->eye.z -= 0.8f;
+	camera->center.z -= 0.8f;*/
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Ambient.x));
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Diffuse.x));
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Specular.x));
 
 	for (int i = 0; i < 200; ++i)
 	{
@@ -110,7 +115,7 @@ void HelloGL::InitObject()
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
 	
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"stars.raw", 512, 512);
+	texture->Load((char*)"Penguins.raw", 512, 512);
 	
 	camera = new Camera();
 
@@ -150,9 +155,35 @@ void HelloGL::InitGL(int argc, char* argv[])
 	gluPerspective(45, 1, 0, 1000);
 	glMatrixMode(GL_MODELVIEW);
 
-	//enabling back face culling
+	//enabling back openGL features
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+}
+
+void HelloGL::InitLighting()
+{
+	m_lightPosition = new Vector4();
+	m_lightPosition->x = 0.0f;
+	m_lightPosition->y = 0.0f;
+	m_lightPosition->z = 1.0f;
+	m_lightPosition->w = 0.0f;
+
+	m_lightData = new Lighting();
+	m_lightData->Ambient.x = 0.2f;
+	m_lightData->Ambient.y = 0.2f;
+	m_lightData->Ambient.z = 0.2f;
+	m_lightData->Ambient.w = 1.2f;
+	m_lightData->Diffuse.x = 0.8f;
+	m_lightData->Diffuse.y = 0.8f;
+	m_lightData->Diffuse.z = 0.8f;
+	m_lightData->Diffuse.w = 1.0f;
+	m_lightData->Specular.x = 0.2f;
+	m_lightData->Specular.y = 0.2f;
+	m_lightData->Specular.z = 0.2f;
+	m_lightData->Specular.w = 1.0f;
+	
 }

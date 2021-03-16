@@ -20,6 +20,9 @@ private:
 
 	Camera* camera;
 	SceneObject* objects[200];
+
+	Vector4* m_lightPosition;
+	Lighting* m_lightData;
 	
 public:
 
@@ -35,6 +38,8 @@ public:
 	void InitObject();
 
 	void InitGL(int argc, char* argv[]);
+
+	void InitLighting();
 	
 };
 
