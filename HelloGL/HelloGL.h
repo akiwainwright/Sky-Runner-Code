@@ -24,6 +24,7 @@ private:
 	Vector4* m_lightPosition;
 	Lighting* m_lightData;
 	
+	
 public:
 
 	HelloGL(int argc, char* argv[]);

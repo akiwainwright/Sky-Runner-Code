@@ -167,23 +167,27 @@ void HelloGL::InitGL(int argc, char* argv[])
 void HelloGL::InitLighting()
 {
 	m_lightPosition = new Vector4();
+
 	m_lightPosition->x = 0.0f;
 	m_lightPosition->y = 0.0f;
 	m_lightPosition->z = 1.0f;
 	m_lightPosition->w = 0.0f;
 
 	m_lightData = new Lighting();
+
 	m_lightData->Ambient.x = 0.2f;
 	m_lightData->Ambient.y = 0.2f;
 	m_lightData->Ambient.z = 0.2f;
-	m_lightData->Ambient.w = 1.2f;
+	m_lightData->Ambient.w = 1.0f;
+
 	m_lightData->Diffuse.x = 0.8f;
 	m_lightData->Diffuse.y = 0.8f;
 	m_lightData->Diffuse.z = 0.8f;
 	m_lightData->Diffuse.w = 1.0f;
+
 	m_lightData->Specular.x = 0.2f;
 	m_lightData->Specular.y = 0.2f;
 	m_lightData->Specular.z = 0.2f;
 	m_lightData->Specular.w = 1.0f;
-	
+
 }

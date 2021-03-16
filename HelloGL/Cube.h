@@ -11,7 +11,8 @@ struct Mesh;
 class Cube : public SceneObject
 {
 private:
-
+	
+	Material* m_material;
 	GLfloat m_rotation;
 	GLfloat m_rotate_speed;
 
@@ -23,6 +24,7 @@ public:
 
 	void Draw() override;
 	void Update() override;
+	void InitMaterial();
 
 };
 
