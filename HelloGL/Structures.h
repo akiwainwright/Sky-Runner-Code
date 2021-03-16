@@ -10,6 +10,21 @@ struct Vector4
 	
 };
 
+struct LightingStructure
+{
+	Vector4 Ambient;
+	Vector4 Diffuse;
+	Vector4 Specular;
+};
+
+struct MaterialStructure
+{
+	Vector4 Ambient;
+	Vector4 Diffuse;
+	Vector4 Specular;
+	GLfloat Shininess;
+};
+
 struct TexCoord
 {
 	GLfloat u;
@@ -47,8 +62,8 @@ struct Mesh
 	TexCoord* TexCoords;
 	
 	Vertex* Vertices;
-	Colors* Color;
+	Vector3* Normal;
 	GLushort* Indices;
 
-	int VertexCount, ColorCount, IndexCount, CoordCount;
+	int VertexCount, NormalCount, IndexCount, CoordCount;
 };

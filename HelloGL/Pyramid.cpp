@@ -17,12 +17,12 @@ Pyramid::~Pyramid()
 
 void Pyramid::Draw()
 {
-	if (m_mesh->Vertices != nullptr && m_mesh->Color != nullptr && m_mesh->Indices != nullptr)
+	if (m_mesh->Vertices != nullptr && m_mesh->Normal != nullptr && m_mesh->Indices != nullptr)
 	{
 		glEnableClientState(GL_COLOR_ARRAY);
 		glEnableClientState(GL_VERTEX_ARRAY);
 
-		glColorPointer(3, GL_FLOAT, 0, m_mesh->Color);
+		glColorPointer(3, GL_FLOAT, 0, m_mesh->Normal);
 		glVertexPointer(3, GL_FLOAT, 0, m_mesh->Vertices);
 
 		glPushMatrix();
