@@ -10,7 +10,7 @@ class Pyramid : public SceneObject
 {
 private:
 
-	Vector3 *position;
+	
 
 public:
 
