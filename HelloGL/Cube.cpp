@@ -27,12 +27,12 @@ void Cube::Draw()
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		
 		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
+		glEnableClientState(GL_NORMAL_ARRAY);
 
 
 		glTexCoordPointer(2, GL_FLOAT, 0, m_mesh->TexCoords);
 		glVertexPointer(3, GL_FLOAT, 0, m_mesh->Vertices);
-		glColorPointer(3, GL_FLOAT, 0, m_mesh->Normal);
+		glNormalPointer(GL_FLOAT, 0, m_mesh->Normal);
 		
 		glPushMatrix();
 		glTranslatef(position->x, position->y, position->z);
@@ -40,7 +40,7 @@ void Cube::Draw()
 			glDrawElements(GL_TRIANGLES, m_mesh->IndexCount, GL_UNSIGNED_SHORT, m_mesh->Indices);
 		glPopMatrix();
 
-		glDisableClientState(GL_COLOR_ARRAY);
+		glDisableClientState(GL_NORMAL_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 		
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
