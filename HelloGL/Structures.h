@@ -1,6 +1,14 @@
 #pragma once
 #include "GL/freeglut.h"
 
+struct Vector4
+{
+	float x;
+	float y;
+	float z;
+	float w;
+	
+};
 
 struct TexCoord
 {
