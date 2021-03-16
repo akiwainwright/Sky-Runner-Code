@@ -62,7 +62,7 @@ void HelloGL::Update()
 	}
 
 	//resetting cube position once they go behind the camera
-	for(int i = 0; i < 100; ++i)
+	for(int i = 0; i < 200; ++i)
 	{
 		if(objects[i]->position->z > camera->center.z)
 		{
@@ -108,23 +108,16 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 void HelloGL::InitObject()
 {
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
-	Mesh* pyramidMesh = MeshLoader::Load((char*)"pyramid.txt");
 	
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"stars.raw", 512, 512);
 	
 	camera = new Camera();
 
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < 200; ++i)
 	{
 		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
-
-	for (int i = 100; i < 200; ++i)
-	{
-		objects[i] = new Pyramid(pyramidMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	}
-
 
 	//setting default camera values
 	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 40.0f;
