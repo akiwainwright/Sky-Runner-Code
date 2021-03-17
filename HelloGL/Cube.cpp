@@ -11,12 +11,17 @@ Cube::Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObj
 	
 	m_rotation = 0.0f;
 	m_rotate_speed = (GLfloat)(rand() % 10) + 1;
+
+	m_material = nullptr;
 }
 
 Cube::~Cube()
 {
 	delete position;
 	position = nullptr;
+
+	delete m_material;
+	m_material = nullptr;
 }
 
 void Cube::Draw()
