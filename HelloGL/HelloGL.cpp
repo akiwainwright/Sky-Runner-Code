@@ -33,7 +33,7 @@ void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
 
-
+	DrawString("Howdy", &v, &c);
 	for (int i = 0; i < 200; ++i)
 	{
 		objects[i]->Draw();
@@ -54,12 +54,14 @@ void HelloGL::Update()
 		      camera->up.x, camera->up.y, camera->up.z);
 
 	//constantly moving camera forward creating zoom effect
-	/*camera->eye.z -= 0.8f;
-	camera->center.z -= 0.8f;*/
+	camera->eye.z -= 0.8f;
+	camera->center.z -= 0.8f;
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Ambient.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Diffuse.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Specular.x));
+
+	v.z -= 0.8f;
 
 	for (int i = 0; i < 200; ++i)
 	{
@@ -190,4 +192,13 @@ void HelloGL::InitLighting()
 	m_lightData->Specular.z = 0.2f;
 	m_lightData->Specular.w = 1.0f;
 
+}
+
+void HelloGL::DrawString(const char* text, Vector3* position, Colors* color)
+{
+	glPushMatrix();
+	glTranslatef(position->x, position->y, position->z);
+	glRasterPos2f(0.0f, 0.0f);
+	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (unsigned char*)text);
+	glPopMatrix();
 }

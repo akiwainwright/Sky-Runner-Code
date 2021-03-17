@@ -23,6 +23,9 @@ private:
 
 	Vector4* m_lightPosition;
 	Lighting* m_lightData;
+
+	Vector3 v = { -4.0f, 10.7f, 0.0f };
+	Colors c = { 0.0f, 1.0f, 0.0f };
 	
 	
 public:
@@ -41,6 +44,7 @@ public:
 	void InitGL(int argc, char* argv[]);
 
 	void InitLighting();
-	
+
+	void DrawString(const char* text, Vector3* position, Colors* color);
 };
 
