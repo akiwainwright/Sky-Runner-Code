@@ -67,3 +67,10 @@ struct Mesh
 
 	int VertexCount, NormalCount, IndexCount, CoordCount;
 };
+
+struct Object
+{
+	Vertex* Vertices;
+	TexCoord* UVmap;
+	Vector3* Normal;
+};
