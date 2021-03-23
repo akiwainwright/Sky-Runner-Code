@@ -1,7 +1,7 @@
 #include "HelloGL.h"
 
 #include <ctime>
-#include "MeshLoader.h"
+#include "ObjLoader.h"
 
 
 HelloGL::HelloGL(int argc, char* argv[])
@@ -114,7 +114,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 void HelloGL::InitObject()
 {
-	Object* cubeMesh = MeshLoader::Load((char*)"cube.txt");
+	Object* cubeMesh = ObjLoader::Load((char*)"cube.txt");
 	
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Penguins.raw", 512, 512);

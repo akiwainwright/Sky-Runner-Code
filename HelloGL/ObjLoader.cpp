@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "ObjLoader.h"
 
 using namespace std;
@@ -13,23 +14,22 @@ namespace ObjLoader
 
 	void LoadObjectData(ifstream& inFile, Object& object);
 
-	char key;
-	char key2;
 	int counter;
+	char keys;
 	
-	void LoadVertices(ifstream& inFile, Object& object)
+	/*void LoadVertices(ifstream& inFile, Object& object)
 	{
 		counter = 0;
 
 
-		if (key == 'v')
+		if (keys == 'v')
 		{
-			object.Vertices = new Vertex[];
+			object.vertices = new Vertex[];
 
 		
-			inFile >> object.Vertices[counter].x;
-			inFile >> object.Vertices[counter].y;
-			inFile >> object.Vertices[counter].z;
+			inFile >> object.vertices[counter].x;
+			inFile >> object.vertices[counter].y;
+			inFile >> object.vertices[counter].z;
 			++counter;
 			LoadVertices(inFile, object);
 		}
@@ -41,7 +41,7 @@ namespace ObjLoader
 		counter = 0;
 		
 
-		if (key != 'v')
+		if (keys != 'v')
 		{
 			while (key != 'v')
 			{
@@ -81,20 +81,20 @@ namespace ObjLoader
 
 			if (key == 'v' && key2 == 'n')
 			{
-				object.Normal = new Vector3[object.NormalCount];
+				object.normal = new Vector3[object.NormalCount];
 
 				
-				inFile >> object.Normal[counter].x;
-				inFile >> object.Normal[counter].y;
-				inFile >> object.Normal[counter].z;
+				inFile >> object.normal[counter].x;
+				inFile >> object.normal[counter].y;
+				inFile >> object.normal[counter].z;
 				++counter;
 				LoadNormals(inFile, object);				
 			}
 		}
 	}
 	
-	
-	void LoadFaces(ifstream& inFile, Object& object)
+	*/
+	/*void LoadFaces(ifstream& inFile, Object& object)
 	{
 		inFile >> object.IndexCount;
 
@@ -107,23 +107,56 @@ namespace ObjLoader
 				inFile >> object.Indices[i];
 			}
 		}
-	}
+	}*/
 
 	void LoadObjectData(ifstream& inFile, Object& object)
 	{
-		char key;
-		char key2;
-		int counter;
-
-		inFile >> key;
-		//getting vertex data
-
-		//getting uv data
-
-		//getting normal
+		std::string key;
 		
+		int vertexCounter = 0;
+		int uvCounter = 0;
+		int normalCounter = 0;
 		
-		
+
+		while (!inFile.eof())
+		{
+			inFile >> key;
+
+			//stopping once it gets to the end of the file
+			if (inFile.eof())
+			{
+				break;
+			}
+			
+			//getting vertex data
+			if (key == "v")
+			{
+				
+				inFile >> object.vertices[vertexCounter].x;
+				inFile >> object.vertices[vertexCounter].y;
+				inFile >> object.vertices[vertexCounter].z;
+				++vertexCounter;
+				
+			}
+			
+			//getting uv data
+			if(key == "vt")
+			{
+
+				inFile >> object.uv[uvCounter].u;
+				inFile >> object.uv[uvCounter].v;
+			}
+			
+			//getting normal
+			if(key == "vn")
+			{
+
+				inFile >> object.normal[normalCounter].x;
+				inFile >> object.normal[normalCounter].y;
+				inFile >> object.normal[normalCounter].z;
+			}
+
+		}
 		
 	}
 
@@ -141,18 +174,12 @@ namespace ObjLoader
 			return nullptr;
 		}
 
-		key = ' ';
 		LoadVertices(inFile, *object);
 
-		key = ' ';
-		key2 = ' ';
 		LoadUV(inFile, *object);
 
-		key = ' ';
-		key2 = ' ';
 		LoadNormals(inFile, *object);
 
-		key = ' ';
 		LoadFaces(inFile, *object);
 
 		inFile.close();

@@ -1,5 +1,6 @@
 #pragma once
 #include "GL/freeglut.h"
+#include <vector>
 
 struct Vector4
 {
@@ -68,10 +69,10 @@ struct Object
 {
 	
 	
-	Vertex* Vertices;
-	UV* uv;
-	Vector3* Normal;
-	Faces* faces;
+	std::vector<Vertex> vertices;
+	std::vector<UV> uv;
+	std::vector<Vector3> normal;
+	std::vector<Faces> face;
 	
 	GLushort* Indices;
 

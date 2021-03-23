@@ -143,7 +143,6 @@
     <ClInclude Include="GLUTcallbacks.h" />
     <ClInclude Include="HelloGL.h" />
     <ClInclude Include="ObjLoader.h" />
-    <ClInclude Include="ObjectLoader.h" />
     <ClInclude Include="Pyramid.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Structures.h" />
