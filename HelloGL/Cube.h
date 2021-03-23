@@ -6,7 +6,7 @@
 #include "Structures.h"
 #include "SceneObject.h"
 
-struct Mesh;
+struct Object;
 
 class Cube : public SceneObject
 {
@@ -19,7 +19,7 @@ private:
 
 public:
 	
-	Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z);
+	Cube(Object* object, Texture2D* texture, float x, float y, float z);
 	~Cube();
 
 	void Draw() override;

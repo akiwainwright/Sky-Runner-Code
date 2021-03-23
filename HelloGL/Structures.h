@@ -64,7 +64,7 @@ struct Faces
 	Vertex* Normal;
 };
 
-struct Mesh
+struct Object
 {
 	
 	

@@ -1,10 +1,10 @@
 #pragma once
 #include "Structures.h"
 
-struct Mesh;
+struct Object;
 
-namespace MeshLoader
+namespace ObjLoader
 {
-	Mesh* Load(char* path);
+	Object* Load(char* path);
 };
 

@@ -4,14 +4,14 @@
 
 using namespace std;
 
-namespace MeshLoader
+namespace ObjLoader
 {
-	void LoadVertices(ifstream& inFile, Mesh& mesh);
-	void LoadNormals(ifstream& inFile, Mesh& mesh);
-	void LoadIndices(ifstream& inFile, Mesh& mesh);
-	void LoadTexCoords(ifstream& inFile, Mesh& mesh);
+	void LoadVertices(ifstream& inFile, Object& mesh);
+	void LoadNormals(ifstream& inFile, Object& mesh);
+	void LoadIndices(ifstream& inFile, Object& mesh);
+	void LoadTexCoords(ifstream& inFile, Object& mesh);
 
-	void LoadVertices(ifstream& inFile, Mesh& mesh)
+	void LoadVertices(ifstream& inFile, Object& mesh)
 	{
 		inFile >> mesh.VertexCount;
 
@@ -28,7 +28,7 @@ namespace MeshLoader
 		}
 	}
 
-	void  LoadTexCoords(ifstream& inFile, Mesh& mesh)
+	void  LoadTexCoords(ifstream& inFile, Object& mesh)
 	{
 		inFile >> mesh.CoordCount;
 
@@ -44,7 +44,7 @@ namespace MeshLoader
 		}
 	}
 
-	void LoadNormals(ifstream& inFile, Mesh& mesh)
+	void LoadNormals(ifstream& inFile, Object& mesh)
 	{
 		inFile >> mesh.NormalCount;
 
@@ -61,7 +61,7 @@ namespace MeshLoader
 		}
 	}
 	
-	void LoadIndices(ifstream& inFile, Mesh& mesh)
+	void LoadIndices(ifstream& inFile, Object& mesh)
 	{
 		inFile >> mesh.IndexCount;
 
@@ -76,9 +76,9 @@ namespace MeshLoader
 		}
 	}
 
-	Mesh* MeshLoader::Load(char* path)
+	Object* ObjLoader::Load(char* path)
 	{
-		Mesh* mesh = new Mesh();
+		Object* mesh = new Object();
 
 		ifstream inFile;
 

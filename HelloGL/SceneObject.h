@@ -7,14 +7,14 @@ class SceneObject
 {
 protected:
 
-	Mesh* m_mesh;
+	Object* m_object;
 	Texture2D* m_texture;
 
 
 public:
 	Vector3* position;
 
-	SceneObject(Mesh* mesh, Texture2D* texture);
+	SceneObject(Object* object, Texture2D* texture);
 	~SceneObject();
 
 	virtual void Update();

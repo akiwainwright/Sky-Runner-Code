@@ -114,7 +114,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 void HelloGL::InitObject()
 {
-	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
+	Object* cubeMesh = MeshLoader::Load((char*)"cube.txt");
 	
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Penguins.raw", 512, 512);

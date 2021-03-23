@@ -154,7 +154,7 @@
     <ClCompile Include="HelloGL.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="GLUTcallbacks.cpp" />
-    <ClCompile Include="MeshLoader.cpp" />
+    <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="Pyramid.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Texture2D.cpp" />

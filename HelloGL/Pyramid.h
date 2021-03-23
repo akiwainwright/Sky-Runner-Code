@@ -14,7 +14,7 @@ private:
 
 public:
 
-	Pyramid(Mesh* mesh, float x, float y, float z);
+	Pyramid(Object* mesh, float x, float y, float z);
 	~Pyramid();
 
 	void Draw() override;

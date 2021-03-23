@@ -1,6 +1,6 @@
 #include "Pyramid.h"
 
-Pyramid::Pyramid(Mesh* mesh, float x, float y, float z) : SceneObject(mesh, nullptr)
+Pyramid::Pyramid(Object* mesh, float x, float y, float z) : SceneObject(mesh, nullptr)
 {
 	position = new Vector3();
 
@@ -17,17 +17,17 @@ Pyramid::~Pyramid()
 
 void Pyramid::Draw()
 {
-	if (m_mesh->Vertices != nullptr && m_mesh->Normal != nullptr && m_mesh->Indices != nullptr)
+	if (m_object->Vertices != nullptr && m_object->Normal != nullptr && m_object->Indices != nullptr)
 	{
 		glEnableClientState(GL_COLOR_ARRAY);
 		glEnableClientState(GL_VERTEX_ARRAY);
 
-		glColorPointer(3, GL_FLOAT, 0, m_mesh->Normal);
-		glVertexPointer(3, GL_FLOAT, 0, m_mesh->Vertices);
+		glColorPointer(3, GL_FLOAT, 0, m_object->Normal);
+		glVertexPointer(3, GL_FLOAT, 0, m_object->Vertices);
 
 		glPushMatrix();
 		glTranslatef(position->x, position->y, position->z);
-			glDrawElements(GL_TRIANGLES, m_mesh->IndexCount, GL_UNSIGNED_SHORT, m_mesh->Indices);
+			glDrawElements(GL_TRIANGLES, m_object->IndexCount, GL_UNSIGNED_SHORT, m_object->Indices);
 		glPopMatrix();
 
 		glDisableClientState(GL_COLOR_ARRAY);
