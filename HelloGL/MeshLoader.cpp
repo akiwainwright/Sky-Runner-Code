@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "MeshLoader.h"
+#include "ObjLoader.h"
 
 using namespace std;
 

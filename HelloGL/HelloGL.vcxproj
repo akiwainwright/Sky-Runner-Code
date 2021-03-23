@@ -142,7 +142,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="GLUTcallbacks.h" />
     <ClInclude Include="HelloGL.h" />
-    <ClInclude Include="MeshLoader.h" />
+    <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="ObjectLoader.h" />
     <ClInclude Include="Pyramid.h" />
     <ClInclude Include="SceneObject.h" />
@@ -155,7 +155,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="GLUTcallbacks.cpp" />
     <ClCompile Include="MeshLoader.cpp" />
-    <ClCompile Include="ObjectLoader.cpp" />
     <ClCompile Include="Pyramid.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Texture2D.cpp" />
