@@ -10,8 +10,8 @@ HelloGL::HelloGL(int argc, char* argv[])
 	
 	InitGL(argc, argv);
 
-	InitLighting();
-	InitObject();
+	/*InitLighting();
+	InitObject();*/
 
 
 	glutMainLoop();
@@ -114,17 +114,17 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 void HelloGL::InitObject()
 {
-	Object* cubeMesh = ObjLoader::Load((char*)"cube.txt");
+	/*Object* cubeMesh = ObjLoader::Load((char*)"cube.txt");
 	
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Penguins.raw", 512, 512);
+	texture->Load((char*)"Penguins.raw", 512, 512);*/
 	
 	camera = new Camera();
 
-	for (int i = 0; i < 200; ++i)
+	/*for (int i = 0; i < 200; ++i)
 	{
 		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	}
+	}*/
 
 	//setting default camera values
 	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 40.0f;

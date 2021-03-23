@@ -22,7 +22,7 @@ public:
 	Cube(Object* object, Texture2D* texture, float x, float y, float z);
 	~Cube();
 
-	void Draw() override;
+	/*void Draw() override;*/
 	void Update() override;
 	void InitMaterial();
 

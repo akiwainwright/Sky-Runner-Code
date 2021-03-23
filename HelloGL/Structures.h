@@ -76,5 +76,5 @@ struct Object
 	
 	GLushort* Indices;
 
-	int VertexCount, NormalCount, IndexCount, CoordCount;
+	/*int VertexCount, NormalCount, IndexCount, CoordCount;*/
 };

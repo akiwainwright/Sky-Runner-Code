@@ -160,7 +160,7 @@ namespace ObjLoader
 		
 	}
 
-	Object* ObjLoader::Load(char* path)
+	/*Object* ObjLoader::Load(char* path)
 	{
 		Object* object = new Object();
 
@@ -185,5 +185,5 @@ namespace ObjLoader
 		inFile.close();
 
 		return object;
-	}
+	}*/
 }

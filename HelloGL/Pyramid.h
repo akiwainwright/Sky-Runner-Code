@@ -17,7 +17,7 @@ public:
 	Pyramid(Object* mesh, float x, float y, float z);
 	~Pyramid();
 
-	void Draw() override;
+	/*void Draw() override;*/
 	void Update() override;
 };
 
