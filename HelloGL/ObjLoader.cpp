@@ -6,79 +6,130 @@ using namespace std;
 
 namespace ObjLoader
 {
-	void LoadVertices(ifstream& inFile, Object& mesh);
-	void LoadNormals(ifstream& inFile, Object& mesh);
-	void LoadIndices(ifstream& inFile, Object& mesh);
-	void LoadTexCoords(ifstream& inFile, Object& mesh);
+	void LoadVertices(ifstream& inFile, Object& object);
+	void LoadUV(ifstream& inFile, Object& object);
+	void LoadNormals(ifstream& inFile, Object& object);
+	void LoadFaces(ifstream& inFile, Object& object);
 
-	void LoadVertices(ifstream& inFile, Object& mesh)
+	void LoadObjectData(ifstream& inFile, Object& object);
+
+	char key;
+	char key2;
+	int counter;
+	
+	void LoadVertices(ifstream& inFile, Object& object)
 	{
-		inFile >> mesh.VertexCount;
+		counter = 0;
 
-		if (mesh.VertexCount > 0)
+
+		if (key == 'v')
 		{
-			mesh.Vertices = new Vertex[mesh.VertexCount];
+			object.Vertices = new Vertex[];
 
-			for (int i = 0; i < mesh.VertexCount; i++)
+		
+			inFile >> object.Vertices[counter].x;
+			inFile >> object.Vertices[counter].y;
+			inFile >> object.Vertices[counter].z;
+			++counter;
+			LoadVertices(inFile, object);
+		}
+	}
+
+	void  LoadUV(ifstream& inFile, Object& object)
+	{
+		
+		counter = 0;
+		
+
+		if (key != 'v')
+		{
+			while (key != 'v')
 			{
-				inFile >> mesh.Vertices[i].x;
-				inFile >> mesh.Vertices[i].y;
-				inFile >> mesh.Vertices[i].z;
+				inFile >> key;
+			}
+		}
+
+		if (key == 'v')
+		{
+			inFile >> key2;
+			
+			if (key == 'v' && key2 == 't')
+			{
+				object.uv = new UV[];
+
+
+				inFile >> object.uv[counter].u;
+				inFile >> object.uv[counter].v;
+				++counter;
+				LoadUV(inFile, object);
 			}
 		}
 	}
 
-	void  LoadTexCoords(ifstream& inFile, Object& mesh)
+	void LoadNormals(ifstream& inFile, Object& object)
 	{
-		inFile >> mesh.CoordCount;
-
-		if (mesh.CoordCount > 0)
+		counter = 0;
+		
+		while (key != 'v')
 		{
-			mesh.uv = new UV[mesh.CoordCount];
-
-			for (int i = 0; i < mesh.CoordCount; ++i)
-			{
-				inFile >> mesh.uv[i].u;
-				inFile >> mesh.uv[i].v;
-			}
+			inFile >> key;
 		}
-	}
 
-	void LoadNormals(ifstream& inFile, Object& mesh)
-	{
-		inFile >> mesh.NormalCount;
-
-		if(mesh.NormalCount > 0)
+		if(key == 'v')
 		{
-			mesh.Normal = new Vector3[mesh.NormalCount];
+			inFile >> key2;
 
-			for (int i = 0; i < mesh.NormalCount; ++i)
+			if (key == 'v' && key2 == 'n')
 			{
-				inFile >> mesh.Normal[i].x;
-				inFile >> mesh.Normal[i].y;
-				inFile >> mesh.Normal[i].z;
+				object.Normal = new Vector3[object.NormalCount];
+
+				
+				inFile >> object.Normal[counter].x;
+				inFile >> object.Normal[counter].y;
+				inFile >> object.Normal[counter].z;
+				++counter;
+				LoadNormals(inFile, object);				
 			}
 		}
 	}
 	
-	void LoadIndices(ifstream& inFile, Object& mesh)
+	
+	void LoadFaces(ifstream& inFile, Object& object)
 	{
-		inFile >> mesh.IndexCount;
+		inFile >> object.IndexCount;
 
-		if(mesh.IndexCount > 0)
+		if(object.IndexCount > 0)
 		{
-			mesh.Indices = new GLushort[mesh.IndexCount];
+			object.Indices = new GLushort[object.IndexCount];
 
-			for(int i = 0; i < mesh.IndexCount; ++i)
+			for(int i = 0; i < object.IndexCount; ++i)
 			{
-				inFile >> mesh.Indices[i];
+				inFile >> object.Indices[i];
 			}
 		}
 	}
 
+	void LoadObjectData(ifstream& inFile, Object& object)
+	{
+		char key;
+		char key2;
+		int counter;
+
+		inFile >> key;
+		//getting vertex data
+
+		//getting uv data
+
+		//getting normal
+		
+		
+		
+		
+	}
+
 	Object* ObjLoader::Load(char* path)
 	{
-		Object* mesh = new Object();
+		Object* object = new Object();
 
 		ifstream inFile;
 
@@ -90,16 +141,22 @@ namespace ObjLoader
 			return nullptr;
 		}
 
-		LoadVertices(inFile, *mesh);
-		
-		LoadTexCoords(inFile, *mesh);
-		
-		LoadNormals(inFile, *mesh);
-		
-		LoadIndices(inFile, *mesh);
+		key = ' ';
+		LoadVertices(inFile, *object);
+
+		key = ' ';
+		key2 = ' ';
+		LoadUV(inFile, *object);
+
+		key = ' ';
+		key2 = ' ';
+		LoadNormals(inFile, *object);
+
+		key = ' ';
+		LoadFaces(inFile, *object);
 
 		inFile.close();
 
-		return mesh;
+		return object;
 	}
 }
