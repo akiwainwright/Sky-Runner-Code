@@ -35,7 +35,7 @@ void Cube::Draw()
 		glEnableClientState(GL_NORMAL_ARRAY);
 
 
-		glTexCoordPointer(2, GL_FLOAT, 0, m_mesh->TexCoords);
+		glTexCoordPointer(2, GL_FLOAT, 0, m_mesh->uv);
 		glVertexPointer(3, GL_FLOAT, 0, m_mesh->Vertices);
 		glNormalPointer(GL_FLOAT, 0, m_mesh->Normal);
 

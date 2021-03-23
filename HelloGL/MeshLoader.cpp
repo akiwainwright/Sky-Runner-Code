@@ -34,12 +34,12 @@ namespace MeshLoader
 
 		if (mesh.CoordCount > 0)
 		{
-			mesh.TexCoords = new TexCoord[mesh.CoordCount];
+			mesh.uv = new UV[mesh.CoordCount];
 
 			for (int i = 0; i < mesh.CoordCount; ++i)
 			{
-				inFile >> mesh.TexCoords[i].u;
-				inFile >> mesh.TexCoords[i].v;
+				inFile >> mesh.uv[i].u;
+				inFile >> mesh.uv[i].v;
 			}
 		}
 	}
