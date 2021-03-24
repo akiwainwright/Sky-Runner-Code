@@ -22,11 +22,11 @@ HelloGL::~HelloGL()
 	delete camera;
 	camera = nullptr;
 
-	for (int i = 0; i < 200; ++i)
+	/*for (int i = 0; i < 200; ++i)
 	{
 		delete objects[i];
 		objects[i] = nullptr;
-	}
+	}*/
 }
 
 void HelloGL::Display()
@@ -34,10 +34,10 @@ void HelloGL::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
 
 	DrawString("Howdy", &v, &c);
-	for (int i = 0; i < 200; ++i)
+	/*for (int i = 0; i < 200; ++i)
 	{
 		objects[i]->Draw();
-	}
+	}*/
 
 	glFlush(); //flushes the scene drawn to the graphics card
 
@@ -118,6 +118,8 @@ void HelloGL::InitObject()
 	
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Penguins.raw", 512, 512);*/
+
+	Object* object = ObjLoader::Load((char*)"SpaceShip.obj");
 	
 	camera = new Camera();
 

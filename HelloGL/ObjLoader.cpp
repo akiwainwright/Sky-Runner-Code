@@ -112,10 +112,12 @@ namespace ObjLoader
 	void LoadObjectData(ifstream& inFile, Object& object)
 	{
 		std::string key;
+		char excludeCharacter;
 		
 		int vertexCounter = 0;
 		int uvCounter = 0;
 		int normalCounter = 0;
+		int faceCounter = 0;
 		
 
 		while (!inFile.eof())
@@ -145,6 +147,8 @@ namespace ObjLoader
 
 				inFile >> object.uv[uvCounter].u;
 				inFile >> object.uv[uvCounter].v;
+				++uvCounter;
+				
 			}
 			
 			//getting normal
@@ -154,13 +158,40 @@ namespace ObjLoader
 				inFile >> object.normal[normalCounter].x;
 				inFile >> object.normal[normalCounter].y;
 				inFile >> object.normal[normalCounter].z;
+				++normalCounter;
+			}
+
+			if(key == "f")
+			{
+				inFile >> object.face[faceCounter].vertex;
+				inFile >> excludeCharacter;
+				inFile >> object.face[faceCounter].uv;
+				inFile >> excludeCharacter;
+				inFile >> object.face[faceCounter].normal;
+				++faceCounter;
+
+				inFile >> object.face[faceCounter].vertex;
+				inFile >> excludeCharacter;
+				inFile >> object.face[faceCounter].uv;
+				inFile >> excludeCharacter;
+				inFile >> object.face[faceCounter].normal;
+				++faceCounter;
+				
+				inFile >> object.face[faceCounter].vertex;
+				inFile >> excludeCharacter;
+				inFile >> object.face[faceCounter].uv;
+				inFile >> excludeCharacter;
+				inFile >> object.face[faceCounter].normal;
+				++faceCounter;
+
+				
 			}
 
 		}
 		
 	}
 
-	/*Object* ObjLoader::Load(char* path)
+	Object* ObjLoader::Load(char* path)
 	{
 		Object* object = new Object();
 
@@ -174,16 +205,10 @@ namespace ObjLoader
 			return nullptr;
 		}
 
-		LoadVertices(inFile, *object);
-
-		LoadUV(inFile, *object);
-
-		LoadNormals(inFile, *object);
-
-		LoadFaces(inFile, *object);
+		LoadObjectData(inFile, *object);
 
 		inFile.close();
 
 		return object;
-	}*/
+	}
 }

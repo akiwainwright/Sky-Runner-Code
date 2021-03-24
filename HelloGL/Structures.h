@@ -60,9 +60,9 @@ struct Vertex
 
 struct Faces
 {
-	Vertex* vertices;
-	UV* uv;
-	Vertex* Normal;
+	int vertex;
+	int uv;
+	int normal;
 };
 
 struct Object
