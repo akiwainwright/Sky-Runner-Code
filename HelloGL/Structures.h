@@ -58,11 +58,18 @@ struct Vertex
 	GLfloat x, y, z;
 };
 
-struct Face
+struct FacePoint
 {
 	int vertex;
 	int uv;
-	int normals;
+	int normal;
+};
+
+struct FaceData
+{
+	FacePoint point1;
+	FacePoint point2;
+	FacePoint point3;
 };
 
 struct Mesh
@@ -81,5 +88,6 @@ struct Object
 	std::vector<Vertex> vertices;
 	std::vector<TexCoord> uvs;
 	std::vector<Vector3> normals;
-	std::vector<Face> faces;
+	std::vector<FaceData> faces;
+	
 };
