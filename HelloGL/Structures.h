@@ -1,5 +1,6 @@
 #pragma once
 #include "GL/freeglut.h"
+#include <vector>
 
 struct Vector4
 {
@@ -57,6 +58,13 @@ struct Vertex
 	GLfloat x, y, z;
 };
 
+struct Face
+{
+	int vertex;
+	int uv;
+	int normals;
+};
+
 struct Mesh
 {
 	TexCoord* TexCoords;
@@ -66,4 +74,12 @@ struct Mesh
 	GLushort* Indices;
 
 	int VertexCount, NormalCount, IndexCount, CoordCount;
+};
+
+struct Object
+{
+	std::vector<Vertex> vertices;
+	std::vector<TexCoord> uvs;
+	std::vector<Vector3> normals;
+	std::vector<Face> faces;
 };
