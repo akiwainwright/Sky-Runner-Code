@@ -7,11 +7,11 @@ using namespace std;
 
 namespace ObjLoader
 {
-	void Load(fstream& inFile, Object& object);
+	void LoadObjectData(fstream& inFile, Object& object);
 
 	
 
-	void Load(fstream& inFile, Object& object)
+	void LoadObjectData(fstream& inFile, Object& object)
 	{
 		string key;
 
@@ -83,8 +83,29 @@ namespace ObjLoader
 				object.faces.push_back(faceData);
 			}
 		}
-		
 	}
+
+	Object* Load(char* path)
+	{
+		Object* object = new Object();
+		
+		fstream inFile;
+
+		inFile.open(path);
+
+		if (!inFile.good())
+		{
+			cerr << "Can't open texture file " << path << endl;
+			return nullptr;
+		}
+
+		LoadObjectData(inFile, *object);
+		
+		inFile.close();
+		
+		return object;
+	}
+
 
 }
 
