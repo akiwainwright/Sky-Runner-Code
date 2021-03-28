@@ -2,6 +2,7 @@
 
 #include <ctime>
 #include "MeshLoader.h"
+#include "ObjLoader.h"
 
 
 HelloGL::HelloGL(int argc, char* argv[])
@@ -22,23 +23,20 @@ HelloGL::~HelloGL()
 	delete camera;
 	camera = nullptr;
 
-	for (int i = 0; i < 200; ++i)
-	{
-		delete objects[i];
-		objects[i] = nullptr;
-	}
+	delete CubeObject;
+	CubeObject = nullptr;
 }
 
 void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
 
+	CubeObject->Draw();
 
-	for (int i = 0; i < 200; ++i)
-	{
-		objects[i]->Draw();
-	}
-
+	/*glPushMatrix();
+	glutSolidTeapot(3);
+	glPopMatrix();*/
+	
 	glFlush(); //flushes the scene drawn to the graphics card
 
 	glutSwapBuffers();
@@ -57,32 +55,18 @@ void HelloGL::Update()
 	/*camera->eye.z -= 0.8f;
 	camera->center.z -= 0.8f;*/
 
+
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Ambient.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Diffuse.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Specular.x));
 
-	for (int i = 0; i < 200; ++i)
-	{
-		objects[i]->Update();
-	}
-
-	//resetting cube position once they go behind the camera
-	for(int i = 0; i < 200; ++i)
-	{
-		if(objects[i]->position->z > camera->center.z)
-		{
-			objects[i]->position->z -= 100.0f;
-			objects[i]->position->y = ((rand() % 200) / 10.0f) - 10.0f;
-			objects[i]->position->x = ((rand() % 400) / 10.0f) - 20.0f;			
-		}
-	}
 	
 	glutPostRedisplay();
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
-	/*if (key == 'w')
+	if (key == 'w')
 	{
 		camera->eye.z -= 0.8f;
 		camera->center.z -= 0.8f;
@@ -93,7 +77,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		camera->eye.z += 0.4f;
 		camera->center.z += 0.4f;
 		
-	}*/
+	}
 
 	//Allowing left and right movement
 	if (key == 'a')
@@ -112,17 +96,16 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 void HelloGL::InitObject()
 {
-	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
+	Object* object = ObjLoader::Load((char*)"SpaceShip.obj");
 	
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Penguins.raw", 512, 512);
 	
 	camera = new Camera();
 
-	for (int i = 0; i < 200; ++i)
-	{
-		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	}
+	CubeObject = new Objects(object, texture, 0,0,0);
+
+	
 
 	//setting default camera values
 	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 40.0f;

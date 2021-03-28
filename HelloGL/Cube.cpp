@@ -60,7 +60,7 @@ void Cube::Draw()
 
 void Cube::Update()
 {
-	//m_rotation += m_rotate_speed;
+	m_rotation += m_rotate_speed;
 
 	if(m_rotation >= 360)
 	{

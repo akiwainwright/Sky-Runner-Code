@@ -8,18 +8,20 @@
 #include "Pyramid.h"
 #include "Structures.h"
 #include "SceneObject.h"
+#include "Objects.h"
 
 #define REFRESHRATE 16
 
 class SceneObject;
 struct Camera;
+class Objects;
 
 class HelloGL
 {
 private:
 
 	Camera* camera;
-	SceneObject* objects[200];
+	Objects* CubeObject;
 
 	Vector4* m_lightPosition;
 	Lighting* m_lightData;

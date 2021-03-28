@@ -7,21 +7,19 @@ using namespace std;
 
 namespace ObjLoader
 {
-	void LoadObjectData(fstream& inFile, Object& object);
+	void LoadObjectData(fstream& inFile, Object* object);
 
 	
 
-	void LoadObjectData(fstream& inFile, Object& object)
+	void LoadObjectData(fstream& inFile, Object* object)
 	{
+		object->faceCounter = 0;
+		
 		string key;
 
 		while(!inFile.eof())
 		{
-			if(inFile.eof())
-			{
-				break;
-			}
-
+					
 			inFile >> key;
 
 			if (key == "v")
@@ -32,7 +30,8 @@ namespace ObjLoader
 				inFile >> vertex.y;
 				inFile >> vertex.z;
 
-				object.vertices.push_back(vertex);
+				cout << vertex.x << " " << vertex.y << " " << vertex.z << endl;
+				object->vertices.push_back(vertex);
 			}
 
 			else if(key == "vt")
@@ -42,7 +41,9 @@ namespace ObjLoader
 				inFile >> uv.u;
 				inFile >> uv.v;
 
-				object.uvs.push_back(uv);
+				cout << uv.u << " " << uv.v << endl;
+				
+				object->uvs.push_back(uv);
 			}
 
 			else if (key == "vn")
@@ -53,34 +54,37 @@ namespace ObjLoader
 				inFile >> normal.y;
 				inFile >> normal.z;
 
-				object.normals.push_back(normal);
+				cout << normal.x << " " << normal.y << " " << normal.z << endl;
+				
+				object->normals.push_back(normal);
 			}
 
 			else if(key == "f")
 			{
-				string ignore;
+				object->faceCounter += 3;
+				
+				char ignore;
 
-				FaceData faceData;
+				GLushort index;
 
-				inFile >> faceData.point1.vertex;
-				inFile >> ignore;
-				inFile >> faceData.point1.uv;
-				inFile >> ignore;
-				inFile >> faceData.point1.normal;
+				for (int i = 0; i < 3; ++i)
+				{
+					inFile >> index;
+					inFile >> ignore;
 
-				inFile >> faceData.point2.vertex;
-				inFile >> ignore;
-				inFile >> faceData.point2.uv;
-				inFile >> ignore;
-				inFile >> faceData.point2.normal;
+					object->vertexIndices.push_back(index - 1);
 
-				inFile >> faceData.point3.vertex;
-				inFile >> ignore;
-				inFile >> faceData.point3.uv;
-				inFile >> ignore;
-				inFile >> faceData.point3.normal;				
+					inFile >> index;
+					inFile >> ignore;
 
-				object.faces.push_back(faceData);
+					object->uvIndices.push_back(index - 1);
+
+					inFile >> index;
+
+					object->normalIndices.push_back(index - 1);					
+				
+				}
+				
 			}
 		}
 	}
@@ -99,7 +103,7 @@ namespace ObjLoader
 			return nullptr;
 		}
 
-		LoadObjectData(inFile, *object);
+		LoadObjectData(inFile, object);
 		
 		inFile.close();
 		

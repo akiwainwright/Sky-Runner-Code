@@ -22,4 +22,5 @@ void SceneObject::Update()
 
 void SceneObject::Draw()
 {
+	
 }

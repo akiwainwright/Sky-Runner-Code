@@ -58,20 +58,6 @@ struct Vertex
 	GLfloat x, y, z;
 };
 
-struct FacePoint
-{
-	int vertex;
-	int uv;
-	int normal;
-};
-
-struct FaceData
-{
-	FacePoint point1;
-	FacePoint point2;
-	FacePoint point3;
-};
-
 struct Mesh
 {
 	TexCoord* TexCoords;
@@ -88,6 +74,8 @@ struct Object
 	std::vector<Vertex> vertices;
 	std::vector<TexCoord> uvs;
 	std::vector<Vector3> normals;
-	std::vector<FaceData> faces;
-	
+
+	std::vector<GLushort> vertexIndices, uvIndices, normalIndices;
+
+	int faceCounter;
 };
