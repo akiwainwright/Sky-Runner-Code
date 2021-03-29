@@ -96,10 +96,10 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 void HelloGL::InitObject()
 {
-	Object* object = ObjLoader::Load((char*)"SpaceShip.obj");
+	Object* object = ObjLoader::Load((char*)"Player.obj");
 	
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Penguins.raw", 512, 512);
+	texture->Load((char*)"Player.raw", 2048, 2048);
 	
 	camera = new Camera();
 
