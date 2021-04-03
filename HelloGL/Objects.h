@@ -6,10 +6,8 @@ class Objects
 {
 protected:
 	Object* m_object;
-	Mesh* m_mesh;
 	Texture2D* m_texture;
 	
-	Material* m_material;
 	Vector3* m_position;
 	
 	
@@ -19,6 +17,6 @@ public:
 
 	virtual void Update();
 	virtual void  Draw();
-	void InitMaterial();
+	
 };
 

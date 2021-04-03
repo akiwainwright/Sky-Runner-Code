@@ -96,10 +96,10 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 void HelloGL::InitObject()
 {
-	Object* object = ObjLoader::Load((char*)"Player.obj");
+	Object* object = ObjLoader::Load((char*)"Sky.obj");
 	
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Player.raw", 2048, 2048);
+	texture->Load((char*)"sky.raw", 2048, 2048);
 	
 	camera = new Camera();
 
@@ -135,7 +135,7 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glViewport(0, 0, 800, 800);
-	gluPerspective(45, 1, 0, 1000);
+	gluPerspective(45, 1, 1, 1000);
 	glMatrixMode(GL_MODELVIEW);
 
 	//enabling back openGL features
