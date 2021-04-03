@@ -23,15 +23,17 @@ HelloGL::~HelloGL()
 	delete camera;
 	camera = nullptr;
 
-	delete CubeObject;
-	CubeObject = nullptr;
+	delete Sky;
+	Sky = nullptr;
 }
 
 void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
 
-	CubeObject->Draw();
+	Sky->Draw();
+	PlayerShip->Draw();
+	Enemy1->Draw();
 
 	/*glPushMatrix();
 	glutSolidTeapot(3);
@@ -68,14 +70,14 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
 	if (key == 'w')
 	{
-		camera->eye.z -= 0.8f;
-		camera->center.z -= 0.8f;
+		camera->eye.z -= 4.0f;
+		camera->center.z -= 4.0f;
 		
 	}
 	if (key == 's')
 	{
-		camera->eye.z += 0.4f;
-		camera->center.z += 0.4f;
+		camera->eye.z += 4.0f;
+		camera->center.z += 4.0f;
 		
 	}
 
@@ -96,14 +98,25 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 void HelloGL::InitObject()
 {
-	Object* object = ObjLoader::Load((char*)"Sky.obj");
+	Object* SkySphere = ObjLoader::Load((char*)"Sky.obj");
+	Object* PlayerShip = ObjLoader::Load((char*)"player.obj");
+	//Object* Enemy1Model = ObjLoader::Load((char*)"Enemy1V2.obj");
 	
-	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"sky.raw", 2048, 2048);
+	
+	Texture2D* skyTexture = new Texture2D();
+	skyTexture->Load((char*)"sky2.raw", 2048, 2048);
+
+	Texture2D* playerShipTexture = new Texture2D();
+	playerShipTexture->Load((char*)"player.raw", 2048, 2048);
+
+	//Texture2D* enemy1Texture = new Texture2D();
+	//enemy1Texture->Load((char*)"Enemy1.raw", 2048, 2048);
 	
 	camera = new Camera();
 
-	CubeObject = new Objects(object, texture, 0,0,0);
+	Sky = new Objects(SkySphere, skyTexture, 0, 0, 0);
+	PlayerShip = new Player(PlayerShip, playerShipTexture, 0, 0, 0);
+	//Enemy1 = new Objects(Enemy1Model, enemy1Texture, 20, 0, 0);
 
 	
 

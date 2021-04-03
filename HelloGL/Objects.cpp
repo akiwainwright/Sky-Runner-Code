@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 
+
 Objects::Objects(Object* object, Texture2D* texture, float x, float y, float z)
 {
 	m_position = new Vector3();

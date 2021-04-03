@@ -5,10 +5,10 @@
 #include "GL\freeglut.h"
 #include "GLUTcallbacks.h"
 #include "Cube.h"
-#include "Pyramid.h"
 #include "Structures.h"
 #include "SceneObject.h"
 #include "Objects.h"
+#include "Player.h"
 
 #define REFRESHRATE 16
 
@@ -21,7 +21,9 @@ class HelloGL
 private:
 
 	Camera* camera;
-	Objects* CubeObject;
+	Objects* Sky;
+	Objects* PlayerShip;
+	Objects* Enemy1;
 
 	Vector4* m_lightPosition;
 	Lighting* m_lightData;
