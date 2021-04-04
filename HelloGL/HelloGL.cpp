@@ -33,11 +33,7 @@ void HelloGL::Display()
 
 	Sky->Draw();
 	PlayerShip->Draw();
-
-	if (Enemy1->alive)
-	{
-		Enemy1->Draw();
-	}
+	Enemy1->Draw();
 
 	/*glPushMatrix();
 	glutSolidTeapot(3);
@@ -61,28 +57,13 @@ void HelloGL::Update()
 	/*camera->eye.z -= 0.8f;
 	camera->center.z -= 0.8f;*/
 
-	if (Enemy1->position->z > -50.0f)
-	{
-		Enemy1->alive == false;
-	}
-
-	if (Enemy1->alive)
-	{
-		Enemy1->Update();
-	}
-	else if (!Enemy1->alive)
-	{
-		delete Enemy1;
-		Enemy1 = nullptr;
-	}
-
+	Enemy1->Update();
 	Sky->Update();
 
 	if (Sky->position->z < camera->eye.z)
 	{
 		Sky->position->z += 40.0f;
 	}
-
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Ambient.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Diffuse.x));
@@ -117,7 +98,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		}
 	}
 
-	//Lets the player move down
+	//Lets the player move up
 	if (key == 's')
 	{
 		if (PlayerShip->position->y > -13.5f)
@@ -210,7 +191,7 @@ void HelloGL::InitObject()
 
 	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, 0);
 	PlayerShip = new Player(PlayerShipModel, playerShipTexture, 0, -1.0f, 0);
-	Enemy1 = new Enemies(Enemy1Model, enemy1Texture, 10, 0, -80);
+	Enemy1 = new Enemies(Enemy1Model, enemy1Texture, 10, 0, (camera->eye.z - 240));
 
 	
 

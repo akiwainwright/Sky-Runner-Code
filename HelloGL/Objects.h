@@ -13,7 +13,6 @@ protected:
 	float m_rotation;
 
 public:
-	bool  alive;
 	Vector3* position;
 
 	Objects(Object* object, Texture2D* texture,float x, float y, float z);
