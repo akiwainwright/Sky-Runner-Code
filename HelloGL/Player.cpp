@@ -4,13 +4,16 @@ Player::Player(Object* object, Texture2D* texture, float x, float y, float z) : 
 {
 	m_object = object;
 	m_texture = texture;
-	m_position = new Vector3;
+	position = new Vector3;
 
-	m_position->x = x;
-	m_position->y = y;
-	m_position->z = z;
+	position->x = x;
+	position->y = y;
+	position->z = z;
 
+	m_start_rotation = 180.0f;
+	turn = 0.0f;
 	m_rotation = 0.0f;
+	altitude = 0.0f;
 }
 
 Player::~Player()
@@ -36,10 +39,12 @@ void Player::Draw()
 	glNormalPointer(GL_FLOAT, 0, &m_object->normals);
 
 	glPushMatrix();
-	glTranslatef(m_position->x, m_position->y, m_position->z);
+	glRotatef(m_start_rotation, 0.0f, 1.0f, 0.0f);
+	glTranslatef(position->x, position->y, position->z);
+	glRotatef(turn, 0.0f, 0.0f, 1.0f);
+	glRotatef(altitude, 1.0f, 0.0f, 0.0f);
 
 	glBegin(GL_TRIANGLES);
-	glRotatef(m_rotation, 0.0f, 180.0f, 0.0f);
 	for (int i = 0; i < m_object->faceCounter; ++i)
 	{
 		glTexCoord2fv(&m_object->uvs[m_object->uvIndices[i]].u);

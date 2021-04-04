@@ -8,11 +8,13 @@ protected:
 	Object* m_object;
 	Texture2D* m_texture;
 	
-	Vector3* m_position;
 	
+	float m_start_rotation;
 	float m_rotation;
 
 public:
+	Vector3* position;
+
 	Objects(Object* object, Texture2D* texture,float x, float y, float z);
 	~Objects();
 

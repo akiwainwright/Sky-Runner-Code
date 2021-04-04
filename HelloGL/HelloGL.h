@@ -9,10 +9,11 @@
 #include "SceneObject.h"
 #include "Objects.h"
 #include "Player.h"
+#include "Enemies.h"
+#include "Environment.h"
 
 #define REFRESHRATE 16
 
-class SceneObject;
 struct Camera;
 class Objects;
 
@@ -22,7 +23,7 @@ private:
 
 	Camera* camera;
 	Objects* Sky;
-	Objects* PlayerShip;
+	Player* PlayerShip;
 	Objects* Enemy1;
 
 	Vector4* m_lightPosition;

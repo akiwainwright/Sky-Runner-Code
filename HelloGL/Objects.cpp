@@ -10,12 +10,12 @@
 
 Objects::Objects(Object* object, Texture2D* texture, float x, float y, float z)
 {
-	m_position = new Vector3();
+	position = new Vector3();
 	m_object = object;
 
-	m_position->x = x;
-	m_position->y = y;
-	m_position->z = z;
+	position->x = x;
+	position->y = y;
+	position->z = z;
 
 	m_texture = texture;
 }
@@ -42,7 +42,7 @@ void Objects::Draw()
 	glNormalPointer(GL_FLOAT, 0, &m_object->normals);
 
 	glPushMatrix();
-	glTranslatef(m_position->x, m_position->y, m_position->z);
+	glTranslatef(position->x, position->y, position->z);
 		/*glDrawElements(GL_TRIANGLES, m_object->vertexIndices.size(), GL_UNSIGNED_SHORT, &m_object->vertexIndices);*/
 
 	glBegin(GL_TRIANGLES);
