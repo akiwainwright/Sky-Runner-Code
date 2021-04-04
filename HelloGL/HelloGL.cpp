@@ -58,11 +58,12 @@ void HelloGL::Update()
 	camera->center.z -= 0.8f;*/
 
 	Enemy1->Update();
+	//Enemy1->FollowPlayer(PlayerShip->position->x, PlayerShip->position->y);
 	Sky->Update();
 
-	if (Sky->position->z < camera->eye.z)
+	if (Sky->position->z > 0)
 	{
-		Sky->position->z += 40.0f;
+		Sky->position->z = -300.0f;
 	}
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Ambient.x));
@@ -189,9 +190,9 @@ void HelloGL::InitObject()
 	
 	camera = new Camera();
 
-	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, 0);
+	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, -340);
 	PlayerShip = new Player(PlayerShipModel, playerShipTexture, 0, -1.0f, 0);
-	Enemy1 = new Enemies(Enemy1Model, enemy1Texture, 10, 0, (camera->eye.z - 240));
+	Enemy1 = new Enemies(Enemy1Model, enemy1Texture, 0, 0, (camera->eye.z - 240));
 
 	
 

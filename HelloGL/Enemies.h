@@ -17,5 +17,6 @@ public:
 	~Enemies();
 
 	void Update() override;
+	void FollowPlayer(float x, float y);
 };
 

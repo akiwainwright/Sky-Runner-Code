@@ -19,5 +19,5 @@ Environment::~Environment()
 
 void Environment::Update()
 {
-	position->z += 0.2f;
+	position->z += 0.15f;
 }

@@ -24,7 +24,7 @@ private:
 	Camera* camera;
 	Objects* Sky;
 	Player* PlayerShip;
-	Objects* Enemy1;
+	Enemies* Enemy1;
 
 	Vector4* m_lightPosition;
 	Lighting* m_lightData;

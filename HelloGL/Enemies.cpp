@@ -19,5 +19,17 @@ Enemies::~Enemies()
 
 void Enemies::Update()
 {
-	position->z += 0.6f;
+	position->z += 0.4f;
+}
+
+void Enemies::FollowPlayer(float x, float y)
+{
+	if (position->y < y)
+	{
+		position->y += 0.2f;
+	}
+	else
+	{
+		position->y -= 0.2f;
+	}
 }
