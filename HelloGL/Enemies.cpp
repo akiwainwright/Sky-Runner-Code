@@ -10,6 +10,8 @@ Enemies::Enemies(Object* object, Texture2D* texture, float x, float y, float z) 
 	position->x = x;
 	position->y = y;
 	position->z = z;
+
+	alive = true;
 }
 
 Enemies::~Enemies()
