@@ -34,6 +34,7 @@ void HelloGL::Display()
 	Sky->Draw();
 	PlayerShip->Draw();
 	Enemy1->Draw();
+	
 
 	/*glPushMatrix();
 	glutSolidTeapot(3);
@@ -167,32 +168,36 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 				}
 			}
 		}
-	
-
 	}
 }
 
 void HelloGL::InitObject()
 {
 	Object* SkySphereModel = ObjLoader::Load((char*)"Sky.obj");
-	Object* PlayerShipModel = ObjLoader::Load((char*)"PlayerShipV2.obj");
+	Object* PlayerShipModel = ObjLoader::Load((char*)"PlayerTest3.obj");
 	Object* Enemy1Model = ObjLoader::Load((char*)"Enemy1V2.obj");
+	Object* BulletModel = ObjLoader::Load((char*)"NewBullet.obj");
+	
 	
 	
 	Texture2D* skyTexture = new Texture2D();
 	skyTexture->Load((char*)"sky2.raw", 2048, 2048);
 
 	Texture2D* playerShipTexture = new Texture2D();
-	playerShipTexture->Load((char*)"PlayerShipV2.raw", 2048, 2048);
+	playerShipTexture->Load((char*)"playerShipV6.raw", 2048, 2048);
 
 	Texture2D* enemy1Texture = new Texture2D();
 	enemy1Texture->Load((char*)"Enemy1.raw", 2048, 2048);
+
+	Texture2D* bulletTexture = new Texture2D();
+	bulletTexture->Load((char*)"NewBullet.raw", 2048, 2048);
 	
 	camera = new Camera();
 
 	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, -340);
 	PlayerShip = new Player(PlayerShipModel, playerShipTexture, 0, -1.0f, 0);
 	Enemy1 = new Enemies(Enemy1Model, enemy1Texture, 0, 0, (camera->eye.z - 240));
+	Bullet = new Objects(BulletModel, bulletTexture, -10, 0, 0);
 
 	
 
