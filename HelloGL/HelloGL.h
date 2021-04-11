@@ -37,6 +37,8 @@ public:
 	int score = 0;
 	int frame_counter = 0;
 
+	std::string score_text;
+
 	HelloGL(int argc, char* argv[]);
 	~HelloGL();
 

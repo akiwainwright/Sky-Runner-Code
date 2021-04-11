@@ -32,11 +32,10 @@ void HelloGL::Display()
 
 	Sky->Draw();
 	PlayerShip->Draw();
-	
 
 
 	//displaying score
-	DrawString("Score: ", &ScoreTextPos, &ScoreTextColour);
+	DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
 	glFlush(); //flushes the scene drawn to the graphics card
 
 	glutSwapBuffers();
@@ -52,9 +51,11 @@ void HelloGL::Update()
 		      camera->up.x, camera->up.y, camera->up.z);
 	Sky->Update();
 
+	score_text = "Score: " + std::to_string(score);
+
 	//incrementing score by time not frames
 	frame_counter += 1;
-	if (frame_counter == 15)
+	if (frame_counter == 5)
 	{
 		score += 1;
 		std::cout << "Score: " << score << std::endl;
