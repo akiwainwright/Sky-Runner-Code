@@ -4,9 +4,7 @@
 #include <gl/GLU.h>
 #include "GL\freeglut.h"
 #include "GLUTcallbacks.h"
-#include "Cube.h"
 #include "Structures.h"
-#include "SceneObject.h"
 #include "Objects.h"
 #include "Player.h"
 #include "Enemies.h"
@@ -47,6 +45,8 @@ public:
 	void InitGL(int argc, char* argv[]);
 
 	void InitLighting();
+
+	void DrawString(const char* text, Vector3* position, );
 	
 };
 

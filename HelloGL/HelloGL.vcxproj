@@ -139,31 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Cube.h" />
     <ClInclude Include="Enemies.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="GLUTcallbacks.h" />
     <ClInclude Include="HelloGL.h" />
-    <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="Objects.h" />
     <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Structures.h" />
     <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Enemies.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="HelloGL.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="GLUTcallbacks.cpp" />
-    <ClCompile Include="MeshLoader.cpp" />
     <ClCompile Include="Objects.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Texture2D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

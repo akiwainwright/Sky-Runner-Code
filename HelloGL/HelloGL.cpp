@@ -1,8 +1,6 @@
 #include "HelloGL.h"
-
 #include <ctime>
 #include <iostream>
-#include "MeshLoader.h"
 #include "ObjLoader.h"
 
 
@@ -34,12 +32,6 @@ void HelloGL::Display()
 
 	Sky->Draw();
 	PlayerShip->Draw();
-	Enemy1->Draw();
-	
-
-	/*glPushMatrix();
-	glutSolidTeapot(3);
-	glPopMatrix();*/
 	
 	glFlush(); //flushes the scene drawn to the graphics card
 
@@ -55,12 +47,7 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 
-	//constantly moving camera forward creating zoom effect
-	/*camera->eye.z -= 0.8f;
-	camera->center.z -= 0.8f;*/
 
-	Enemy1->Update();
-	//Enemy1->FollowPlayer(PlayerShip->position->x, PlayerShip->position->y);
 	Sky->Update();
 
 	if (Sky->position->z > 0)
@@ -82,6 +69,8 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	if (key == 'w')
 	{
 		PlayerShip->MoveUp();
+
+		//makes camera track player within the cameras limits
 		if (PlayerShip->position->y > camera->lower_limit && PlayerShip->position->y < camera->upper_limit)
 		{
 			camera->center.y = PlayerShip->position->y;
@@ -93,6 +82,8 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	if (key == 's')
 	{
 		PlayerShip->MoveDown();
+
+		//makes camera track player within the cameras limits
 		if (PlayerShip->position->y > camera->lower_limit && PlayerShip->position->y < camera->upper_limit)
 		{
 			camera->center.y = PlayerShip->position->y;
@@ -105,6 +96,8 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	if (key == 'a')
 	{
 		PlayerShip->MoveRight();
+
+		//makes camera track player within the cameras limits
 		if (PlayerShip->position->x > camera->lower_limit && PlayerShip->position->x < camera->upper_limit)
 		{
 			camera->center.x = PlayerShip->position->x;
@@ -116,6 +109,8 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	if (key == 'd')
 	{
 		PlayerShip->MoveLeft();
+
+		//makes camera track player within the cameras limits
 		if (PlayerShip->position->x > camera->lower_limit && PlayerShip->position->x < camera->upper_limit)
 		{
 			camera->center.x = PlayerShip->position->x;
@@ -126,37 +121,27 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 
 void HelloGL::InitObject()
 {
+	//loading models to use
 	Object* SkySphereModel = ObjLoader::Load((char*)"Sky.obj");
 	Object* PlayerShipModel = ObjLoader::Load((char*)"NewPlayerShip.obj");
-	Object* Enemy1Model = ObjLoader::Load((char*)"Enemy1V2.obj");
-	Object* BulletModel = ObjLoader::Load((char*)"NewBullet.obj");
 	
-	
-	
+	//loadint textures for models
 	Texture2D* skyTexture = new Texture2D();
 	skyTexture->Load((char*)"sky2.raw", 2048, 2048);
 
 	Texture2D* playerShipTexture = new Texture2D();
 	playerShipTexture->Load((char*)"NewShip.raw", 2048, 2048);
-
-	Texture2D* enemy1Texture = new Texture2D();
-	enemy1Texture->Load((char*)"Enemy1.raw", 2048, 2048);
-
-	Texture2D* bulletTexture = new Texture2D();
-	bulletTexture->Load((char*)"NewBullet.raw", 2048, 2048);
 	
-	camera = new Camera();
 
+	//setting up models
 	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, -340);
 	PlayerShip = new Player(PlayerShipModel, playerShipTexture, 0, -1.0f, 0);
-	Enemy1 = new Enemies(Enemy1Model, enemy1Texture, 0, 0, (camera->eye.z - 240));
-	Bullet = new Objects(BulletModel, bulletTexture, -10, 0, 0);
 
 	
-
-	//setting default camera values
+	//setting up the camera
+	camera = new Camera();
+	
 	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 40.0f;
-	//camera->eye.x = 5.0f, camera->eye.y = 5.0f, camera->eye.z = -5.0f;
 	camera->center.x = 0.0f, camera->center.y = 0.0f, camera->center.z = 0.0f;
 	camera->up.x = 0.0f, camera->up.y = 1.0f, camera->up.z = 0.0f;
 	camera->lower_limit = -20.5f, camera->upper_limit = 20.5f;

@@ -30,7 +30,6 @@ namespace ObjLoader
 				inFile >> vertex.y;
 				inFile >> vertex.z;
 
-				//cout << vertex.x << " " << vertex.y << " " << vertex.z << endl;
 				object->vertices.push_back(vertex);
 			}
 
@@ -40,8 +39,6 @@ namespace ObjLoader
 
 				inFile >> uv.u;
 				inFile >> uv.v;
-
-				//cout << uv.u << " " << uv.v << endl;
 				
 				object->uvs.push_back(uv);
 			}
@@ -53,8 +50,6 @@ namespace ObjLoader
 				inFile >> normal.x;
 				inFile >> normal.y;
 				inFile >> normal.z;
-
-				//cout << normal.x << " " << normal.y << " " << normal.z << endl;
 				
 				object->normals.push_back(normal);
 			}
