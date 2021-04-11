@@ -22,7 +22,7 @@ class HelloGL
 private:
 
 	Camera* camera;
-	Objects* Sky;
+	Environment* Sky;
 	Player* PlayerShip;
 	Enemies* Enemy1;
 	Objects* Bullet;

@@ -81,104 +81,46 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	//Lets the player move up
 	if (key == 'w')
 	{
-		if (PlayerShip->position->y < 13.5f)
+		PlayerShip->MoveUp();
+		if (PlayerShip->position->y > camera->lower_limit && PlayerShip->position->y < camera->upper_limit)
 		{
-			PlayerShip->position->y += 0.45f;
-
-			if (PlayerShip->altitude < 52)
-			{
-				PlayerShip->altitude += 6.5f;
-			}
-		}
-		if (PlayerShip->turn < 0)
-		{
-			PlayerShip->turn += 6.5f;
-		}
-		else if (PlayerShip->turn > 0)
-		{
-			PlayerShip->turn -= 6.5f;
+			camera->center.y = PlayerShip->position->y;
+			camera->eye.y = PlayerShip->position->y;
 		}
 	}
 
 	//Lets the player move up
 	if (key == 's')
 	{
-		if (PlayerShip->position->y > -13.5f)
+		PlayerShip->MoveDown();
+		if (PlayerShip->position->y > camera->lower_limit && PlayerShip->position->y < camera->upper_limit)
 		{
-			PlayerShip->position->y -= 0.45f;
-			std::cout << "Rotation: " << PlayerShip->turn << std::endl;
-
-			if (PlayerShip->altitude > -52)
-			{
-				PlayerShip->altitude -= 6.5f;
-
-			}
+			camera->center.y = PlayerShip->position->y;
+			camera->eye.y = PlayerShip->position->y;
 		}
-
-		if (PlayerShip->turn < 0)
-		{
-			PlayerShip->turn += 6.5f;
-		}
-		else if (PlayerShip->turn > 0)
-		{
-			PlayerShip->turn -= 6.5f;
-		}
+		
 	}
 	
 	//Lets the player move right
 	if (key == 'a')
 	{
-		if (PlayerShip->position->x > -13.5f )
+		PlayerShip->MoveRight();
+		if (PlayerShip->position->x > camera->lower_limit && PlayerShip->position->x < camera->upper_limit)
 		{
-			PlayerShip->position->x -= 0.45f;
-
-			if (PlayerShip->turn < 52)
-			{
-				PlayerShip->turn += 6.5f;
-
-			}
-		}
-
-		if (PlayerShip->altitude < 0)
-		{
-			PlayerShip->altitude += 6.5f;
-		}
-		else if (PlayerShip->altitude > 0)
-		{
-			PlayerShip->altitude -= 6.5f;
+			camera->center.x = PlayerShip->position->x;
+			camera->eye.x = PlayerShip->position->x;
 		}
 	}
 
 	//Lets the player move left
 	if (key == 'd')
 	{
-		if (PlayerShip->position->x < 13.5f)
+		PlayerShip->MoveLeft();
+		if (PlayerShip->position->x > camera->lower_limit && PlayerShip->position->x < camera->upper_limit)
 		{
-			PlayerShip->position->x += 0.45f;
-
-			if (PlayerShip->turn > - 52)
-			{
-				PlayerShip->turn -= 6.5;
-			}
+			camera->center.x = PlayerShip->position->x;
+			camera->eye.x = PlayerShip->position->x;
 		}
-
-		if (PlayerShip->altitude < 0)
-		{
-			PlayerShip->altitude += 6.5f;
-		}
-		else if (PlayerShip->altitude > 0)
-		{
-			PlayerShip->altitude -= 2.5f;
-		}
-	}
-
-	if (key == 'z')
-	{
-		if (PlayerShip->barrel_roll < 720)
-		{
-			PlayerShip->barrel_roll += 90.0f;
-		}
-	
 	}
 }
 
@@ -217,6 +159,7 @@ void HelloGL::InitObject()
 	//camera->eye.x = 5.0f, camera->eye.y = 5.0f, camera->eye.z = -5.0f;
 	camera->center.x = 0.0f, camera->center.y = 0.0f, camera->center.z = 0.0f;
 	camera->up.x = 0.0f, camera->up.y = 1.0f, camera->up.z = 0.0f;
+	camera->lower_limit = -20.5f, camera->upper_limit = 20.5f;
 }
 
 void HelloGL::InitGL(int argc, char* argv[])

@@ -11,9 +11,13 @@ Player::Player(Object* object, Texture2D* texture, float x, float y, float z) : 
 	position->z = z;
 
 	m_start_rotation = 0.0f;
-	turn = 0.0f;
+	m_turn = 0.0f;
 	m_rotation = 0.0f;
-	altitude = 0.0f;
+	m_altitude = 0.0f;
+	m_speed = 0.9f;
+	m_rate_of_rotation = 6.5f;
+	m_horizontal_limit = 32.5f;
+	m_rotation_limit = 52.0f;
 }
 
 Player::~Player()
@@ -41,9 +45,9 @@ void Player::Draw()
 	glPushMatrix();
 	glRotatef(m_start_rotation, 0.0f, 1.0f, 0.0f);
 	glTranslatef(position->x, position->y, position->z);
-	glRotatef(turn, 0.0f, 0.0f, 1.0f);
-	glRotatef(altitude, 1.0f, 0.0f, 0.0f);
-	glRotatef(barrel_roll, 0.0f, 0.0f, 1.0f);
+	glRotatef(m_turn, 0.0f, 0.0f, 1.0f);
+	glRotatef(m_altitude, 1.0f, 0.0f, 0.0f);
+	glRotatef(m_barrel_roll, 0.0f, 0.0f, 1.0f);
 
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i < m_object->faceCounter; ++i)
@@ -60,4 +64,93 @@ void Player::Draw()
 	glDisableClientState(GL_VERTEX_ARRAY);
 
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
+void Player::MoveLeft()
+{
+	if (position->x < m_horizontal_limit)
+	{
+		position->x += m_speed;
+
+		if (m_turn > -m_rotation_limit)
+		{
+			m_turn -= m_rate_of_rotation;
+		}
+	}
+
+	if (m_altitude < 0)
+	{
+		m_altitude += m_rate_of_rotation;
+	}
+	else if (m_altitude > 0)
+	{
+		m_altitude -= m_rate_of_rotation;
+	}
+}
+
+void Player::MoveRight()
+{
+	if (position->x > -m_horizontal_limit)
+	{
+		position->x -= m_speed;
+
+		if (m_turn < m_rotation_limit)
+		{
+			m_turn += m_rate_of_rotation;
+
+		}
+	}
+
+	if (m_altitude < 0)
+	{
+		m_altitude += m_rate_of_rotation;
+	}
+	else if (m_altitude > 0)
+	{
+		m_altitude -= m_rate_of_rotation;
+	}
+}
+
+void Player::MoveUp()
+{
+	if (position->y < m_horizontal_limit)
+	{
+		position->y += m_speed;
+
+		if (m_altitude < m_rotation_limit)
+		{
+			m_altitude += m_rate_of_rotation;
+		}
+	}
+	if (m_turn < 0)
+	{
+		m_turn += m_rate_of_rotation;
+	}
+	else if (m_turn > 0)
+	{
+		m_turn -= m_rate_of_rotation;
+	}
+}
+
+void Player::MoveDown()
+{
+	if (position->y > -m_horizontal_limit)
+	{
+		position->y -= m_speed;
+	
+		if (m_altitude > -m_rotation_limit)
+		{
+			m_altitude -= m_rate_of_rotation;
+
+		}
+	}
+
+	if (m_turn < 0)
+	{
+		m_turn += m_rate_of_rotation;
+	}
+	else if (m_turn > 0)
+	{
+		m_turn -= m_rate_of_rotation;
+	}
 }

@@ -45,6 +45,8 @@ struct Camera
 	Vector3 eye;
 	Vector3 center;
 	Vector3 up;
+	float upper_limit;
+	float lower_limit;
 
 };
 
