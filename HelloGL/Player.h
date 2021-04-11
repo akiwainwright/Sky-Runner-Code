@@ -34,5 +34,6 @@ public:
 	void MoveRight();
 	void MoveUp();
 	void MoveDown();
+	float GetSpeed() { return m_speed; }
 };
 

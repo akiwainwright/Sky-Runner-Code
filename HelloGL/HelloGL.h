@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Enemies.h"
 #include "Environment.h"
+#include <string>
 
 #define REFRESHRATE 16
 
@@ -27,9 +28,14 @@ private:
 
 	Vector4* m_lightPosition;
 	Lighting* m_lightData;
+
+	Vector3 ScoreTextPos = { -16.5f, 15.75f, 0 };
+	Colors ScoreTextColour = { 0.5f, 0.5f, 0.0f };
 	
 	
 public:
+	int score = 0;
+	int frame_counter = 0;
 
 	HelloGL(int argc, char* argv[]);
 	~HelloGL();
@@ -46,7 +52,7 @@ public:
 
 	void InitLighting();
 
-	void DrawString(const char* text, Vector3* position, );
+	void DrawString(const char* text, Vector3* position, Colors* colour);
 	
 };
 

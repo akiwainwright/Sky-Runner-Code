@@ -33,6 +33,10 @@ void HelloGL::Display()
 	Sky->Draw();
 	PlayerShip->Draw();
 	
+
+
+	//displaying score
+	DrawString("Score: ", &ScoreTextPos, &ScoreTextColour);
 	glFlush(); //flushes the scene drawn to the graphics card
 
 	glutSwapBuffers();
@@ -46,15 +50,25 @@ void HelloGL::Update()
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, 
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
-
-
 	Sky->Update();
+
+	//incrementing score by time not frames
+	frame_counter += 1;
+	if (frame_counter == 15)
+	{
+		score += 1;
+		std::cout << "Score: " << score << std::endl;
+		frame_counter = 0;
+	}
 
 	if (Sky->position->z > 0)
 	{
 		Sky->position->z = -300.0f;
 	}
 
+	ScoreTextPos.x = camera->center.x - 16.5f;
+	ScoreTextPos.y = camera->center.y + 15.75f;
+	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Ambient.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Diffuse.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Specular.x));
@@ -89,7 +103,6 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 			camera->center.y = PlayerShip->position->y;
 			camera->eye.y = PlayerShip->position->y;
 		}
-		
 	}
 	
 	//Lets the player move right
@@ -206,4 +219,13 @@ void HelloGL::InitLighting()
 	m_lightData->Specular.z = 0.2f;
 	m_lightData->Specular.w = 1.0f;
 
+}
+
+void HelloGL::DrawString(const char* text, Vector3* position, Colors* colour)
+{
+	glPushMatrix();
+	glTranslatef(position->x, position->y, position->z);
+	glRasterPos2f(0.0f, 0.0f);
+	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (unsigned char*)text);
+	glPopMatrix();
 }

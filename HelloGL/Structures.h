@@ -40,6 +40,11 @@ struct Vector3
 
 };
 
+struct Colors
+{
+	GLfloat r, g, b;
+};
+
 struct Camera
 {
 	Vector3 eye;
@@ -48,11 +53,6 @@ struct Camera
 	float upper_limit;
 	float lower_limit;
 
-};
-
-struct Colors
-{
-	GLfloat r, g, b;
 };
 
 struct Vertex
