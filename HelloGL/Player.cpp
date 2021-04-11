@@ -10,7 +10,7 @@ Player::Player(Object* object, Texture2D* texture, float x, float y, float z) : 
 	position->y = y;
 	position->z = z;
 
-	m_start_rotation = 180.0f;
+	m_start_rotation = 0.0f;
 	turn = 0.0f;
 	m_rotation = 0.0f;
 	altitude = 0.0f;
@@ -43,6 +43,7 @@ void Player::Draw()
 	glTranslatef(position->x, position->y, position->z);
 	glRotatef(turn, 0.0f, 0.0f, 1.0f);
 	glRotatef(altitude, 1.0f, 0.0f, 0.0f);
+	glRotatef(barrel_roll, 0.0f, 0.0f, 1.0f);
 
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i < m_object->faceCounter; ++i)

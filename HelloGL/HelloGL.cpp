@@ -1,6 +1,7 @@
 #include "HelloGL.h"
 
 #include <ctime>
+#include <iostream>
 #include "MeshLoader.h"
 #include "ObjLoader.h"
 
@@ -80,23 +81,22 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	//Lets the player move up
 	if (key == 'w')
 	{
-		if (PlayerShip->position->y < 14.5f)
+		if (PlayerShip->position->y < 13.5f)
 		{
 			PlayerShip->position->y += 0.45f;
 
-			if (PlayerShip->altitude > -30)
+			if (PlayerShip->altitude < 52)
 			{
-				PlayerShip->altitude -= 2.5f;
-
-				if (PlayerShip->turn < 0)
-				{
-					PlayerShip->turn += 2.5f;
-				}
-				else if (PlayerShip->turn > 0)
-				{
-					PlayerShip->turn -= 2.5f;
-				}
+				PlayerShip->altitude += 6.5f;
 			}
+		}
+		if (PlayerShip->turn < 0)
+		{
+			PlayerShip->turn += 6.5f;
+		}
+		else if (PlayerShip->turn > 0)
+		{
+			PlayerShip->turn -= 6.5f;
 		}
 	}
 
@@ -106,75 +106,86 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		if (PlayerShip->position->y > -13.5f)
 		{
 			PlayerShip->position->y -= 0.45f;
+			std::cout << "Rotation: " << PlayerShip->turn << std::endl;
 
-			if (PlayerShip->altitude < 30)
+			if (PlayerShip->altitude > -52)
 			{
-				PlayerShip->altitude += 2.5f;
+				PlayerShip->altitude -= 6.5f;
 
-				if (PlayerShip->turn < 0)
-				{
-					PlayerShip->turn += 2.5f;
-				}
-				else if (PlayerShip->turn > 0)
-				{
-					PlayerShip->turn -= 2.5f;
-				}
 			}
+		}
+
+		if (PlayerShip->turn < 0)
+		{
+			PlayerShip->turn += 6.5f;
+		}
+		else if (PlayerShip->turn > 0)
+		{
+			PlayerShip->turn -= 6.5f;
 		}
 	}
 	
 	//Lets the player move right
 	if (key == 'a')
 	{
-		if (PlayerShip->position->x < 14.5f )
+		if (PlayerShip->position->x > -13.5f )
 		{
-			PlayerShip->position->x += 0.45f;
+			PlayerShip->position->x -= 0.45f;
 
-			if (PlayerShip->turn > -30)
+			if (PlayerShip->turn < 52)
 			{
-				PlayerShip->turn -= 2.5f;
+				PlayerShip->turn += 6.5f;
 
-				if (PlayerShip->altitude < 0)
-				{
-					PlayerShip->altitude += 2.5f;
-				}
-				else if (PlayerShip->altitude > 0)
-				{
-					PlayerShip->altitude -= 2.5f;
-				}
 			}
 		}
 
+		if (PlayerShip->altitude < 0)
+		{
+			PlayerShip->altitude += 6.5f;
+		}
+		else if (PlayerShip->altitude > 0)
+		{
+			PlayerShip->altitude -= 6.5f;
+		}
 	}
 
 	//Lets the player move left
 	if (key == 'd')
 	{
-		if (PlayerShip->position->x > -14.5f)
+		if (PlayerShip->position->x < 13.5f)
 		{
-			PlayerShip->position->x -= 0.45f;
+			PlayerShip->position->x += 0.45f;
 
-			if (PlayerShip->turn < 30)
+			if (PlayerShip->turn > - 52)
 			{
-				PlayerShip->turn += 2.5f;
-
-				if (PlayerShip->altitude < 0)
-				{
-					PlayerShip->altitude += 2.5f;
-				}
-				else if (PlayerShip->altitude > 0)
-				{
-					PlayerShip->altitude -= 2.5f;
-				}
+				PlayerShip->turn -= 6.5;
 			}
 		}
+
+		if (PlayerShip->altitude < 0)
+		{
+			PlayerShip->altitude += 6.5f;
+		}
+		else if (PlayerShip->altitude > 0)
+		{
+			PlayerShip->altitude -= 2.5f;
+		}
+	}
+
+	if (key == 'z')
+	{
+		if (PlayerShip->barrel_roll < 720)
+		{
+			PlayerShip->barrel_roll += 90.0f;
+		}
+	
 	}
 }
 
 void HelloGL::InitObject()
 {
 	Object* SkySphereModel = ObjLoader::Load((char*)"Sky.obj");
-	Object* PlayerShipModel = ObjLoader::Load((char*)"PlayerTest3.obj");
+	Object* PlayerShipModel = ObjLoader::Load((char*)"NewPlayerShip.obj");
 	Object* Enemy1Model = ObjLoader::Load((char*)"Enemy1V2.obj");
 	Object* BulletModel = ObjLoader::Load((char*)"NewBullet.obj");
 	
@@ -184,7 +195,7 @@ void HelloGL::InitObject()
 	skyTexture->Load((char*)"sky2.raw", 2048, 2048);
 
 	Texture2D* playerShipTexture = new Texture2D();
-	playerShipTexture->Load((char*)"playerShipV6.raw", 2048, 2048);
+	playerShipTexture->Load((char*)"NewShip.raw", 2048, 2048);
 
 	Texture2D* enemy1Texture = new Texture2D();
 	enemy1Texture->Load((char*)"Enemy1.raw", 2048, 2048);

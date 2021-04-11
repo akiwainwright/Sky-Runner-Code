@@ -16,6 +16,7 @@ class Player : public Objects
 public:
 	float turn;
 	float altitude;
+	float barrel_roll;
 
 	Player(Object* object, Texture2D* texture, float x, float y, float z);
 	~Player();
