@@ -18,6 +18,8 @@ Player::Player(Object* object, Texture2D* texture, float x, float y, float z) : 
 	m_rate_of_rotation = 6.5f;
 	m_horizontal_limit = 32.5f;
 	m_rotation_limit = 52.0f;
+
+	m_is_alive = true;
 }
 
 Player::~Player()

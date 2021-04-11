@@ -21,6 +21,7 @@ private:
 	float m_rate_of_rotation;
 	float m_horizontal_limit;
 	float m_rotation_limit;
+	bool m_is_alive;
 
 
 public:
@@ -35,5 +36,7 @@ public:
 	void MoveUp();
 	void MoveDown();
 	float GetSpeed() { return m_speed; }
+	bool GetAlive() { return m_is_alive; }
+	void TakeDamage() { m_is_alive = false; }
 };
 

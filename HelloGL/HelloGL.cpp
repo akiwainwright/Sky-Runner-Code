@@ -53,13 +53,15 @@ void HelloGL::Update()
 
 	score_text = "Score: " + std::to_string(score);
 
-	//incrementing score by time not frames
-	frame_counter += 1;
-	if (frame_counter == 5)
+	//incrementing score by time not frames while player is alive
+	if (PlayerShip->GetAlive())
 	{
-		score += 1;
-		std::cout << "Score: " << score << std::endl;
-		frame_counter = 0;
+		frame_counter += 1;
+		if (frame_counter == 5)
+		{
+			score += 1;
+			frame_counter = 0;
+		}
 	}
 
 	if (Sky->position->z > 0)
