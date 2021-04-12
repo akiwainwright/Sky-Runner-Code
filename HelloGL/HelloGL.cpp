@@ -70,7 +70,7 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 	
-	if (score == 500)
+	if (score == 3500)
 	{
 		PlayerShip->TakeDamage();
 	}
@@ -219,11 +219,14 @@ void HelloGL::InitObject()
 		else if (m_object_to_use == 1 || m_object_to_use == 2)
 		{
 			Obstacles* obstacle = new Obstacles(DumbellModel, dumbellTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
+			obstacle->speed *= 1.5;
+			obstacle->spin *= 10.0f;
 			m_Obstacles.push_back(obstacle);
 		}
 		else
 		{
 			Obstacles* obstacle = new Obstacles(RockModel, rockTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
+			obstacle->spin *= 5.0f;
 			m_Obstacles.push_back(obstacle);
 		}
 	}

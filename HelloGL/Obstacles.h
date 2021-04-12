@@ -7,11 +7,11 @@ class Obstacles : public Objects
 private:
 	float m_start_rotation;
 	float m_rotation;
-	float m_spin;
 
 public:
 	Vector3* position;
 	float speed;
+	float spin;
 
 	Obstacles(Object* object, Texture2D* texture, float x, float y, float z);
 	~Obstacles();
