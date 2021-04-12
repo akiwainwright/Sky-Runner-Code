@@ -34,16 +34,28 @@ void HelloGL::Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
 
-	Sky->Draw();
-	PlayerShip->Draw();
-
-	for (int i = 0; i < m_no_of_obstacles; ++i)
+	if (PlayerShip->GetAlive())
 	{
-		m_Obstacles[i]->Draw();
-	}
+		Sky->Draw();
+		PlayerShip->Draw();
 
-	//displaying score
-	DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
+		for (int i = 0; i < m_no_of_obstacles; ++i)
+		{
+			m_Obstacles[i]->Draw();
+		}
+
+		//displaying score
+		DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
+	}
+	else
+	{
+		Sky->Draw();
+		DrawString((char*)"GAME OVER", &GameOverText, &GameOverColour);
+		ScoreTextPos.x = -1.2f, ScoreTextPos.y = 0.0f, ScoreTextPos.z = 0.0f;
+		ScoreTextColour.r = 0.0f, ScoreTextColour.g = 0.0f; ScoreTextColour.b = 0.0f;
+		score_text = "Score: " + std::to_string(score);
+		DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
+	}
 	glFlush(); //flushes the scene drawn to the graphics card
 
 	glutSwapBuffers();
@@ -57,34 +69,45 @@ void HelloGL::Update()
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, 
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
-	Sky->Update();
 	
-	for (int i = 0; i < m_no_of_obstacles; ++i)
+	if (score == 500)
 	{
-			m_Obstacles[i]->Update();
+		PlayerShip->TakeDamage();
 	}
 
-	score_text = "Score: " + std::to_string(score);
-
-	//incrementing score by time not frames while player is alive
+	//continuing game while player is alive
 	if (PlayerShip->GetAlive())
 	{
+		Sky->Update();
+
+		for (int i = 0; i < m_no_of_obstacles; ++i)
+		{
+			m_Obstacles[i]->Update();
+		}
+
+		score_text = "Score: " + std::to_string(score);
+
 		frame_counter += 1;
 		if (frame_counter == 2)
 		{
 			score += 5;
 			frame_counter = 0;
 		}
-	}
 
-	if (Sky->position->z > 0)
+
+		if (Sky->position->z > 0)
+		{
+			Sky->position->z = -300.0f;
+		}
+
+		ScoreTextPos.x = camera->center.x - 16.5f;
+		ScoreTextPos.y = camera->center.y + 15.75f;
+	}
+	else
 	{
-		Sky->position->z = -300.0f;
+		PlaySound(NULL, 0, 0);
 	}
 
-	ScoreTextPos.x = camera->center.x - 16.5f;
-	ScoreTextPos.y = camera->center.y + 15.75f;
-	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Ambient.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Diffuse.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Specular.x));
@@ -95,55 +118,58 @@ void HelloGL::Update()
 
 void HelloGL::Keyboard(unsigned char key, int x, int y)
 {
-	//Lets the player move up
-	if (key == 'w')
+	if (PlayerShip->GetAlive())
 	{
-		PlayerShip->MoveUp();
-
-		//makes camera track player within the cameras limits
-		if (PlayerShip->position->y > camera->lower_limit && PlayerShip->position->y < camera->upper_limit)
+		//Lets the player move up
+		if (key == 'w')
 		{
-			camera->center.y = PlayerShip->position->y;
-			camera->eye.y = PlayerShip->position->y;
+			PlayerShip->MoveUp();
+
+			//makes camera track player within the cameras limits
+			if (PlayerShip->position->y > camera->lower_limit && PlayerShip->position->y < camera->upper_limit)
+			{
+				camera->center.y = PlayerShip->position->y;
+				camera->eye.y = PlayerShip->position->y;
+			}
 		}
-	}
 
-	//Lets the player move up
-	if (key == 's')
-	{
-		PlayerShip->MoveDown();
-
-		//makes camera track player within the cameras limits
-		if (PlayerShip->position->y > camera->lower_limit && PlayerShip->position->y < camera->upper_limit)
+		//Lets the player move up
+		if (key == 's')
 		{
-			camera->center.y = PlayerShip->position->y;
-			camera->eye.y = PlayerShip->position->y;
+			PlayerShip->MoveDown();
+
+			//makes camera track player within the cameras limits
+			if (PlayerShip->position->y > camera->lower_limit && PlayerShip->position->y < camera->upper_limit)
+			{
+				camera->center.y = PlayerShip->position->y;
+				camera->eye.y = PlayerShip->position->y;
+			}
 		}
-	}
-	
-	//Lets the player move right
-	if (key == 'a')
-	{
-		PlayerShip->MoveRight();
 
-		//makes camera track player within the cameras limits
-		if (PlayerShip->position->x > camera->lower_limit && PlayerShip->position->x < camera->upper_limit)
+		//Lets the player move right
+		if (key == 'a')
 		{
-			camera->center.x = PlayerShip->position->x;
-			camera->eye.x = PlayerShip->position->x;
+			PlayerShip->MoveRight();
+
+			//makes camera track player within the cameras limits
+			if (PlayerShip->position->x > camera->lower_limit && PlayerShip->position->x < camera->upper_limit)
+			{
+				camera->center.x = PlayerShip->position->x;
+				camera->eye.x = PlayerShip->position->x;
+			}
 		}
-	}
 
-	//Lets the player move left
-	if (key == 'd')
-	{
-		PlayerShip->MoveLeft();
-
-		//makes camera track player within the cameras limits
-		if (PlayerShip->position->x > camera->lower_limit && PlayerShip->position->x < camera->upper_limit)
+		//Lets the player move left
+		if (key == 'd')
 		{
-			camera->center.x = PlayerShip->position->x;
-			camera->eye.x = PlayerShip->position->x;
+			PlayerShip->MoveLeft();
+
+			//makes camera track player within the cameras limits
+			if (PlayerShip->position->x > camera->lower_limit && PlayerShip->position->x < camera->upper_limit)
+			{
+				camera->center.x = PlayerShip->position->x;
+				camera->eye.x = PlayerShip->position->x;
+			}
 		}
 	}
 }

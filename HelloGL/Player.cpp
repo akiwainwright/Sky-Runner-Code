@@ -73,89 +73,101 @@ void Player::Draw()
 
 void Player::MoveLeft()
 {
-	if (position->x < m_horizontal_limit)
+	if (m_is_alive)
 	{
-		position->x += m_speed;
-
-		if (m_turn > -m_rotation_limit)
+		if (position->x < m_horizontal_limit)
 		{
-			m_turn -= m_rate_of_rotation;
-		}
-	}
+			position->x += m_speed;
 
-	if (m_altitude < 0)
-	{
-		m_altitude += m_rate_of_rotation;
-	}
-	else if (m_altitude > 0)
-	{
-		m_altitude -= m_rate_of_rotation;
+			if (m_turn > -m_rotation_limit)
+			{
+				m_turn -= m_rate_of_rotation;
+			}
+		}
+
+		if (m_altitude < 0)
+		{
+			m_altitude += m_rate_of_rotation;
+		}
+		else if (m_altitude > 0)
+		{
+			m_altitude -= m_rate_of_rotation;
+		}
 	}
 }
 
 void Player::MoveRight()
 {
-	if (position->x > -m_horizontal_limit)
+	if (m_is_alive)
 	{
-		position->x -= m_speed;
-
-		if (m_turn < m_rotation_limit)
+		if (position->x > -m_horizontal_limit)
 		{
-			m_turn += m_rate_of_rotation;
+			position->x -= m_speed;
 
+			if (m_turn < m_rotation_limit)
+			{
+				m_turn += m_rate_of_rotation;
+
+			}
 		}
-	}
 
-	if (m_altitude < 0)
-	{
-		m_altitude += m_rate_of_rotation;
-	}
-	else if (m_altitude > 0)
-	{
-		m_altitude -= m_rate_of_rotation;
+		if (m_altitude < 0)
+		{
+			m_altitude += m_rate_of_rotation;
+		}
+		else if (m_altitude > 0)
+		{
+			m_altitude -= m_rate_of_rotation;
+		}
 	}
 }
 
 void Player::MoveUp()
 {
-	if (position->y < m_horizontal_limit)
+	if (m_is_alive)
 	{
-		position->y += m_speed;
-
-		if (m_altitude < m_rotation_limit)
+		if (position->y < m_horizontal_limit)
 		{
-			m_altitude += m_rate_of_rotation;
+			position->y += m_speed;
+
+			if (m_altitude < m_rotation_limit)
+			{
+				m_altitude += m_rate_of_rotation;
+			}
 		}
-	}
-	if (m_turn < 0)
-	{
-		m_turn += m_rate_of_rotation;
-	}
-	else if (m_turn > 0)
-	{
-		m_turn -= m_rate_of_rotation;
+		if (m_turn < 0)
+		{
+			m_turn += m_rate_of_rotation;
+		}
+		else if (m_turn > 0)
+		{
+			m_turn -= m_rate_of_rotation;
+		}
 	}
 }
 
 void Player::MoveDown()
 {
-	if (position->y > -m_horizontal_limit)
+	if (m_is_alive)
 	{
-		position->y -= m_speed;
-	
-		if (m_altitude > -m_rotation_limit)
+		if (position->y > -m_horizontal_limit)
 		{
-			m_altitude -= m_rate_of_rotation;
+			position->y -= m_speed;
 
+			if (m_altitude > -m_rotation_limit)
+			{
+				m_altitude -= m_rate_of_rotation;
+
+			}
 		}
-	}
 
-	if (m_turn < 0)
-	{
-		m_turn += m_rate_of_rotation;
-	}
-	else if (m_turn > 0)
-	{
-		m_turn -= m_rate_of_rotation;
+		if (m_turn < 0)
+		{
+			m_turn += m_rate_of_rotation;
+		}
+		else if (m_turn > 0)
+		{
+			m_turn -= m_rate_of_rotation;
+		}
 	}
 }

@@ -34,6 +34,8 @@ private:
 
 	Vector3 ScoreTextPos = { -16.5f, 15.75f, 0 };
 	Colors ScoreTextColour = { 0.5f, 0.5f, 0.0f };
+	Vector3 GameOverText = { -1.4f, 2.0f, 0.0f };
+	Colors GameOverColour = { 0.0f, 0.0f, 0.0f };
 
 	int m_no_of_obstacles;
 	int m_object_to_use;
