@@ -43,7 +43,6 @@ void Objects::Draw()
 
 	glPushMatrix();
 	glTranslatef(position->x, position->y, position->z);
-		/*glDrawElements(GL_TRIANGLES, m_object->vertexIndices.size(), GL_UNSIGNED_SHORT, &m_object->vertexIndices);*/
 
 	glBegin(GL_TRIANGLES);
 		for(int i = 0; i < m_object->faceCounter; ++i)

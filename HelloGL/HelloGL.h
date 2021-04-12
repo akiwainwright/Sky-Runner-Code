@@ -9,7 +9,9 @@
 #include "Player.h"
 #include "Enemies.h"
 #include "Environment.h"
+#include "Obstacles.h"
 #include <string>
+#include <vector>
 
 #define REFRESHRATE 16
 
@@ -25,12 +27,16 @@ private:
 	Player* PlayerShip;
 	Enemies* Enemy1;
 	Objects* Bullet;
+	std::vector<Obstacles*> m_Obstacles;
+	
 
 	Vector4* m_lightPosition;
 	Lighting* m_lightData;
 
 	Vector3 ScoreTextPos = { -16.5f, 15.75f, 0 };
 	Colors ScoreTextColour = { 0.5f, 0.5f, 0.0f };
+
+	int m_no_of_obstacles;
 	
 	
 public:

@@ -29,6 +29,9 @@ Player::~Player()
 
 	delete m_texture;
 	m_texture = nullptr;
+
+	delete position;
+	position = nullptr;
 }
 
 void Player::Draw()

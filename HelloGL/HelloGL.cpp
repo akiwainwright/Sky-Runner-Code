@@ -36,6 +36,10 @@ void HelloGL::Display()
 	Sky->Draw();
 	PlayerShip->Draw();
 
+	for (int i = 0; i < m_no_of_obstacles; ++i)
+	{
+		m_Obstacles[i]->Draw();
+	}
 
 	//displaying score
 	DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
@@ -53,6 +57,11 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 	Sky->Update();
+	
+	for (int i = 0; i < m_no_of_obstacles; ++i)
+	{
+			m_Obstacles[i]->Update();
+	}
 
 	score_text = "Score: " + std::to_string(score);
 
@@ -60,7 +69,7 @@ void HelloGL::Update()
 	if (PlayerShip->GetAlive())
 	{
 		frame_counter += 1;
-		if (frame_counter == 5)
+		if (frame_counter == 2)
 		{
 			score += 1;
 			frame_counter = 0;
@@ -143,6 +152,7 @@ void HelloGL::InitObject()
 	//loading models to use
 	Object* SkySphereModel = ObjLoader::Load((char*)"Sky.obj");
 	Object* PlayerShipModel = ObjLoader::Load((char*)"NewPlayerShip.obj");
+	Object* RockModel = ObjLoader::Load((char*)"Rock.obj");
 	
 	//loadint textures for models
 	Texture2D* skyTexture = new Texture2D();
@@ -150,11 +160,22 @@ void HelloGL::InitObject()
 
 	Texture2D* playerShipTexture = new Texture2D();
 	playerShipTexture->Load((char*)"NewShip.raw", 2048, 2048);
+
+	Texture2D* rockTexture = new Texture2D();
+	rockTexture->Load((char*)"Rock.raw", 2048, 2048);
 	
 
 	//setting up models
 	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, -340);
 	PlayerShip = new Player(PlayerShipModel, playerShipTexture, 0, -1.0f, 0);
+	
+	m_no_of_obstacles = 250;
+
+	for (int i = 0; i < m_no_of_obstacles; ++i)
+	{
+		Obstacles* obstacle = new Obstacles(RockModel, rockTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
+		m_Obstacles.push_back(obstacle);
+	}
 
 	
 	//setting up the camera
