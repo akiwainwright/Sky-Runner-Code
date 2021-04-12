@@ -11,6 +11,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	InitGL(argc, argv);
 
 	InitLighting();
+	PlaySound(TEXT("Cancan.wav"), NULL, SND_LOOP | SND_ASYNC | SND_FILENAME);
 	InitObject();
 
 

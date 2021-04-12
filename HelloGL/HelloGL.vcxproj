@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Enemies.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="GLUTcallbacks.h" />
     <ClInclude Include="HelloGL.h" />
@@ -151,7 +150,6 @@
     <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Enemies.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="HelloGL.cpp" />
     <ClCompile Include="Main.cpp" />
