@@ -7,7 +7,6 @@
 #include "Structures.h"
 #include "Objects.h"
 #include "Player.h"
-#include "Enemies.h"
 #include "Environment.h"
 #include "Obstacles.h"
 #include <string>
