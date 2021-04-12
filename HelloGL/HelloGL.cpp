@@ -177,7 +177,7 @@ void HelloGL::InitObject()
 	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, -340);
 	PlayerShip = new Player(PlayerShipModel, playerShipTexture, 0, -1.0f, 0);
 	
-	m_no_of_obstacles = 250;
+	m_no_of_obstacles = 170;
 
 	for (int i = 0; i < m_no_of_obstacles; ++i)
 	{
