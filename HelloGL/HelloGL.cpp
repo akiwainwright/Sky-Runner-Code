@@ -71,7 +71,7 @@ void HelloGL::Update()
 		frame_counter += 1;
 		if (frame_counter == 2)
 		{
-			score += 1;
+			score += 5;
 			frame_counter = 0;
 		}
 	}
