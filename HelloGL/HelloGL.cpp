@@ -24,6 +24,9 @@ HelloGL::~HelloGL()
 
 	delete Sky;
 	Sky = nullptr;
+
+	delete PlayerShip;
+	PlayerShip = nullptr;
 }
 
 void HelloGL::Display()
