@@ -153,6 +153,7 @@ void HelloGL::InitObject()
 	Object* SkySphereModel = ObjLoader::Load((char*)"Sky.obj");
 	Object* PlayerShipModel = ObjLoader::Load((char*)"NewPlayerShip.obj");
 	Object* RockModel = ObjLoader::Load((char*)"Rock.obj");
+	Object* MarbleModel = ObjLoader::Load((char*)"Marble.obj");
 	
 	//loadint textures for models
 	Texture2D* skyTexture = new Texture2D();
@@ -164,6 +165,8 @@ void HelloGL::InitObject()
 	Texture2D* rockTexture = new Texture2D();
 	rockTexture->Load((char*)"Rock.raw", 2048, 2048);
 	
+	Texture2D* marbleTexture = new Texture2D();
+	marbleTexture->Load((char*)"Marble.raw", 2048, 2048);
 
 	//setting up models
 	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, -340);
@@ -173,8 +176,19 @@ void HelloGL::InitObject()
 
 	for (int i = 0; i < m_no_of_obstacles; ++i)
 	{
-		Obstacles* obstacle = new Obstacles(RockModel, rockTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
-		m_Obstacles.push_back(obstacle);
+		m_object_to_use = rand() % 11;
+		if(m_object_to_use == 3)
+		{
+			Obstacles* obstacle = new Obstacles(MarbleModel, marbleTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
+			obstacle->speed = obstacle->speed / 2;
+			m_Obstacles.push_back(obstacle);
+
+		}
+		else
+		{
+			Obstacles* obstacle = new Obstacles(RockModel, rockTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
+			m_Obstacles.push_back(obstacle);
+		}
 	}
 
 	

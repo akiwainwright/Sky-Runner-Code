@@ -25,7 +25,6 @@ private:
 	Camera* camera;
 	Environment* Sky;
 	Player* PlayerShip;
-	Enemies* Enemy1;
 	Objects* Bullet;
 	std::vector<Obstacles*> m_Obstacles;
 	
@@ -37,6 +36,7 @@ private:
 	Colors ScoreTextColour = { 0.5f, 0.5f, 0.0f };
 
 	int m_no_of_obstacles;
+	int m_object_to_use;
 	
 	
 public:
