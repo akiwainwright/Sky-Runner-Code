@@ -12,6 +12,7 @@ public:
 	Vector3* position;
 	float speed;
 	float spin;
+	float radius;
 
 	Obstacles(Object* object, Texture2D* texture, float x, float y, float z);
 	~Obstacles();

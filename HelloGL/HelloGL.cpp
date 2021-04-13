@@ -210,19 +210,19 @@ void HelloGL::InitObject()
 	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, -340);
 	PlayerShip = new Player(PlayerShipModel, playerShipTexture, 0, -1.0f, 0);
 	
-	m_no_of_obstacles = 170;
+	m_no_of_obstacles = 200;
 
 	for (int i = 0; i < m_no_of_obstacles; ++i)
 	{
 		m_object_to_use = rand() % 11;
-		if(m_object_to_use == 3)
+		if(m_object_to_use == 5 || m_object_to_use == 4)
 		{
 			Obstacles* obstacle = new Obstacles(MarbleModel, marbleTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
 			obstacle->speed = obstacle->speed / 2;
 			m_Obstacles.push_back(obstacle);
 
 		}
-		else if (m_object_to_use == 1 || m_object_to_use == 2)
+		else if (m_object_to_use == 1 || m_object_to_use == 2 || m_object_to_use == 3) 
 		{
 			Obstacles* obstacle = new Obstacles(DumbellModel, dumbellTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
 			obstacle->speed *= 1.5;

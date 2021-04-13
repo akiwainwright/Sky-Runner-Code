@@ -21,6 +21,7 @@ private:
 
 
 public:
+	float radius;
 
 	Player(Object* object, Texture2D* texture, float x, float y, float z);
 	~Player();
