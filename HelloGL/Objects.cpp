@@ -22,6 +22,14 @@ Objects::Objects(Object* object, Texture2D* texture, float x, float y, float z)
 
 Objects::~Objects()
 {
+	delete m_object;
+	m_object = nullptr;
+
+	delete m_texture;
+	m_texture = nullptr;
+
+	delete position;
+	position = nullptr;
 }
 
 void Objects::Update()

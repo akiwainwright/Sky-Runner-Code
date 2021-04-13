@@ -2,12 +2,6 @@
 
 Obstacles::Obstacles(Object* object, Texture2D* texture, float x, float y, float z) : Objects(object, texture, x, y, z)
 {
-	position = new Vector3;
-
-	position->x = x;
-	position->y = y;
-	position->z = z;
-
 	m_start_rotation = (rand() % 7) * 50;
 	m_rotation = 0.0f;
 	m_spin = 2.0f;

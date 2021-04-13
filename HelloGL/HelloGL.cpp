@@ -29,6 +29,15 @@ HelloGL::~HelloGL()
 
 	delete PlayerShip;
 	PlayerShip = nullptr;
+
+	m_Obstacles.clear();
+
+	delete m_lightPosition;
+	m_lightPosition = nullptr;
+
+	delete m_lightData;
+	m_lightData = nullptr;
+
 }
 
 void HelloGL::Display()
@@ -77,9 +86,7 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 
-	std::cout << "Player Pos: " << PlayerShip->position->x << " " << PlayerShip->position->y << " " << PlayerShip->position->z << std::endl;
-	std::cout << "Obstacle Pos: " << m_Obstacles[0]->position->x << " " << m_Obstacles[0]->position->y << " " << m_Obstacles[0]->position->z << std::endl;
-
+	//collision check
 	for (int i = 0; i < m_Obstacles.size(); ++i)
 	{
 		float distance = DistanceSquared(m_Obstacles[i]->position, PlayerShip->position);

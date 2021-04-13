@@ -12,7 +12,6 @@ private:
 	float m_spin;
 
 public:
-	Vector3* position;
 
 	Obstacles(Object* object, Texture2D* texture, float x, float y, float z);
 	~Obstacles();

@@ -25,7 +25,6 @@ private:
 	Camera* camera;
 	Environment* Sky;
 	Player* PlayerShip;
-	Objects* Bone;
 	std::vector<Obstacles*> m_Obstacles;
 	
 
