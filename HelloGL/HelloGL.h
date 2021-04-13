@@ -68,7 +68,7 @@ public:
 	
 	float DistanceSquared(Vector3* position1, Vector3* position2);
 
-	void Menu();
+	void Menu(bool playing);
 
 	void Reset();
 };

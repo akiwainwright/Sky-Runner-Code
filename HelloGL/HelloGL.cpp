@@ -15,7 +15,6 @@ HelloGL::HelloGL(int argc, char* argv[])
 	PlaySound(TEXT("Cancan.wav"), NULL, SND_LOOP | SND_ASYNC | SND_FILENAME);
 	InitObject();
 
-
 	glutMainLoop();
 }
 
@@ -59,7 +58,6 @@ void HelloGL::Display()
 	}
 	else
 	{
-		
 		Sky->Draw();
 		camera->center.x = 0.0f;
 		camera->center.y = 0.0f;
@@ -70,8 +68,8 @@ void HelloGL::Display()
 		score_text = "Score: " + std::to_string(score);
 		DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
 		DrawString((char*)"GAME OVER", &GameOverText, &GameOverColour);
-		
 	}
+
 	glFlush(); //flushes the scene drawn to the graphics card
 
 	glutSwapBuffers();
@@ -96,7 +94,6 @@ void HelloGL::Update()
 		if (distance <= radius_distance)
 		{
 			PlayerShip->TakeDamage();
-			//Menu();
 			break;
 		}
 	}
@@ -286,6 +283,7 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glutDisplayFunc(GLUTcallbacks::Display);
 	glutTimerFunc(REFRESHRATE, GLUTcallbacks::Timer, REFRESHRATE);
 	glutKeyboardFunc(GLUTcallbacks::Keyboard);
+	Menu();
 	glDepthFunc(GL_ALWAYS);
 
 	//setting up a camera
@@ -365,23 +363,16 @@ void HelloGL::MenuChoices(int selection)
 	case 4:
 		exit(0);
 		break;
+	default:
+		break;
 	}
 
 }
 
-float HelloGL::DistanceSquared(Vector3* position1, Vector3* position2)
-{
-	float distance = ((position1->x - position2->x) * (position1->x - position2->x) +
-					  (position1->y - position2->y) * (position1->y - position2->y) +
-					  (position1->z - position2->z) * (position1->z - position2->z));
-
-	return distance;
-}
-
-void HelloGL::Menu()
+void HelloGL::Menu(bool playing)
 {
 
-	int difficulty_menu;
+	int difficulty_menu = 0;
 	
 	difficulty_menu = glutCreateMenu(GLUTcallbacks::MenuChoices);
 
@@ -395,6 +386,15 @@ void HelloGL::Menu()
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
+float HelloGL::DistanceSquared(Vector3* position1, Vector3* position2)
+{
+	float distance = ((position1->x - position2->x) * (position1->x - position2->x) +
+					  (position1->y - position2->y) * (position1->y - position2->y) +
+					  (position1->z - position2->z) * (position1->z - position2->z));
+
+	return distance;
+}
+
 void HelloGL::Reset()
 {
 
@@ -405,6 +405,10 @@ void HelloGL::Reset()
 	PlayerShip->position->z = 0.0f;
 	PlayerShip->ResetHorizontalRotation();
 	PlayerShip->ResetVerticalRotation();
+
+	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 40.0f;
+	camera->center.x = 0.0f, camera->center.y = 0.0f, camera->center.z = 0.0f;
+	PlaySound(TEXT("Cancan.wav"), NULL, SND_LOOP | SND_ASYNC | SND_FILENAME);
 
 }
 
