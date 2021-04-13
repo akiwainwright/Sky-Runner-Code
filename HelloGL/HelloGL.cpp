@@ -96,7 +96,7 @@ void HelloGL::Update()
 		if (distance <= radius_distance)
 		{
 			PlayerShip->TakeDamage();
-			Menu();
+			//Menu();
 			break;
 		}
 	}
