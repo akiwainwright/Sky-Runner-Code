@@ -34,5 +34,8 @@ public:
 	float GetSpeed() { return m_speed; }
 	bool GetAlive() { return m_is_alive; }
 	void TakeDamage() { m_is_alive = false; }
+	void PlayAgain() { m_is_alive = true;  }
+	void ResetHorizontalRotation() { m_turn = 0.0; }
+	void ResetVerticalRotation() { m_altitude = 0.0f; }
 };
 

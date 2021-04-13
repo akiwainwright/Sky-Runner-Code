@@ -49,12 +49,18 @@ void HelloGL::Display()
 	}
 	else
 	{
+		
 		Sky->Draw();
-		DrawString((char*)"GAME OVER", &GameOverText, &GameOverColour);
+		camera->center.x = 0.0f;
+		camera->center.y = 0.0f;
+		camera->eye.x = 0.0f;
+		camera->eye.y = 0.0f;
 		ScoreTextPos.x = -1.2f, ScoreTextPos.y = 0.0f, ScoreTextPos.z = 0.0f;
 		ScoreTextColour.r = 0.0f, ScoreTextColour.g = 0.0f; ScoreTextColour.b = 0.0f;
 		score_text = "Score: " + std::to_string(score);
 		DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
+		DrawString((char*)"GAME OVER", &GameOverText, &GameOverColour);
+		
 	}
 	glFlush(); //flushes the scene drawn to the graphics card
 
@@ -70,7 +76,7 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 	
-	if (score == 3500)
+	if (score == 700)
 	{
 		PlayerShip->TakeDamage();
 	}
@@ -310,3 +316,58 @@ void HelloGL::DrawString(const char* text, Vector3* position, Colors* colour)
 	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (unsigned char*)text);
 	glPopMatrix();
 }
+
+void HelloGL::MenuChoices(int selection)
+{
+	switch (selection)
+	{
+	case 1:
+		Reset();
+		for (int i = 0; i < m_Obstacles.size(); ++i)
+		{
+			m_Obstacles[i]->speed *= 0.5f;
+		}
+		break;
+	case 2:
+		Reset();
+		break;
+	case 3:
+		Reset();
+		for (int i = 0; i < m_Obstacles.size(); ++i)
+		{
+			m_Obstacles[i]->speed *= 1.5f;
+		}
+		break;
+	case 4:
+		exit(0);
+		break;
+	}
+}
+//
+//void HelloGL::Menu()
+//{
+//
+//	int difficulty_menu = glutCreateMenu(MenuChoices);
+//
+//	glutAddMenuEntry("Easy", 1);
+//	glutAddMenuEntry("Normal", 2);
+//	glutAddMenuEntry("Hard", 3);
+//	glutCreateMenu(MenuChoices);
+//	glutAddSubMenu("Play Again", difficulty_menu);
+//	glutAddMenuEntry("Exit", 4);
+//
+//	glutAttachMenu(GLUT_RIGHT_BUTTON);
+//}
+
+void HelloGL::Reset()
+{
+
+	PlayerShip->PlayAgain();
+	score = 0;
+	PlayerShip->position->x = 0.0f;
+	PlayerShip->position->y = -1.0f;
+	PlayerShip->position->z = 0.0f;
+	PlayerShip->ResetHorizontalRotation();
+	PlayerShip->ResetVerticalRotation();
+}
+

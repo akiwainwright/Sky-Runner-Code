@@ -39,6 +39,7 @@ private:
 
 	int m_no_of_obstacles;
 	int m_object_to_use;
+	int m_choice;
 	
 	
 public:
@@ -64,5 +65,10 @@ public:
 
 	void DrawString(const char* text, Vector3* position, Colors* colour);
 	
+	void MenuChoices(int selection);
+
+	void Menu();
+
+	void Reset();
 };
 

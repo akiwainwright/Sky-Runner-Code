@@ -52,7 +52,6 @@ void Player::Draw()
 	glTranslatef(position->x, position->y, position->z);
 	glRotatef(m_turn, 0.0f, 0.0f, 1.0f);
 	glRotatef(m_altitude, 1.0f, 0.0f, 0.0f);
-	glRotatef(m_barrel_roll, 0.0f, 0.0f, 1.0f);
 
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i < m_object->faceCounter; ++i)
