@@ -66,6 +66,8 @@ public:
 	void DrawString(const char* text, Vector3* position, Colors* colour);
 	
 	void MenuChoices(int selection);
+	
+	float DistanceSquared(Vector3* position1, Vector3* position2);
 
 	void Menu();
 

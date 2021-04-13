@@ -1,6 +1,7 @@
 #include "HelloGL.h"
 #include <ctime>
 #include <iostream>
+#include <cmath>
 #include "ObjLoader.h"
 
 
@@ -75,6 +76,19 @@ void HelloGL::Update()
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, 
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
+
+	for (int i = 0; i < m_Obstacles.size(); ++i)
+	{
+		float distance = DistanceSquared(m_Obstacles[i]->position, PlayerShip->position);
+
+		float radius_distance = pow(m_Obstacles[i]->GetRadius() + PlayerShip->GetRadius(), 2);
+
+		if (distance <= radius_distance)
+		{
+			PlayerShip->TakeDamage();
+			break;
+		}
+	}
 	
 	/*if (score == 100)
 	{
@@ -347,6 +361,15 @@ void HelloGL::MenuChoices(int selection)
 		break;
 	}
 
+}
+
+float HelloGL::DistanceSquared(Vector3* position1, Vector3* position2)
+{
+	float distance = ((position1->x - position2->x) * (position1->x - position2->x) +
+					  (position1->y - position2->y) * (position1->y - position2->y) +
+					  (position1->z - position2->z) * (position1->z - position2->z));
+
+	return distance;
 }
 
 void HelloGL::Menu()
