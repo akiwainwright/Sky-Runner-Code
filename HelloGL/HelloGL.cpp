@@ -77,6 +77,9 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 
+	std::cout << "Player Pos: " << PlayerShip->position->x << " " << PlayerShip->position->y << " " << PlayerShip->position->z << std::endl;
+	std::cout << "Obstacle Pos: " << m_Obstacles[0]->position->x << " " << m_Obstacles[0]->position->y << " " << m_Obstacles[0]->position->z << std::endl;
+
 	for (int i = 0; i < m_Obstacles.size(); ++i)
 	{
 		float distance = DistanceSquared(m_Obstacles[i]->position, PlayerShip->position);
@@ -241,7 +244,7 @@ void HelloGL::InitObject()
 		else if (m_object_to_use == 1 || m_object_to_use == 2 || m_object_to_use == 3) 
 		{
 			Obstacles* obstacle = new Obstacles(DumbellModel, dumbellTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
-			obstacle->SetSpeed(obstacle->GetSpeed()*1.5f);
+			obstacle->SetSpeed(obstacle->GetSpeed() * 1.5f);
 			obstacle->SetSpin(obstacle->GetSpin()*10.0f);
 			obstacle->SetRadius(1.92f);
 			m_Obstacles.push_back(obstacle);
