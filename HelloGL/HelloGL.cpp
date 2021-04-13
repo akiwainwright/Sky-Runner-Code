@@ -33,7 +33,7 @@ HelloGL::~HelloGL()
 
 void HelloGL::Display()
 {
-	glClear(GL_COLOR_BUFFER_BIT); //Clears the scene
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
 
 	if (PlayerShip->GetAlive())
 	{
@@ -89,15 +89,11 @@ void HelloGL::Update()
 		if (distance <= radius_distance)
 		{
 			PlayerShip->TakeDamage();
+			Menu();
 			break;
 		}
 	}
-	
-	/*if (score == 100)
-	{
-		PlayerShip->TakeDamage();
-		Menu();
-	}*/
+
 
 	//continuing game while player is alive
 	if (PlayerShip->GetAlive())
