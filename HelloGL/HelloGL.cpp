@@ -347,17 +347,21 @@ void HelloGL::MenuChoices(int selection)
 		Reset();
 		for (int i = 0; i < m_Obstacles.size(); ++i)
 		{
-			m_Obstacles[i]->SetSpeed(0.3f);
+			m_Obstacles[i]->SetSpeed(0.5f);
 		}
 		break;
 	case 2:
 		Reset();
+		for (int i = 0; i < m_Obstacles.size(); ++i)
+		{
+			m_Obstacles[i]->SetSpeed(2.0f);
+		}
 		break;
 	case 3:
 		Reset();
 		for (int i = 0; i < m_Obstacles.size(); ++i)
 		{
-			m_Obstacles[i]->SetSpeed(1.5f);
+			m_Obstacles[i]->SetSpeed(4.0f);
 		}
 		break;
 	case 4:
