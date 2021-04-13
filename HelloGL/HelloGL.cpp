@@ -283,7 +283,7 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glutDisplayFunc(GLUTcallbacks::Display);
 	glutTimerFunc(REFRESHRATE, GLUTcallbacks::Timer, REFRESHRATE);
 	glutKeyboardFunc(GLUTcallbacks::Keyboard);
-	Menu();
+	Menu(PlayerShip->GetAlive());
 	glDepthFunc(GL_ALWAYS);
 
 	//setting up a camera
@@ -369,19 +369,21 @@ void HelloGL::MenuChoices(int selection)
 
 }
 
-void HelloGL::Menu(bool playing)
+void HelloGL::Menu()
 {
 
 	int difficulty_menu = 0;
 	
 	difficulty_menu = glutCreateMenu(GLUTcallbacks::MenuChoices);
 
+	
 	glutAddMenuEntry("Easy", 1);
 	glutAddMenuEntry("Normal", 2);
 	glutAddMenuEntry("Hard", 3);
 	glutCreateMenu(GLUTcallbacks::MenuChoices);
 	glutAddSubMenu("Play Again", difficulty_menu);
 	glutAddMenuEntry("Exit", 4);
+	
 
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
