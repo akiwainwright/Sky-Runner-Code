@@ -75,7 +75,7 @@ void Obstacles::Update()
 		m_rotation += spin;
 	}
 
-	if (position->z < 0.0f)
+	if (position->z < 5.0f)
 	{
 		
 		position->z += speed;

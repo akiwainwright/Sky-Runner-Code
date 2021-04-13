@@ -37,13 +37,13 @@ void HelloGL::Display()
 	if (PlayerShip->GetAlive())
 	{
 		Sky->Draw();
-		PlayerShip->Draw();
 
 		for (int i = 0; i < m_no_of_obstacles; ++i)
 		{
 			m_Obstacles[i]->Draw();
 		}
 
+		PlayerShip->Draw();
 		//displaying score
 		DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
 	}
@@ -76,10 +76,10 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 	
-	if (score == 700)
-	{
-		PlayerShip->TakeDamage();
-	}
+	//if (score == 2500)
+	//{
+	//	PlayerShip->TakeDamage();
+	//}
 
 	//continuing game while player is alive
 	if (PlayerShip->GetAlive())
