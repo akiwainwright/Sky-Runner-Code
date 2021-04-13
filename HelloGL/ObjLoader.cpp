@@ -13,6 +13,7 @@ namespace ObjLoader
 
 	void LoadObjectData(fstream& inFile, Object* object)
 	{
+
 		object->faceCounter = 0;
 		
 		string key;
@@ -29,7 +30,7 @@ namespace ObjLoader
 				inFile >> vertex.x;
 				inFile >> vertex.y;
 				inFile >> vertex.z;
-
+			
 				object->vertices.push_back(vertex);
 			}
 
@@ -82,6 +83,7 @@ namespace ObjLoader
 				
 			}
 		}
+
 	}
 
 	Object* Load(char* path)
@@ -101,7 +103,6 @@ namespace ObjLoader
 		LoadObjectData(inFile, object);
 		
 		inFile.close();
-		
 		return object;
 	}
 

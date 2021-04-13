@@ -20,8 +20,8 @@ private:
 	bool m_is_alive;
 
 
+	float m_radius;
 public:
-	float radius;
 
 	Player(Object* object, Texture2D* texture, float x, float y, float z);
 	~Player();
@@ -34,6 +34,7 @@ public:
 	void MoveDown();
 	float GetSpeed() { return m_speed; }
 	bool GetAlive() { return m_is_alive; }
+	float GetRadius() { return m_radius; }
 	void TakeDamage() { m_is_alive = false; }
 	void PlayAgain() { m_is_alive = true;  }
 	void ResetHorizontalRotation() { m_turn = 0.0; }

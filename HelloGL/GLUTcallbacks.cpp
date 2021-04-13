@@ -39,4 +39,9 @@ namespace GLUTcallbacks
 		helloGL->Keyboard(key, x, y);
 	}
 
+	void MenuChoices(int selection)
+	{
+		helloGL->MenuChoices(selection);
+	}
+
 }

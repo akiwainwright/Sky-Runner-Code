@@ -32,7 +32,7 @@ HelloGL::~HelloGL()
 
 void HelloGL::Display()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //Clears the scene
+	glClear(GL_COLOR_BUFFER_BIT); //Clears the scene
 
 	if (PlayerShip->GetAlive())
 	{
@@ -76,10 +76,11 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 	
-	//if (score == 2500)
-	//{
-	//	PlayerShip->TakeDamage();
-	//}
+	/*if (score == 100)
+	{
+		PlayerShip->TakeDamage();
+		Menu();
+	}*/
 
 	//continuing game while player is alive
 	if (PlayerShip->GetAlive())
@@ -218,21 +219,24 @@ void HelloGL::InitObject()
 		if(m_object_to_use == 5 || m_object_to_use == 4)
 		{
 			Obstacles* obstacle = new Obstacles(MarbleModel, marbleTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
-			obstacle->speed = obstacle->speed / 2;
+			obstacle->SetSpeed(obstacle->GetSpeed()/2);
+			obstacle->SetRadius(3.52f);
 			m_Obstacles.push_back(obstacle);
 
 		}
 		else if (m_object_to_use == 1 || m_object_to_use == 2 || m_object_to_use == 3) 
 		{
 			Obstacles* obstacle = new Obstacles(DumbellModel, dumbellTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
-			obstacle->speed *= 1.5;
-			obstacle->spin *= 10.0f;
+			obstacle->SetSpeed(obstacle->GetSpeed()*1.5f);
+			obstacle->SetSpin(obstacle->GetSpin()*10.0f);
+			obstacle->SetRadius(1.92f);
 			m_Obstacles.push_back(obstacle);
 		}
 		else
 		{
 			Obstacles* obstacle = new Obstacles(RockModel, rockTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
-			obstacle->spin *= 5.0f;
+			obstacle->SetSpin(obstacle->GetSpin() * 5.0f);
+			obstacle->SetRadius(0.965f);
 			m_Obstacles.push_back(obstacle);
 		}
 	}
@@ -325,7 +329,7 @@ void HelloGL::MenuChoices(int selection)
 		Reset();
 		for (int i = 0; i < m_Obstacles.size(); ++i)
 		{
-			m_Obstacles[i]->speed *= 0.5f;
+			m_Obstacles[i]->SetSpeed(m_Obstacles[i]->GetSpeed() / 2.0f);
 		}
 		break;
 	case 2:
@@ -335,29 +339,32 @@ void HelloGL::MenuChoices(int selection)
 		Reset();
 		for (int i = 0; i < m_Obstacles.size(); ++i)
 		{
-			m_Obstacles[i]->speed *= 1.5f;
+			m_Obstacles[i]->SetSpeed(m_Obstacles[i]->GetSpeed()*1.5f);
 		}
 		break;
 	case 4:
 		exit(0);
 		break;
 	}
+
 }
-//
-//void HelloGL::Menu()
-//{
-//
-//	int difficulty_menu = glutCreateMenu(MenuChoices);
-//
-//	glutAddMenuEntry("Easy", 1);
-//	glutAddMenuEntry("Normal", 2);
-//	glutAddMenuEntry("Hard", 3);
-//	glutCreateMenu(MenuChoices);
-//	glutAddSubMenu("Play Again", difficulty_menu);
-//	glutAddMenuEntry("Exit", 4);
-//
-//	glutAttachMenu(GLUT_RIGHT_BUTTON);
-//}
+
+void HelloGL::Menu()
+{
+
+	int difficulty_menu;
+	
+	difficulty_menu = glutCreateMenu(GLUTcallbacks::MenuChoices);
+
+	glutAddMenuEntry("Easy", 1);
+	glutAddMenuEntry("Normal", 2);
+	glutAddMenuEntry("Hard", 3);
+	glutCreateMenu(GLUTcallbacks::MenuChoices);
+	glutAddSubMenu("Play Again", difficulty_menu);
+	glutAddMenuEntry("Exit", 4);
+
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
 
 void HelloGL::Reset()
 {
@@ -369,5 +376,7 @@ void HelloGL::Reset()
 	PlayerShip->position->z = 0.0f;
 	PlayerShip->ResetHorizontalRotation();
 	PlayerShip->ResetVerticalRotation();
+
 }
+
 
