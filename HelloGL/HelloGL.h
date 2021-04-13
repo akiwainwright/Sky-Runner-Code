@@ -71,5 +71,6 @@ public:
 	void Menu();
 
 	void Reset();
+
 };
 

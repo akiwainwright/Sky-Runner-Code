@@ -283,7 +283,7 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glutDisplayFunc(GLUTcallbacks::Display);
 	glutTimerFunc(REFRESHRATE, GLUTcallbacks::Timer, REFRESHRATE);
 	glutKeyboardFunc(GLUTcallbacks::Keyboard);
-	Menu(PlayerShip->GetAlive());
+	Menu();
 	glDepthFunc(GL_ALWAYS);
 
 	//setting up a camera
@@ -347,7 +347,7 @@ void HelloGL::MenuChoices(int selection)
 		Reset();
 		for (int i = 0; i < m_Obstacles.size(); ++i)
 		{
-			m_Obstacles[i]->SetSpeed(m_Obstacles[i]->GetSpeed() / 2.0f);
+			m_Obstacles[i]->SetSpeed(0.3f);
 		}
 		break;
 	case 2:
@@ -357,7 +357,7 @@ void HelloGL::MenuChoices(int selection)
 		Reset();
 		for (int i = 0; i < m_Obstacles.size(); ++i)
 		{
-			m_Obstacles[i]->SetSpeed(m_Obstacles[i]->GetSpeed()*1.5f);
+			m_Obstacles[i]->SetSpeed(1.5f);
 		}
 		break;
 	case 4:
@@ -407,6 +407,7 @@ void HelloGL::Reset()
 	PlayerShip->position->z = 0.0f;
 	PlayerShip->ResetHorizontalRotation();
 	PlayerShip->ResetVerticalRotation();
+	
 
 	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 40.0f;
 	camera->center.x = 0.0f, camera->center.y = 0.0f, camera->center.z = 0.0f;
