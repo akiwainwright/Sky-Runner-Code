@@ -390,7 +390,7 @@ void HelloGL::Menu()
 	glutAddMenuEntry("Hard", 3);
 	glutCreateMenu(GLUTcallbacks::MenuChoices);
 	glutAddSubMenu("Play Again", difficulty_menu);
-	glutAddMenuEntry("Exit", 4);
+	glutAddMenuEntry("Quit", 4);
 	
 
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
