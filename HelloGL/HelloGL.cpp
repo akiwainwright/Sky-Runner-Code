@@ -85,7 +85,7 @@ void HelloGL::Update()
 		      camera->up.x, camera->up.y, camera->up.z);
 
 	////collision check
-	for (int i = 0; i < m_Obstacles.size(); ++i)
+	for (unsigned int i = 0; i < m_Obstacles.size(); ++i)
 	{
 		float distance = DistanceSquared(m_Obstacles[i]->position, PlayerShip->position);
 
@@ -94,6 +94,9 @@ void HelloGL::Update()
 		if (distance <= radius_distance)
 		{
 			PlayerShip->TakeDamage();
+			m_Obstacles[i]->position->x = (float)(rand() % 101 + (-40));
+			m_Obstacles[i]->position->y = (float)(rand() % 101 + (-40));
+			m_Obstacles[i]->position->z -= 200.0f;
 			break;
 		}
 	}
@@ -345,21 +348,21 @@ void HelloGL::MenuChoices(int selection)
 	{
 	case 1:
 		Reset();
-		for (int i = 0; i < m_Obstacles.size(); ++i)
+		for (unsigned int i = 0; i < m_Obstacles.size(); ++i)
 		{
 			m_Obstacles[i]->SetSpeed(0.5f);
 		}
 		break;
 	case 2:
 		Reset();
-		for (int i = 0; i < m_Obstacles.size(); ++i)
+		for (unsigned int i = 0; i < m_Obstacles.size(); ++i)
 		{
 			m_Obstacles[i]->SetSpeed(2.0f);
 		}
 		break;
 	case 3:
 		Reset();
-		for (int i = 0; i < m_Obstacles.size(); ++i)
+		for (unsigned int i = 0; i < m_Obstacles.size(); ++i)
 		{
 			m_Obstacles[i]->SetSpeed(4.0f);
 		}
