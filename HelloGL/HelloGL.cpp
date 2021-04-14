@@ -276,8 +276,8 @@ void HelloGL::InitGL(int argc, char* argv[])
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); //setting display to use a double buffer to reduce flicker
 
 	//setting up the window
-	glutInitWindowSize(1280, 1280);
-	//glutInitWindowPosition(100, 100);
+	glutInitWindowSize(1280, 1000);
+	glutInitWindowPosition(100, 0);
 	glutCreateWindow("Sky Runner");
 
 	//Triggers to run callback functions
