@@ -64,7 +64,6 @@ void HelloGL::Display()
 		camera->eye.x = 0.0f;
 		camera->eye.y = 0.0f;
 		ScoreTextPos.x = -1.2f, ScoreTextPos.y = 0.0f, ScoreTextPos.z = 0.0f;
-		ScoreTextColour.r = 0.0f, ScoreTextColour.g = 0.0f; ScoreTextColour.b = 0.0f;
 		score_text = "Score: " + std::to_string(score);
 		DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
 		DrawString((char*)"GAME OVER", &GameOverText, &GameOverColour);
@@ -336,7 +335,7 @@ void HelloGL::DrawString(const char* text, Vector3* position, Colors* colour)
 {
 	glDisable(GL_LIGHTING);
 	glPushMatrix();
-	glColor3f(colour->r, colour->g, colour->b);
+	glColor3f(colour->r, colour->b, colour->g);
 	glTranslatef(position->x, position->y, position->z);
 	glRasterPos2f(0.0f, 0.0f);
 	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (unsigned char*)text);
