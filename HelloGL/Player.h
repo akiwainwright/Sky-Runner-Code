@@ -11,7 +11,6 @@ private:
 
 	float m_turn;
 	float m_altitude;
-	float m_barrel_roll;
 	float m_speed;
 	float m_rate_of_turn;
 	float m_rate_of_rotation;
