@@ -77,8 +77,8 @@ void Obstacles::Update()
 	}
 	else
 	{
-		position->x = (float)(rand() % 101 + (-30));
-		position->y = (float)(rand() % 101 + (-30));
+		position->x = (float)(rand() % 101 + (-40));
+		position->y = (float)(rand() % 101 + (-40));
 		position->z -= 200.0f;
 	}
 }
