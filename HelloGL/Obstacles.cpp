@@ -2,10 +2,11 @@
 
 Obstacles::Obstacles(Object* object, Texture2D* texture, float x, float y, float z) : Objects(object, texture, x, y, z)
 {
-	m_start_rotation = (rand() % 7) * 50;
+	m_start_rotation = (float) ((rand() % 7) * 50);
 	m_rotation = 0.0f;
 	m_spin = 2.0f;
 	m_speed = 0.55f;
+	m_radius = 0.0f;
 
 	m_object = object;
 	m_texture = texture;
@@ -76,8 +77,8 @@ void Obstacles::Update()
 	}
 	else
 	{
-		position->x = rand() % 101 + (-50);
-		position->y = rand() % 101 + (-50);
+		position->x = (float)(rand() % 101 + (-40));
+		position->y = (float)(rand() % 101 + (-40));
 		position->z -= 200.0f;
 	}
 }

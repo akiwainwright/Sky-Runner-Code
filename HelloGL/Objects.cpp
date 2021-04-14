@@ -16,7 +16,8 @@ Objects::Objects(Object* object, Texture2D* texture, float x, float y, float z)
 	position->x = x;
 	position->y = y;
 	position->z = z;
-
+	m_rotation = 0.0f;
+	m_start_rotation = 0.0f;
 	m_texture = texture;
 }
 

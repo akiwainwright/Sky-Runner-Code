@@ -84,7 +84,7 @@ void HelloGL::Update()
 			  camera->center.x, camera->center.y, camera->center.z,
 		      camera->up.x, camera->up.y, camera->up.z);
 
-	//collision check
+	////collision check
 	for (int i = 0; i < m_Obstacles.size(); ++i)
 	{
 		float distance = DistanceSquared(m_Obstacles[i]->position, PlayerShip->position);
@@ -235,7 +235,7 @@ void HelloGL::InitObject()
 		m_object_to_use = rand() % 11;
 		if(m_object_to_use == 5 || m_object_to_use == 4)
 		{
-			Obstacles* obstacle = new Obstacles(MarbleModel, marbleTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
+			Obstacles* obstacle = new Obstacles(MarbleModel, marbleTexture, (float)(rand() % 101 + (-50)), (float)(rand() % 101 + (-50)), (float) -(rand() % 200 + 50));
 			obstacle->SetSpeed(obstacle->GetSpeed()/2);
 			obstacle->SetRadius(3.52f);
 			m_Obstacles.push_back(obstacle);
@@ -243,7 +243,7 @@ void HelloGL::InitObject()
 		}
 		else if (m_object_to_use == 1 || m_object_to_use == 2 || m_object_to_use == 3) 
 		{
-			Obstacles* obstacle = new Obstacles(DumbellModel, dumbellTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
+			Obstacles* obstacle = new Obstacles(DumbellModel, dumbellTexture, (float)(rand() % 101 + (-50)), (float)(rand() % 101 + (-50)), (float)-(rand() % 200 + 50));
 			obstacle->SetSpeed(obstacle->GetSpeed() * 1.5f);
 			obstacle->SetSpin(obstacle->GetSpin()*10.0f);
 			obstacle->SetRadius(1.92f);
@@ -251,7 +251,7 @@ void HelloGL::InitObject()
 		}
 		else
 		{
-			Obstacles* obstacle = new Obstacles(RockModel, rockTexture, rand() % 101 + (-50), rand() % 101 + (-50), -(rand() % 200 + 20));
+			Obstacles* obstacle = new Obstacles(RockModel, rockTexture, (float)(rand() % 101 + (-50)), (float)(rand() % 101 + (-50)), (float)-(rand() % 200 + 50));
 			obstacle->SetSpin(obstacle->GetSpin() * 5.0f);
 			obstacle->SetRadius(0.965f);
 			m_Obstacles.push_back(obstacle);
@@ -277,14 +277,14 @@ void HelloGL::InitGL(int argc, char* argv[])
 	//setting up the window
 	glutInitWindowSize(1280, 1280);
 	//glutInitWindowPosition(100, 100);
-	glutCreateWindow("I think it works :)");
+	glutCreateWindow("Sky Runner");
 
 	//Triggers to run callback functions
 	glutDisplayFunc(GLUTcallbacks::Display);
 	glutTimerFunc(REFRESHRATE, GLUTcallbacks::Timer, REFRESHRATE);
 	glutKeyboardFunc(GLUTcallbacks::Keyboard);
 	Menu();
-	glDepthFunc(GL_ALWAYS);
+	glDepthFunc(GL_LESS);
 
 	//setting up a camera
 	glMatrixMode(GL_PROJECTION);
