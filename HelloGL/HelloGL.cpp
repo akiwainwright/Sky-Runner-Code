@@ -66,7 +66,7 @@ void HelloGL::Display()
 		ScoreTextPos.x = -1.2f, ScoreTextPos.y = 0.0f, ScoreTextPos.z = 0.0f;
 		score_text = "Score: " + std::to_string(score);
 		DrawString(score_text.c_str(), &ScoreTextPos, &ScoreTextColour);
-		DrawString((char*)"GAME OVER", &GameOverText, &GameOverColour);
+		DrawString((char*)"GAME OVER", &GameOverTextPos, &GameOverColour);
 	}
 
 	glFlush(); //flushes the scene drawn to the graphics card
