@@ -5,7 +5,7 @@ Obstacles::Obstacles(Object* object, Texture2D* texture, float x, float y, float
 	m_start_rotation = (float) ((rand() % 7) * 50);
 	m_rotation = 0.0f;
 	m_spin = 2.0f;
-	m_speed = 0.55f;
+	m_speed = 1.5f;
 	m_radius = 0.0f;
 
 	m_object = object;

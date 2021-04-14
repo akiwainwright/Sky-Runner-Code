@@ -42,7 +42,7 @@ private:
 	
 	
 public:
-	int score = 0;
+	long int score = 0;
 	int frame_counter = 0;
 
 	std::string score_text;

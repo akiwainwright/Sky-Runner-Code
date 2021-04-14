@@ -47,7 +47,7 @@ void HelloGL::Display()
 	{
 		Sky->Draw();
 
-		for (int i = 0; i < m_no_of_obstacles; ++i)
+		for (int i = 0; i < m_Obstacles.size(); ++i)
 		{
 			m_Obstacles[i]->Draw();
 		}
@@ -106,7 +106,7 @@ void HelloGL::Update()
 	{
 		Sky->Update();
 
-		for (int i = 0; i < m_no_of_obstacles; ++i)
+		for (int i = 0; i < m_Obstacles.size(); ++i)
 		{
 			m_Obstacles[i]->Update();
 		}
@@ -116,7 +116,7 @@ void HelloGL::Update()
 		frame_counter += 1;
 		if (frame_counter == 2)
 		{
-			score += 5;
+			score += 521;
 			frame_counter = 0;
 		}
 
@@ -228,15 +228,15 @@ void HelloGL::InitObject()
 	//setting up models
 	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, -340);
 	PlayerShip = new Player(PlayerShipModel, playerShipTexture, 0, -1.0f, 0);
-	
-	m_no_of_obstacles = 200;
+
+	m_no_of_obstacles = 170;
 
 	for (int i = 0; i < m_no_of_obstacles; ++i)
 	{
 		m_object_to_use = rand() % 11;
 		if(m_object_to_use == 5 || m_object_to_use == 4)
 		{
-			Obstacles* obstacle = new Obstacles(MarbleModel, marbleTexture, (float)(rand() % 101 + (-50)), (float)(rand() % 101 + (-50)), (float) -(rand() % 200 + 50));
+			Obstacles* obstacle = new Obstacles(MarbleModel, marbleTexture, (float)(rand() % 101 + (-50)), (float)(rand() % 101 + (-50)), (float) -(rand() % 200 + 90));
 			obstacle->SetSpeed(obstacle->GetSpeed()/2);
 			obstacle->SetRadius(3.52f);
 			m_Obstacles.push_back(obstacle);
@@ -244,7 +244,7 @@ void HelloGL::InitObject()
 		}
 		else if (m_object_to_use == 1 || m_object_to_use == 2 || m_object_to_use == 3) 
 		{
-			Obstacles* obstacle = new Obstacles(DumbellModel, dumbellTexture, (float)(rand() % 101 + (-50)), (float)(rand() % 101 + (-50)), (float)-(rand() % 200 + 50));
+			Obstacles* obstacle = new Obstacles(DumbellModel, dumbellTexture, (float)(rand() % 101 + (-50)), (float)(rand() % 101 + (-50)), (float)-(rand() % 200 + 90));
 			obstacle->SetSpeed(obstacle->GetSpeed() * 1.5f);
 			obstacle->SetSpin(obstacle->GetSpin()*10.0f);
 			obstacle->SetRadius(1.92f);
@@ -252,7 +252,7 @@ void HelloGL::InitObject()
 		}
 		else
 		{
-			Obstacles* obstacle = new Obstacles(RockModel, rockTexture, (float)(rand() % 101 + (-50)), (float)(rand() % 101 + (-50)), (float)-(rand() % 200 + 50));
+			Obstacles* obstacle = new Obstacles(RockModel, rockTexture, (float)(rand() % 101 + (-50)), (float)(rand() % 101 + (-50)), (float)-(rand() % 200 + 90));
 			obstacle->SetSpin(obstacle->GetSpin() * 5.0f);
 			obstacle->SetRadius(0.965f);
 			m_Obstacles.push_back(obstacle);
@@ -358,7 +358,7 @@ void HelloGL::MenuChoices(int selection)
 		Reset();
 		for (unsigned int i = 0; i < m_Obstacles.size(); ++i)
 		{
-			m_Obstacles[i]->SetSpeed(2.0f);
+			m_Obstacles[i]->SetSpeed(1.5f);
 		}
 		break;
 	case 3:
