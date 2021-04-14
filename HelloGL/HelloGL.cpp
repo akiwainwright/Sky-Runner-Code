@@ -138,7 +138,6 @@ void HelloGL::Update()
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Ambient.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Diffuse.x));
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Specular.x));
-
 	
 	glutPostRedisplay();
 }
@@ -335,11 +334,14 @@ void HelloGL::InitLighting()
 
 void HelloGL::DrawString(const char* text, Vector3* position, Colors* colour)
 {
+	glDisable(GL_LIGHTING);
 	glPushMatrix();
+	glColor3f(colour->r, colour->g, colour->b);
 	glTranslatef(position->x, position->y, position->z);
 	glRasterPos2f(0.0f, 0.0f);
 	glutBitmapString(GLUT_BITMAP_HELVETICA_18, (unsigned char*)text);
 	glPopMatrix();
+	glEnable(GL_LIGHTING);
 }
 
 void HelloGL::MenuChoices(int selection)
