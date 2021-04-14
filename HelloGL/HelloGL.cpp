@@ -12,7 +12,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	InitGL(argc, argv);
 
 	InitLighting();
-	PlaySound(TEXT("Cancan.wav"), NULL, SND_LOOP | SND_ASYNC | SND_FILENAME);
+	PlaySound(TEXT("Sound/Cancan.wav"), NULL, SND_LOOP | SND_ASYNC | SND_FILENAME);
 	InitObject();
 
 	glutMainLoop();
@@ -202,28 +202,28 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 void HelloGL::InitObject()
 {
 	//loading models to use
-	Object* SkySphereModel = ObjLoader::Load((char*)"Sky.obj");
-	Object* PlayerShipModel = ObjLoader::Load((char*)"NewPlayerShip.obj");
-	Object* RockModel = ObjLoader::Load((char*)"Rock.obj");
-	Object* MarbleModel = ObjLoader::Load((char*)"Marble.obj");
-	Object* DumbellModel = ObjLoader::Load((char*)"Dumbell.obj");
+	Object* SkySphereModel = ObjLoader::Load((char*)"Objects/Sky.obj");
+	Object* PlayerShipModel = ObjLoader::Load((char*)"Objects/NewPlayerShip.obj");
+	Object* RockModel = ObjLoader::Load((char*)"Objects/Rock.obj");
+	Object* MarbleModel = ObjLoader::Load((char*)"Objects/Marble.obj");
+	Object* DumbellModel = ObjLoader::Load((char*)"Objects/Dumbell.obj");
 
 	
 	//loadint textures for models
 	Texture2D* skyTexture = new Texture2D();
-	skyTexture->Load((char*)"sky2.raw", 2048, 2048);
+	skyTexture->Load((char*)"Textures/sky2.raw", 2048, 2048);
 
 	Texture2D* playerShipTexture = new Texture2D();
-	playerShipTexture->Load((char*)"NewShip.raw", 2048, 2048);
+	playerShipTexture->Load((char*)"Textures/NewShip.raw", 2048, 2048);
 
 	Texture2D* rockTexture = new Texture2D();
-	rockTexture->Load((char*)"Rock.raw", 2048, 2048);
+	rockTexture->Load((char*)"Textures/Rock.raw", 2048, 2048);
 	
 	Texture2D* marbleTexture = new Texture2D();
-	marbleTexture->Load((char*)"Marble.raw", 2048, 2048);
+	marbleTexture->Load((char*)"Textures/Marble.raw", 2048, 2048);
 
 	Texture2D* dumbellTexture = new Texture2D();
-	dumbellTexture->Load((char*)"Dumbell.raw", 2048, 2048);
+	dumbellTexture->Load((char*)"Textures/Dumbell.raw", 2048, 2048);
 
 	//setting up models
 	Sky = new Environment(SkySphereModel, skyTexture, 0, 0, -340);
@@ -419,7 +419,7 @@ void HelloGL::Reset()
 
 	camera->eye.x = 0.0f, camera->eye.y = 0.0f, camera->eye.z = 40.0f;
 	camera->center.x = 0.0f, camera->center.y = 0.0f, camera->center.z = 0.0f;
-	PlaySound(TEXT("Cancan.wav"), NULL, SND_LOOP | SND_ASYNC | SND_FILENAME);
+	PlaySound(TEXT("Sound/Cancan.wav"), NULL, SND_LOOP | SND_ASYNC | SND_FILENAME);
 
 }
 
