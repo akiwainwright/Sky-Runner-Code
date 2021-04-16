@@ -8,6 +8,6 @@ public:
 	Environment(Object* object, Texture2D* texture, float x, float y, float z);
 	~Environment();
 
-	void Update() override;
+	virtual void Update() override;
 };
 

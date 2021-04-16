@@ -16,8 +16,8 @@ public:
 	Obstacles(Object* object, Texture2D* texture, float x, float y, float z);
 	~Obstacles();
 
-	void Draw() override;
-	void Update() override;
+	virtual void Draw() override;
+	virtual void Update() override;
 	void SetSpin(float spin) { m_spin = spin; }
 	void SetSpeed(float speed) { m_speed = speed; }
 	void SetRadius(float radius) { m_radius = radius; }

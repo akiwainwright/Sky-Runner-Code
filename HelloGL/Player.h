@@ -24,7 +24,7 @@ public:
 	Player(Object* object, Texture2D* texture, float x, float y, float z);
 	~Player();
 
-	void Draw() override;
+	virtual void Draw() override;
 	float GetRotation() { return m_start_rotation;  }
 	void MoveLeft();
 	void MoveRight();
