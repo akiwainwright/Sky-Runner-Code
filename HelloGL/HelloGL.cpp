@@ -84,7 +84,7 @@ void HelloGL::Update()
 		      camera->up.x, camera->up.y, camera->up.z);
 
 	////collision check
-	for (unsigned int i = 0; i < m_Obstacles.size(); ++i)
+	/*for (unsigned int i = 0; i < m_Obstacles.size(); ++i)
 	{
 		float distance = DistanceSquared(m_Obstacles[i]->position, PlayerShip->position);
 
@@ -98,7 +98,7 @@ void HelloGL::Update()
 			m_Obstacles[i]->position->z -= 200.0f;
 			break;
 		}
-	}
+	}*/
 
 
 	//continuing game while player is alive
@@ -135,8 +135,9 @@ void HelloGL::Update()
 	}
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Ambient.x));
-	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Diffuse.x));
-	glLightfv(GL_LIGHT0, GL_AMBIENT, &(m_lightData->Specular.x));
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(m_lightData->Diffuse.x));
+	glLightfv(GL_LIGHT0, GL_SPECULAR, &(m_lightData->Specular.x));
+	glLightfv(GL_LIGHT0, GL_POSITION, &(m_lightPosition->x));
 	
 	glutPostRedisplay();
 }
